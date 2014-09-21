@@ -1,4 +1,3 @@
-
 <?php
 require_once "connection.class.php";
 class admin {
