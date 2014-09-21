@@ -3,9 +3,9 @@
 class Connection {
 	private static $connection = false;
 	private static $host = "localhost";
-	private static $dbname = "_projet_carte";
-	private static $user = "tyery1";
-	private static $pwd = "xxxxxxxx";
+	private static $dbname = "projet_conf";
+	private static $user = "admin";
+	private static $pwd = "admin";
 	public static function get() {
 		if (self::$connection == false) {
 			
