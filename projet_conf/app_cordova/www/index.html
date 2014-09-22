@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,11 +10,12 @@
 
 <!-- Custom styles for this template -->
 <link href="css/index.css" rel="stylesheet">
-
+<!-- 
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoee1ROXuFE8rvd3XXqqa7z-5DNuzdCPY">
 	
 </script>
+ -->
 <title>Colloquium</title>
 </head>
 
@@ -32,9 +33,9 @@
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li class="active"><a href="index.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="contact.html">Contact</a></li>
 					<li><a href="connexion.html">Administration</a></li>
 				</ul>
 			</div>
@@ -45,7 +46,17 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-6 panel">Logo évènement</div>
-			<div class="col-sm-6 panel" id=map_canvas>Map évènement</div>
+			<div class="col-sm-6 panel" ng-controller="Maps">
+				<google-map center="map.center" zoom="map.zoom">
+					<marker coords="marker.coords">
+						<window isIconVisibleOnClick="true">
+							<p>
+								{{marker.coords.message}}
+							</p>
+						</window>
+					</marker>
+				</google-map>				
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12 panel">description evenement</div>
@@ -60,9 +71,20 @@
 	</div>
 
 	<!-- librairie js -->
-	<script src="js/jquery.js"></script>
-	<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/angular.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="angular-route.js"></script>
+	<script type="text/javascript" src="angular-route.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript" src="js/NavCtrl.js"></script>
 
+	<!-- google maps -->
+	<script src='//maps.googleapis.com/maps/api/js?sensor=false&language=fr'></script>
+	<script type="text/javascript" src='js/lodash.js'></script>
+	<script type="text/javascript" src='js/angular-google-maps.js'></script>
+<!-- 
 	<script type="text/javascript">
 		function initialize() {
 			var mapOptions = {
@@ -75,6 +97,7 @@
 
 		google.maps.event.addDomListener(window, 'load', initialize);
 	</script>
+	 -->
 </body>
 
 
