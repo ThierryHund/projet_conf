@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://dptinfo.iut.univ-metz.fr/# -->
+<html lang="fr">
+    <head>
+        <title>Ajout d'un événement</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="./css/main.css" rel="stylesheet" type="text/css">
+        <link href="./css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <h1 id="container">Ajout d'un événement</h1><hr>
+                        <form method="post" action="ajout_evenement.php" class="form-horizontal" enctype="multipart/form-data" id="ajout_evenement">
+                            <fieldset>
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <br>Titre de l'événement :
+                                        </td>
+                                        <td>
+                                            <br><input type="text" name="titre_evenement" class="form-control"  id="titre_presentation" maxlength="15" placeholder="Titre de l'événement">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br>Lieu :
+                                        </td>
+                                        <td>
+                                            <br><input type="text" name="lieu_evenement" class="form-control"  id="titre_presentation" maxlength="15" placeholder="Lieu de l'événement">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br>Logo :
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
+                                            <br><input type="file" name="logo" id="logo" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br>Organisateur(s) :
+                                        </td>
+                                        <td>
+                                            <br><input type="text" name="organisateur" class="form-control"  id="organisateur" maxlength="75" placeholder="Organisateur(s)">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br>Logo de l'organisateur :
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br>Dates :
+                                        </td>
+                                        <td>
+                                            <br>du <input type="date" name="date_debut">
+                                        </td>
+                                        <td>
+                                            <br>au <input type="date" name="date_fin">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br>
+                                <input type="submit" value="Ajouter" name="ajout_evenement" class="btn btn-primary">
+                            </fieldset>
+                            <br>
+                        </form>
+                    <div class="errors" id="error-message-wrapper">
+                    </div>
+                </div>
+            <hr>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
+  </body>
+</html>
