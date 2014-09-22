@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,19 +10,54 @@
 
 <!-- Custom styles for this template -->
 <link href="css/index.css" rel="stylesheet">
-    </head>
+<!-- 
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoee1ROXuFE8rvd3XXqqa7z-5DNuzdCPY">
     
-    <body>
-        <div class="row">
-            <div class="span12">
-                <div class="jumbotron">
-                  <h1>Accueil</h1>
-                  <p>Bienvenue dans l'administration des conférences</p>
-                </div>
+</script>
+ -->
+<title>Colloquium</title>
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                    <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+                        class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Menu</a>
             </div>
-            <hr>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="ajout_evenement.html">Ajout</a></li>
+                    <li><a href="#">Consulter/modifier</a></li>
+                </ul>
+            </div>
         </div>
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-    </body>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <h1>Accueil</h1>
+            <p>Bienvenue dans l'administration des conférences</p>
+            <p>Utiliser le menu pour naviguer</p>
+        </div>
+    </div>
+
+    <!-- librairie js -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="angular-route.js"></script>
+    <script type="text/javascript" src="angular-route.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/NavCtrl.js"></script>
+</body>
+
+
 </html>

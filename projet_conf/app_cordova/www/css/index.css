@@ -89,9 +89,7 @@ label {
   transition: all 0.5s;
 }
 label input, label textarea {
-  display: block;
   font-size: 1em;
-  width: 100%;
   margin: 0.25em 0;
   padding: 0.5em 0.75em;
   border: none;
