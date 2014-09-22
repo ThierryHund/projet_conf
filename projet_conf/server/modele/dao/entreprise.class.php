@@ -1,6 +1,6 @@
 <?php
 require_once "connection.class.php";
-class admin {
+class entreprise {
 	private $id_entreprise;
 	private $nom;
 	private $adresse_entp;
