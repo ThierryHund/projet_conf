@@ -11,15 +11,11 @@
 <!-- Custom styles for this template -->
 <link href="css/index.css" rel="stylesheet">
 
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoee1ROXuFE8rvd3XXqqa7z-5DNuzdCPY">
-  
-</script>
 <title>Colloquium</title>
 </head>
 
 <body>
-        <div class="container">Connexion</h1><hr>
+        <div class="container"><h1>Connexion</h1><hr>
           <div class="row">
                   <form method="post" action="..\..\server\controler.php">
                     <p><input type="text" name="login" class="form-control" value="" placeholder="Identifiant"></p>
@@ -38,19 +34,6 @@
   <!-- librairie js -->
   <script src="js/jquery.js"></script>
   <script src="bootstrap/dist/js/bootstrap.min.js"></script>
-
-  <script type="text/javascript">
-    function initialize() {
-      var mapOptions = {
-        zoom : 8,
-        center : new google.maps.LatLng(-34.397, 150.644)
-      };
-      var map = new google.maps.Map(
-          document.getElementById('map_canvas'), mapOptions);
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-  </script>
 </body>
 
 
