@@ -1,5 +1,6 @@
 <?php
 require_once "modele\dao\connection.class.php";
+require_once "modele\dao\evenement.class.php";
 
 $conn = Connection::get ();
 
@@ -27,3 +28,9 @@ if(isset($_POST['connexion']))
             else echo 'couille';
 	}
 }
+
+elseif ($isset($_REQUEST['accueil'])){
+	$event = Evenement::getCurrentEvent();
+	echo $event['titre_evnt'];
+}
+
