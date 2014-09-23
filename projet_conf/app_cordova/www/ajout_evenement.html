@@ -19,73 +19,206 @@
 <title>Conferensus</title>
 </head>
 
-    <body>
-        <div class="container"><h1>Ajout d'un événement</h1><hr>
-            <div class="row">
-                <form method="post" action="ajout_evenement.php" enctype="multipart/form-data" id="ajout_evenement">
-                    <fieldset>
-                        <table>
-                            <tr>
-                                <td>
-                                    <br>Titre de l'événement :
-                                </td>
-                                <td>
-                                    <br><input type="text" name="titre_evenement" class="form-control"  id="titre_presentation" maxlength="15" placeholder="Titre de l'événement">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Lieu :
-                                </td>
-                                <td>
-                                    <br><input type="text" name="lieu_evenement" class="form-control"  id="titre_presentation" maxlength="15" placeholder="Lieu de l'événement">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Logo :
-                                </td>
-                                <td>
-                                    <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
-                                    <br><input type="file" name="logo" id="logo" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Organisateur(s) :
-                                </td>
-                                <td>
-                                    <br><input type="text" name="organisateur" class="form-control"  id="organisateur" maxlength="75" placeholder="Organisateur(s)">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Logo de l'organisateur :
-                                </td>
-                                <td>
-                                    
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Dates :
-                                </td>
-                                <td>
-                                    <br>du <input type="date" name="date_debut">
-                                </td>
-                                <td>
-                                    <br>au <input type="date" name="date_fin">
-                                </td>
-                            </tr>
-                        </table>
-                        <br>
-                        <input type="submit" value="Ajouter" name="ajout_evenement" class="btn btn-primary">
-                    </fieldset>
-                    <br>
-                </form>
-                <div class="errors" id="error-message-wrapper"></div>
-            </div>
-            <hr>
+<body class="body">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Menu</a>
         </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ajouter<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="ajout_evenement.html">Ajouter un événement</a></li>
+                <li class="divider"></li>
+                <li><a href="ajout_presentation.html">Ajouter une présentation</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulter<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="consulter_evenement.html">Consulter un événement</a></li>
+                <li class="divider"></li>
+                <li><a href="consulter_presentation.html">Consulter une présentation</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modifier<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="modifier_evenement.html">Modifier un événement</a></li>
+                <li class="divider"></li>
+                <li><a href="modifier_presentation.html">Modifier une présentation</a></li>
+                <li class="divider"></li>
+                <li><a href="modifier_entreprise.html">Modifier une entreprise</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html">Déconnexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Ajout d'un événement</h1><hr>
+            <form method="post" action="ajout_evenement.php" enctype="multipart/form-data" id="ajout_evenement">
+                <fieldset>
+                    <table>
+                        <tr>
+                            <td>
+                                <br>Titre de l'événement :
+                            </td>
+                            <td>
+                                <br><input type="text" name="titre_evenement" class="form-control"  id="titre_presentation" maxlength="75" placeholder="Titre de l'événement">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Lieu :
+                            </td>
+                            <td>
+                                <br><input type="text" name="lieu_evenement" class="form-control"  id="titre_presentation" maxlength="75" placeholder="Lieu de l'événement">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Logo :
+                            </td>
+                            <td>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
+                                <br><input type="file" name="logo" id="logo" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Dates :
+                            </td>
+                            <td>
+                                <br>du <input type="date" name="date_debut">
+                                <br><br>au <input type="date" name="date_fin">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Ajouter une entreprise :
+                            </td>
+                            <td>
+                                <br><input type="checkbox" name="checkbox" value="oui" id="ck1" onClick="afficher();" />
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="champ_cache1">
+                        <tr>
+                            <td>
+                                <br>Organisateur(s) :
+                            </td>
+                            <td>
+                                <br><select id="select_ajouter" name="organisateurs">
+                                    <option value="0" selected>Non renseigné</option>
+                                    <option value="1">Orga1</option>
+                                    <option value="2">Orga2</option>
+                                    <option value="3">Orga3</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="champ_cache2">
+                        <tr>
+                            <td>
+                                <br>Société organisatrice :
+                            </td>
+                            <td>
+                                <br><input type="text" name="soc_orga" class="form-control"  id="soc_orga" maxlength="75" placeholder="Société organisatrice">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Logo de l'organisateur :
+                            </td>
+                            <td>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
+                                <br><input type="file" name="logo" id="logo" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Nom personnel organisateur :
+                            </td>
+                            <td>
+                                <br><input type="text" name="nom_orga" class="form-control"  id="nom_orga" maxlength="75" placeholder="Nom personnel organisateur">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Prénom personnel organisateur :
+                            </td>
+                            <td>
+                                <br><input type="text" name="prenom_orga" class="form-control"  id="prenom_orga" maxlength="75" placeholder="Prénom personnel organisateur">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Courriel organisateur :
+                            </td>
+                            <td>
+                                <br><input type="text" name="courriel_orga" class="form-control"  id="courriel_orga" maxlength="75" placeholder="Courriel organisateur">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Téléphone organisateur :
+                            </td>
+                            <td>
+                                <br><input type="text" name="tel_orga" class="form-control"  id="tel_orga" maxlength="10" placeholder="Téléphone organisateur">
+                            </td>
+                        </tr>
+                    </table>
+                    <br>
+                    <input type="submit" value="Ajouter" name="ajout_evenement" class="btn btn-primary">
+                </fieldset>
+                <br>
+            </form>
+        </div>
+    </div>
+
+    <!-- librairie js -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="angular-route.js"></script>
+    <script type="text/javascript" src="angular-route.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/NavCtrl.js"></script>
+
+    <script type="text/javascript">
+        document.getElementById('champ_cache1').style.display="block";
+        document.getElementById('champ_cache2').style.display="none";
+
+        function afficher()
+        {
+            if (document.getElementById('ck1').checked){
+                document.getElementById('champ_cache1').style.display="none";
+                document.getElementById('champ_cache2').style.display="block";
+            }
+            else {
+                document.getElementById('champ_cache1').style.display="block";
+                document.getElementById('champ_cache2').style.display="none";
+            }
+        }
+    </script>
+
   </body>
 </html>
