@@ -1,5 +1,7 @@
 <?php
+
 require_once "connection.class.php";
+
 class evenement {
 	private $id_evnt;
 	private $titre_evnt;
@@ -11,7 +13,8 @@ class evenement {
 	private $adresse;
 	private $latitude;
 	private $longitude;
-	public function __construct($id_evnt, $titre_evnt, $heure_debut, $heure_fin, $date_debut, $date_fin, $logo, $adresse, $latitude, $longitude) {
+	private $desc_evnt;
+	public function __construct($id_evnt, $titre_evnt, $heure_debut, $heure_fin, $date_debut, $date_fin, $logo, $adresse, $latitude, $longitude, $desc_evnt) {
 		$this->id_evnt = $id_evnt;
 		$this->titre_evnt = $titre_evnt;
 		$this->heure_debut = $heure_debut;
@@ -22,6 +25,7 @@ class evenement {
 		$this->adresse = $adresse;
 		$this->latitude = $latitude;
 		$this->longitude = $longitude;
+		$this->desc_evnt = $desc_evnt;
 	}
 	
 	// //////////////////////////////
@@ -30,12 +34,23 @@ class evenement {
 	public static function getCurrentEvent() {
 		$conn = Connection::get ();
 		
-		$select = $conn->query ( "SELECT id_evnt,titre_evnt, heure_debut, heure_fin, date_debut, date_fin, logo, adresse, latitude, longitude FROM evenement WHERE date_fin >= CURRENT_DATE ORDER BY date_debut" );
+		$select = $conn->query ( "SELECT id_evnt,titre_evnt, heure_debut, heure_fin, date_debut, date_fin, logo, adresse, latitude, longitude desc_evnt; FROM evenement WHERE date_fin >= CURRENT_DATE ORDER BY date_debut" );
 		$result = array ();
 		
-		$row = $select->fetch_assoc ();
+		$row = $select->fetch(PDO::FETCH_ASSOC);
 		
-		$result = new evenement($row['id_evnt'], $row['titre_evnt'], $row['heure_debut'], $row['heure_fin'], $row['date_debut'], $row['date_fin'], $row['logo'], $row['adresse'], $row['latitude'], $row['longitude']);
+		$result = new evenement($row['id_evnt'], $row['titre_evnt'], $row['heure_debut'], $row['heure_fin'], $row['date_debut'], $row['date_fin'], $row['logo'], $row['adresse'], $row['latitude'], $row['longitude'],$row['desc_evnt']);
+		return $result;
+	}
+	
+		public static function getCurrentEventArray() {
+		$conn = Connection::get ();
+		
+		$select = $conn->query ( "SELECT id_evnt,titre_evnt, heure_debut, heure_fin, date_debut, date_fin, logo, adresse, latitude, longitude, desc_evnt FROM evenement WHERE date_fin >= CURRENT_DATE ORDER BY date_debut" );
+		$result = array ();
+		
+		$result = $select->fetch(PDO::FETCH_ASSOC);
+		
 		return $result;
 	}
 	
@@ -52,7 +67,7 @@ class evenement {
 	public function getTitreEvnt() {
 		return $this->titre_evnt;
 	}
-	
+
 	// //////////////////////////////
 	// retourne date_debut
 	// //////////////////////////////
@@ -107,5 +122,12 @@ class evenement {
 	// //////////////////////////////
 	public function getLongitude() {
 		return $this->longitude;
+	}
+	
+		// //////////////////////////////
+	// retourne longitude
+	// //////////////////////////////
+	public function getDescEvnt() {
+		return $this->desc_evnt;
 	}
 }
