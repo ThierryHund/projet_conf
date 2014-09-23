@@ -8,6 +8,7 @@ HOME CSS
 body {
   padding-top: 70px;
 }
+
 .starter-template {
   padding: 40px 15px;
   text-align: center;
@@ -226,8 +227,16 @@ label textarea {
   display: block;
 }
 
+.row_custom{
+  margin-right: -15px;
+  margin-left: -15px;
+  background: #eeeeee;
+  border-radius: 5px;
+  padding: 10px;
+}
 
-
-
+.body {
+  padding-top: 0px;
+}
 
 

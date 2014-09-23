@@ -19,11 +19,12 @@ if(isset($_POST['connexion']))
             	header('location:..\app_cordova\www\connexion.html');
             }
             else {
-                  session_start();
+                  var_dump(session_start());
                   if (!isset($_SESSION['login'])) {
-                        header ('location:..\app_cordova\www\accueil.html');
+                        header('location:..\app_cordova\www\connexion.html');
                         exit();
                   }
+                  else header ('location:..\app_cordova\www\accueil.html');
             }
 	}
 }
