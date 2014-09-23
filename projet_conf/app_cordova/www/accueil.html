@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,19 +10,84 @@
 
 <!-- Custom styles for this template -->
 <link href="css/index.css" rel="stylesheet">
-    </head>
+<!-- 
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoee1ROXuFE8rvd3XXqqa7z-5DNuzdCPY">
     
-    <body>
-        <div class="row">
-            <div class="span12">
-                <div class="jumbotron">
-                  <h1>Accueil</h1>
-                  <p>Bienvenue dans l'administration des conférences</p>
-                </div>
-            </div>
-            <hr>
+</script>
+ -->
+<title>Conferensus</title>
+</head>
+
+<body class="body">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Menu</a>
         </div>
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-    </body>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ajouter<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="ajout_evenement.html">Ajouter un événement</a></li>
+                <li class="divider"></li>
+                <li><a href="ajout_presentation.html">Ajouter une présentation</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consulter<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="consulter_evenement.html">Consulter un événement</a></li>
+                <li class="divider"></li>
+                <li><a href="consulter_presentation.html">Consulter une présentation</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Modifier<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="modifier_evenement.html">Modifier un événement</a></li>
+                <li class="divider"></li>
+                <li><a href="modifier_presentation.html">Modifier une présentation</a></li>
+                <li class="divider"></li>
+                <li><a href="modifier_entreprise.html">Modifier une entreprise</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="index.html">Déconnexion</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Accueil</h1>
+            <p>Bienvenue dans l'administration des conférences</p>
+            <p>Utiliser le menu pour naviguer</p>
+        </div>
+    </div>
+
+    <!-- librairie js -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="angular-route.js"></script>
+    <script type="text/javascript" src="angular-route.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/NavCtrl.js"></script>
+</body>
+
+
 </html>
