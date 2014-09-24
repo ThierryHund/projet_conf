@@ -1,4 +1,4 @@
-$(document).on('pagecreate',function(){
+$(document).on('ready',function(){
 
 $.get( "http://localhost/webprojet/projet_conf/server/controler.php",'accueil',function( data ) {
 
