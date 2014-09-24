@@ -18,17 +18,17 @@ if(isset($_POST['connexion']))
 
             $liste = $verif_login->fetchAll();
             if (count($liste) == 0) { 
-            	header('location:..\app_cordova\www\connexion.html')
+            	header('location:..\app_cordova\www\connexion.html');
             }
-            else //lancement variable session
 	}
 }
 
  elseif(isset($_REQUEST['accueil'])){
 	$event = Evenement::getCurrentEventArray();
 	echo json_encode($event);
+};
 
-};  
-
-
-
+if(isset($_REQUEST['consulter_evenement'])){
+      $event = Evenement::getEventArray();
+      echo json_encode($event);
+}

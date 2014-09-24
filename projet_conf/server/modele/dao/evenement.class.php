@@ -53,6 +53,29 @@ class evenement {
 		
 		return $result;
 	}
+
+	public static function getEventArray() {
+		$conn = Connection::get ();
+		
+		$select = $conn->query ("SELECT id_evnt as id,
+			titre_evnt as titre, 
+			heure_debut as heure_deb, 
+			heure_fin as heure_fin, 
+			date_debut as date_deb, 
+			date_fin as date_fin, 
+			logo as logo, 
+			adresse as adresse, 
+			latitude as latitude, 
+			longitude as longitude
+			FROM evenement 
+			ORDER BY date_debut");
+
+		$result = array ();
+
+		$result = $select->fetch(PDO::FETCH_ASSOC);
+		
+		return $result;
+	}
 	
 	// //////////////////////////////
 	// retourne id
