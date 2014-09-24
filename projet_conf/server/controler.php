@@ -2,6 +2,7 @@
 
 require_once "modele/dao/connection.class.php";
 require_once "modele/dao/evenement.class.php";
+require_once "modele/dao/presentation.class.php";
 
 $conn = Connection::get ();
 
@@ -26,9 +27,14 @@ if(isset($_POST['connexion']))
  elseif(isset($_REQUEST['accueil'])){
 	$event = Evenement::getCurrentEventArray();
 	echo json_encode($event);
-};
+}
+elseif(isset($_REQUEST['description_presentation'])){
+      $pres = Presentation::getPresentation();
+      echo json_encode($pres);
+}
 
 if(isset($_REQUEST['consulter_evenement'])){
       $event = Evenement::getEventArray();
       echo json_encode($event);
-}
+};
+

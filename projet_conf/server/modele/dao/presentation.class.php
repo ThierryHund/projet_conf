@@ -39,13 +39,35 @@ class presentation	 {
 		$this->logo_entp = $logo_entp;
 	}
 	
+	
+	// //////////////////////////////
+	// retourne présentation
+	// //////////////////////////////
+	public static function getPresentation() {
+		$conn = Connection::get ();
+		
+		$select = $conn->query ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, orateur.id_orateur, nom_orateur, prenom_orateur, entreprise.id_entp, nom_entp, logo_entp, url_entp
+								FROM presentation, presente, orateur, entreprise 
+								WHERE presentation.id_presentation = presente.id_presentation
+								AND presente.id_orateur = orateur.id_orateur
+								AND orateur.id_entp = entreprise.id_entp
+								AND presentation.id_presentation = 5"			
+								);
+		$result = array ();
+		
+		$result = $select->fetch(PDO::FETCH_ASSOC);
+		
+		return $result;
+	}
+	
+	
 	// //////////////////////////////
 	// retourne présentation en cours
 	// //////////////////////////////
 	public static function getCurrentPres() {
 		$conn = Connection::get ();
 		
-		$select = $conn->query ( "SELECT id_presentation, titre_presentation, description, id_orateur, nom_orateur, prenom_orateur, id_entp, nom_entp, logo_entp 
+		$select = $conn->query ( "SELECT id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, id_orateur, nom_orateur, prenom_orateur, id_entp, nom_entp, logo_entp 
 								FROM presentation, presente, orateur, entreprise 
 								WHERE date_presentation = CURRENT_DATE
 								AND CURRENT_TIME >= heure_debut_presentation
@@ -53,6 +75,28 @@ class presentation	 {
 								AND id_presentation.presentation = id_presentation.presente
 								AND id_orateur.presente = id_orateur.orateur
 								AND id_entp.orateur = id_entp.entreprise"			
+								);
+		$result = array ();
+		
+		$row = $select->fetch(PDO::FETCH_ASSOC);
+		
+		return $result;
+	}
+	
+	// //////////////////////////////
+	// retourne prochaine présentation
+	// //////////////////////////////
+	public static function getNextPres() {
+		$conn = Connection::get ();
+		
+		$select = $conn->query ( "SELECT id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, id_orateur, nom_orateur, prenom_orateur, id_entp, nom_entp, logo_entp 
+								FROM presentation, presente, orateur, entreprise 
+								WHERE date_presentation >= CURRENT_DATE
+								AND heure_debut_presentation > CURRENT_TIME							
+								AND id_presentation.presentation = id_presentation.presente
+								AND id_orateur.presente = id_orateur.orateur
+								AND id_entp.orateur = id_entp.entreprise
+								ORDER BY heure_debut_presentation"			
 								);
 		$result = array ();
 		
