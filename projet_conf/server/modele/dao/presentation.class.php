@@ -82,6 +82,30 @@ class presentation	 {
 		
 		return $result;
 	}
+
+	public static function getPresArray() {
+		$conn = Connection::get ();
+		
+		$select = $conn->query ("SELECT id_presentation as id,
+			titre_presentation as titre, 
+			description as description, 
+			id_orateur, 
+			nom_orateur as nom_orateur, 
+			prenom_orateur as prenom_orateur, 
+			id_entp, 
+			nom_entp as nom_entreprise, 
+			logo_entp as logo_entreprise
+			FROM presentation, presente, orateur, entreprise 
+			WHERE id_presentation.presentation = id_presentation.presente
+			AND id_orateur.presente = id_orateur.orateur
+			AND id_entp.orateur = id_entp.entreprise");
+
+		$result = array ();
+
+		$result = $select->fetch(PDO::FETCH_ASSOC);
+		
+		return $result;
+	}
 	
 	// //////////////////////////////
 	// retourne prochaine présentation
