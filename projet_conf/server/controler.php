@@ -21,6 +21,7 @@ if(isset($_POST['connexion']))
             if (count($liste) == 0) { 
             	header('location:..\app_cordova\www\connexion.html');
             }
+            else header('location:..\app_cordova\www\accueil.html');
 	}
 }
 
