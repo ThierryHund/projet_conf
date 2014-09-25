@@ -37,5 +37,10 @@ elseif(isset($_REQUEST['description_presentation'])){
 if(isset($_REQUEST['consulter_evenement'])){
       $event = Evenement::getEventArray();
       echo json_encode($event);
+}
+
+if(isset($_REQUEST['haut'])){
+      $event = Evenement::getCurrentEventArray();
+	  echo json_encode($event);
 };
 
