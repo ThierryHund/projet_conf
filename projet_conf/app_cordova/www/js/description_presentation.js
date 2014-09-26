@@ -1,4 +1,4 @@
-$.get( "http://127.0.0.1/projet_conf/projet_conf/server/controler.php",'description_presentation',function( data ) {
+$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php",'pres',function( data ) {
 
 	//ajout titre presentation
   $( 'body .container .row:nth-child(1) .col-lg-6:nth-child(1)' ).html( data['titre_presentation'] );

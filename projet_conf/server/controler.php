@@ -25,22 +25,37 @@ if(isset($_POST['connexion']))
 	}
 }
 
- elseif(isset($_REQUEST['accueil'])){
+$currentevent = Evenement::getEventArray();
+
+
+if(isset($_REQUEST['accueil'])){
 	$event = Evenement::getCurrentEventArray();
+	
 	echo json_encode($event);
 }
-elseif(isset($_REQUEST['description_presentation'])){
-      $pres = Presentation::getPresentation();
-      echo json_encode($pres);
+
+if(isset($_REQUEST['current_pres'])){
+    $current_pres = Presentation::getCurrentPres();
+    echo json_encode($current_pres);
+}
+
+if(isset($_REQUEST['next_pres'])){
+    $next_pres = Presentation::getNextPres();
+    echo json_encode($next_pres);
+}
+
+if(isset($_REQUEST['pres'])){
+    $pres = Presentation::getPresentation();
+    echo json_encode($pres);
 }
 
 if(isset($_REQUEST['consulter_evenement'])){
-      $event = Evenement::getEventArray();
-      echo json_encode($event);
+    $event = Evenement::getEventArray();
+    echo json_encode($event);
 }
 
 if(isset($_REQUEST['haut'])){
-      $event = Evenement::getCurrentEventArray();
-	  echo json_encode($event);
+    $event = Evenement::getCurrentEventArray();
+	echo json_encode($event);
 };
 
