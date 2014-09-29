@@ -24,14 +24,6 @@ body {
 
 */
 
-.img-wrap{
- /* border: 2px solid #ccc;*/
-  height: 400px;
-  background-image: url('../JECM14.jpg');
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
 .angular-google-map-container { 
 
   height: 400px; 

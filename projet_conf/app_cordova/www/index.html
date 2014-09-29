@@ -19,21 +19,30 @@
 <title>Colloquium</title>
 </head>
 
-<body data-adaptive-background='1' data-ab-css-background='1'>
+<body>
 
 	<!-- header -->
     <script type="text/javascript" src="js/haut.js"></script>
 
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12 panel">
-				<div class='img-wrap' data-adaptive-background='1' data-ab-css-background='1'></div>
+			<div class="col-sm-6 panel">Logo évènement</div>
+			<div class="col-sm-6 panel" ng-controller="Maps">
+				<google-map center="map.center" zoom="map.zoom">
+					<marker idKey ="1" coords="marker.coords">
+						<window isIconVisibleOnClick="true">
+							<p>
+								{{marker.coords.message}}
+							</p>
+						</window>
+					</marker>
+				</google-map>				
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12 panel">description evenement</div>
 		</div>
-		
+				
 		<div class="row">
 			<div class="col-lg-12 panel">
 				<div class="panel panel-default">
@@ -110,19 +119,6 @@
 					</div>
 				  </div>
 				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-12 panel" ng-controller="Maps">
-				<google-map center="map.center" zoom="map.zoom">
-					<marker idKey ="1" coords="marker.coords">
-						<window isIconVisibleOnClick="true">
-							<p>
-								{{marker.coords.message}}
-							</p>
-						</window>
-					</marker>
-				</google-map>				
 			</div>
 		</div>
 	</div>
