@@ -5,9 +5,9 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 	//ajout date evenement jour 1 
   $( 'body .container .row:nth-child(4) .panel-title .btn-block' ).html( data['date_debut'] );
   //ajout description evt
-  $( 'body .container .row:nth-child(2) .col-lg-12' ).html( data['desc_evnt'] );
+  $( '.desc_event' ).html( data['desc_evnt'] );
   //ajout logo
-  $( 'body .container .row:nth-child(1) .col-sm-6:nth-child(1)' ).html('<img class="img-responsive" src="'+data['logo']+'">' )
+  $( '.logo' ).html('<img class="img-responsive" src="'+data['logo']+'">' )
 },"json");});
 
 //////////////////////////////////////

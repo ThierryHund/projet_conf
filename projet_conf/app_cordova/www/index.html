@@ -26,25 +26,15 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6 panel">Logo évènement</div>
-			<div class="col-sm-6 panel" ng-controller="Maps">
-				<google-map center="map.center" zoom="map.zoom">
-					<marker idKey ="1" coords="marker.coords">
-						<window isIconVisibleOnClick="true">
-							<p>
-								{{marker.coords.message}}
-							</p>
-						</window>
-					</marker>
-				</google-map>				
-			</div>
+			<div class="col-lg-12 panel logo">Logo évènement</div>
+			
 		</div>
 		<div class="row">
-			<div class="col-lg-12 panel">description evenement</div>
+			<div class="col-lg-12 panel desc_event">description evenement</div>
 		</div>
 				
 		<div class="row">
-			<div class="col-lg-12 panel">
+			<div class="col-sm-6 pane">
 				<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">titre présentation en cours</h3>
@@ -54,7 +44,7 @@
 						</div>
 				</div>
 			</div>
-			<div class="col-lg-12 panel">
+			<div class="col-sm-6 pane">
 				
 				<div class="panel panel-default">
 						<div class="panel-heading">
@@ -119,6 +109,19 @@
 					</div>
 				  </div>
 				</div>
+			</div>
+		</div>
+				<div class="row">
+			<div class="col-lg-12 panel" ng-controller="Maps">
+				<google-map center="map.center" zoom="map.zoom">
+					<marker idKey ="1" coords="marker.coords">
+						<window isIconVisibleOnClick="true">
+							<p>
+								{{marker.coords.message}}
+							</p>
+						</window>
+					</marker>
+				</google-map>				
 			</div>
 		</div>
 	</div>
