@@ -71,14 +71,14 @@ class presentation	 {
 	public static function getCurrentPres() {
 		$conn = Connection::get ();
 		
-		$select = $conn->query ( "SELECT id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, id_orateur, nom_orateur, prenom_orateur, id_entp, nom_entp, logo_entp 
+		$select = $conn->query ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, orateur.id_orateur, nom_orateur, prenom_orateur, entreprise.id_entp, entreprise.nom_entp, entreprise.logo_entp 
 								FROM presentation, presente, orateur, entreprise 
 								WHERE date_presentation = CURRENT_DATE
 								AND CURRENT_TIME >= heure_debut_presentation
 								AND CURRENT_TIME < heure_fin_presentation
-								AND id_presentation.presentation = id_presentation.presente
-								AND id_orateur.presente = id_orateur.orateur
-								AND id_entp.orateur = id_entp.entreprise"			
+								AND presentation.id_presentation = presente.id_presentation
+								AND presente.id_orateur = orateur.id_orateur
+								AND orateur.id_entp = entreprise.id_entp"			
 								);
 		$result = array ();
 		
@@ -117,13 +117,13 @@ class presentation	 {
 	public static function getNextPres() {
 		$conn = Connection::get ();
 		
-		$select = $conn->query ( "SELECT id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, id_orateur, nom_orateur, prenom_orateur, id_entp, nom_entp, logo_entp 
+		$select = $conn->query ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, orateur.id_orateur, nom_orateur, prenom_orateur, entreprise.id_entp, nom_entp, logo_entp 
 								FROM presentation, presente, orateur, entreprise 
 								WHERE date_presentation >= CURRENT_DATE
 								AND heure_debut_presentation > CURRENT_TIME							
-								AND id_presentation.presentation = id_presentation.presente
-								AND id_orateur.presente = id_orateur.orateur
-								AND id_entp.orateur = id_entp.entreprise
+								AND presentation.id_presentation = presente.id_presentation
+								AND presente.id_orateur = orateur.id_orateur
+								AND orateur.id_entp = entreprise.id_entp
 								ORDER BY heure_debut_presentation"			
 								);
 		$result = array ();
