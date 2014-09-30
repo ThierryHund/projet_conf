@@ -58,7 +58,7 @@
     <div class="jumbotron">
         <div class="container">
             <h1>Ajout d'un événement</h1><hr>
-            <form method="post" action="controler.php" enctype="multipart/form-data" id="ajout_evenement">
+            <form method="post" action="../../server/controler.php" enctype="multipart/form-data" id="ajout_evenement">
                 <fieldset>
                     <table>
                         <tr>
@@ -88,8 +88,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
-                                <input type="file" name="logo_even" id="logo_even" />
+                                <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                                <input name="avatar" type="file" />
                             </td>
                         </tr>
                         <tr>
@@ -101,6 +101,27 @@
                             <td>
                                 du <input type="date" name="date_debut">
                                 <br>au <input type="date" name="date_fin">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Heure :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                de <input type="time" name="heure_debut">
+                                à <input type="time" name="heure_fin">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Description :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="desc_evnt" class="form-control" id="desc_evnt" maxlength="75" placeholder="Description">
                             </td>
                         </tr>
                         <tr>
@@ -122,11 +143,9 @@
                         </tr>
                         <tr>
                             <td>
-                                <select id="select_ajouter" name="organisateurs">
+                                <select id="select_ajouter" name="organisateurs" class="liste">
                                     <option value="0" selected>Non renseigné</option>
-                                    <option value="1">Orga1</option>
-                                    <option value="2">Orga2</option>
-                                    <option value="3">Orga3</option>
+                                    <option class="liste"></option>
                                 </select>
                             </td>
                         </tr>
@@ -211,6 +230,7 @@
     <script type="text/javascript" src="angular-route.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/NavCtrl.js"></script>
+    <script type="text/javascript" src="js/ajouter_evenement.js"></script>
 
     <script type="text/javascript">
         document.getElementById('champ_cache1').style.display="block";
