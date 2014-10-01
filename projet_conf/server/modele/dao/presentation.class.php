@@ -66,6 +66,68 @@ class presentation	 {
 	
 	
 	// //////////////////////////////
+	// retourne liste des prez d'un evnt avec timestamp
+	//utilisé par thierry pour planning event
+	//en cours
+	////////////////////////////////
+	public static function getPrezByEvent($id_evnt) {
+		$conn = Connection::get ();
+	
+		$request = $conn->prepare ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description,
+										orateur.id_orateur, nom_orateur, prenom_orateur, entreprise.id_entp, nom_entp, logo_entp, url_entp
+								FROM presentation, presente, orateur, entreprise, evenement, est_compose
+								WHERE evenement.id_evnt = :id_evnt
+								AND presentation.id_presentation = presente.id_presentation
+								AND presente.id_orateur = orateur.id_orateur
+								AND orateur.id_entp = entreprise.id_entp
+								AND evenement.id_evnt = est_compose.id_evnt
+								AND est_compose.id_presentation = presentation.id_presentation
+								AND evenement.heure_fin >= heure_fin_presentation
+								");
+		$request->execute ( array (
+				'id_evnt' => $id_evnt
+		) );
+		
+		$array =array();
+		
+		while ( $row = $request->fetch (PDO::FETCH_ASSOC) ) {
+			$array[] = $row;
+		}
+		
+		$result = array ();
+
+		for($i =  0; $i < count($array); $i++){
+			$result[]['id_presentation'] ='';
+			$result[]['titre_presentation'] ='';
+			$result[]['heure_debut_presentation'] = '';
+			$result[]['heure_fin_presentation'] = '';
+			$result[]['date_presentation'] = '';
+			$result[]['description'] = '';
+			$result[]['id_orateur'] = '';
+			$result[]['nom_orateur'] = '';
+			$result[]['prenom_orateur'] = '';
+			$result[]['id_entp'] = '';
+			$result[]['nom_entp'] = '';
+			$result[]['logo_entp'] = '';
+			$result[]['url_entp'] == '';
+			
+			
+			if( ($array[i]['id_presentation'] != $array[i+1]['id_presentation']))
+			{
+				
+				array_splice($array, $i,1);
+			}
+		};
+	
+		return $result;
+
+	}
+	
+	
+	
+	
+	
+	// //////////////////////////////
 	// retourne présentation en cours
 	// //////////////////////////////
 	public static function getCurrentPres() {
@@ -86,6 +148,10 @@ class presentation	 {
 		
 		return $result;
 	}
+	
+	// //////////////////////////////
+	// retourne présentation en cours
+	// //////////////////////////////
 
 	public static function getPresArray() {
 		$conn = Connection::get ();
@@ -107,6 +173,8 @@ class presentation	 {
 		$result = array ();
 
 		$result = $select->fetch(PDO::FETCH_ASSOC);
+		
+
 		
 		return $result;
 	}
