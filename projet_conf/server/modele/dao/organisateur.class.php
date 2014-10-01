@@ -23,6 +23,7 @@ class Organisateur {
 	
 	// //////////////////////////////
 	// retourne les organisateurs
+	// JC, fonctionne
 	// //////////////////////////////
 	public static function getOrganisateur() {
 		$conn = Connection::get ();

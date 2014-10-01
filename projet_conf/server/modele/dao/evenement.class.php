@@ -58,6 +58,10 @@ class evenement {
 		return $result;
 	}
 
+	/////////////////////////////////
+	//renvoi les événements
+	// JC, fonctionne
+	////////////////////////////////////////////
 	public static function getEventArray() {
 		$conn = Connection::get ();
 		

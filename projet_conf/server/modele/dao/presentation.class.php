@@ -153,6 +153,10 @@ class presentation	 {
 	// retourne présentation en cours
 	// //////////////////////////////
 
+	// //////////////////////////////
+	// retourne présentations
+	//JC Fonctionne
+	// //////////////////////////////
 	public static function getPresArray() {
 		$conn = Connection::get ();
 		
