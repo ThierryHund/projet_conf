@@ -62,11 +62,9 @@ class evenement {
 			heure_debut as heure_deb, 
 			heure_fin as heure_fin, 
 			date_debut as date_deb, 
-			date_fin as date_fin, 
-			logo as logo, 
-			adresse as adresse, 
-			latitude as latitude, 
-			longitude as longitude
+			date_fin as date_fin,
+			adresse as adresse,
+			desc_evnt as description
 			FROM evenement 
 			ORDER BY date_debut");
 

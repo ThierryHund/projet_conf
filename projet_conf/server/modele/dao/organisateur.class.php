@@ -28,18 +28,14 @@ class Organisateur {
 		$conn = Connection::get ();
 		
 		$select = $conn->query ( "SELECT id_organisateur as id,
-								societe_organisateur as soc_orga,
-								nom_organisateur as nom_orga,
-								prenom_organisateur as prenom_orga,
-								courriel_organisateur as courriel_orga,
-								tel_organisateur as tel_orga
+								societe_organisateur as soc_orga
 								FROM organisateur" );
 		$result = array ();
 		
 		$result = $select->fetch(PDO::FETCH_ASSOC);
 		
 		foreach ($donnees as $ligne) {
-	        return echo '<option value="'.$ligne['id'].'">'.$ligne['soc_orga'].'</option>';
+	        echo '<option value="'.$ligne['id'].'">'.$ligne['soc_orga'].'</option>';
 	    }
 	}
 	

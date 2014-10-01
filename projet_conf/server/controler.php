@@ -28,11 +28,6 @@ if(isset($_REQUEST['pres'])){
     echo json_encode($pres);
 }
 
-if(isset($_REQUEST['consulter_evenement'])){
-    $event = Evenement::getEventArray();
-    echo json_encode($event);
-}
-
 if(isset($_REQUEST['haut'])){
     $event = Evenement::getCurrentEventArray();
 	echo json_encode($event);

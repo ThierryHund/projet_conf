@@ -90,15 +90,15 @@ class presentation	 {
 	public static function getPresArray() {
 		$conn = Connection::get ();
 		
-		$select = $conn->query ("SELECT id_presentation as id,
-			titre_presentation as titre, 
-			description as description, 
-			id_orateur, 
-			nom_orateur as nom_orateur, 
-			prenom_orateur as prenom_orateur, 
-			id_entp, 
-			nom_entp as nom_entreprise, 
-			logo_entp as logo_entreprise
+		$select = $conn->query ("SELECT presentation.id_presentation as id,
+			presentation.titre_presentation as titre, 
+			presentation.description as description, 
+			orateur.id_orateur, 
+			orateur.nom_orateur as nom_orateur, 
+			orateur.prenom_orateur as prenom_orateur, 
+			entreprise.id_entp, 
+			entreprise.nom_entp as nom_entreprise, 
+			entreprise.logo_entp as logo_entreprise
 			FROM presentation, presente, orateur, entreprise 
 			WHERE id_presentation.presentation = id_presentation.presente
 			AND id_orateur.presente = id_orateur.orateur
