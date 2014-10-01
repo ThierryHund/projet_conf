@@ -7,7 +7,8 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
   //ajout description evt
   $( '.desc_event' ).html( data['desc_evnt'] );
   //ajout logo
-  $( '.logo' ).html('<img class="img-responsive" src="'+data['logo']+'">' )
+  $( '.logo' ).html('<img class="img-responsive" src="'+data['logo']+'">' );
+  $( '.test' ).html(data['titre_evnt'] )
 },"json");});
 
 //////////////////////////////////////

@@ -43,6 +43,10 @@ class evenement {
 		return $result;
 	}
 	
+	/////////////////////////////////
+	//renvoi l'evt en cours ou le prochain evt
+	//utilisé par thierry et fonctionnel
+	////////////////////////////////////////////
 		public static function getCurrentEventArray() {
 		$conn = Connection::get ();
 		
