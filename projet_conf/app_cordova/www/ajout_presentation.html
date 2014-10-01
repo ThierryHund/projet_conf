@@ -58,7 +58,7 @@
     <div class="jumbotron">
         <div class="container">
             <h1>Ajout d'une présentation</h1><hr>
-            <form method="post" action="ajout_presentation.php" enctype="multipart/form-data" id="ajout_presentation">
+            <form method="post" action="../../server/controler_admin.php" enctype="multipart/form-data" id="ajout_presentation">
                 <fieldset>
                     <table>
                         <tr>
@@ -68,7 +68,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <select id="select_evenement" name="evenement">
+                                <select id="select_evenement" name="select_evenement">
                                     <option value="0" selected>Non renseigné</option>
                                     <option value="1">Evenement1</option>
                                     <option value="2">Evenement2</option>
@@ -93,7 +93,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <select id="select_type_presentation" name="type_presentation">
+                                <select id="select_type_presentation" name="select_type_presentation">
                                     <option value="0" selected>Non renseigné</option>
                                     <option value="1">Type1</option>
                                     <option value="2">Type2</option>
@@ -130,7 +130,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <select id="select_orateur" name="orateur">
+                                <select id="select_orateur" name="select_orateur">
                                     <option value="0" selected>Non renseigné</option>
                                     <option value="1">orateur1</option>
                                     <option value="2">orateur2</option>
@@ -147,151 +147,152 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="checkbox" name="checkbox" value="oui" id="ck2" onClick="afficher();" />
+                                <input type="checkbox" name="checkbox2" value="oui" id="ck2" onClick="afficher();" />
                             </td>
                         </tr>
-                        <table id="champ_cache3">
-                            <tr>
-                                <td>
-                                    <br>Nom orateur :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="nom_orateur" class="form-control" id="nom_orateur" maxlength="75" placeholder="Nom orateur">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Prénom orateur :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="prenom_orateur" class="form-control" id="prenom_orateur" maxlength="75" placeholder="Prénom orateur">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Courriel orateur :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="courriel_orateur" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Téléphone orateur :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="tel_orateur" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Entreprise :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <select id="select_entreprise" name="entreprise">
-                                        <option value="0" selected>Non renseigné</option>
-                                        <option value="1">entreprise1</option>
-                                        <option value="2">entreprise2</option>
-                                        <option value="3">entreprise3</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                        <table id="champ_cache4">
-                            <tr>
-                                <td>
-                                    <br>Nom entreprise :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="nom_entreprise" class="form-control"  id="nom_entreprise" maxlength="75" placeholder="Nom entreprise">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Adresse entreprise :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="adresse_entreprise" class="form-control" id="adresse_entreprise" maxlength="75" placeholder="Adresse entreprise">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Url entreprise :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="url_entreprise" class="form-control" id="url_entreprise" maxlength="75" placeholder="Url entreprise">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Logo de l'entreprise :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
-                                    <input type="file" name="logo_entreprise" id="logo_entreprise" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Nom orateur :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="nom_orateur" class="form-control" id="nom_orateur" maxlength="75" placeholder="Nom orateur">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Prénom orateur :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="prenom_orateur" class="form-control" id="prenom_orateur" maxlength="75" placeholder="Prénom orateur">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Courriel orateur :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="courriel_orateur" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br>Téléphone orateur :
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" name="tel_orateur" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
-                                </td>
-                            </tr>
-                        </table>
+                    </table>
+                    <table id="champ_cache3">
+                        <tr>
+                            <td>
+                                <br>Nom orateur :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="nom_orateur" class="form-control" id="nom_orateur" maxlength="75" placeholder="Nom orateur">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Prénom orateur :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="prenom_orateur" class="form-control" id="prenom_orateur" maxlength="75" placeholder="Prénom orateur">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Courriel orateur :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="courriel_orateur" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Téléphone orateur :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="tel_orateur" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Entreprise :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select id="select_entreprise" name="select_entreprise">
+                                    <option value="0" selected>Non renseigné</option>
+                                    <option value="1">entreprise1</option>
+                                    <option value="2">entreprise2</option>
+                                    <option value="3">entreprise3</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <table id="champ_cache4">
+                        <tr>
+                            <td>
+                                <br>Nom entreprise :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="nom_entreprise" class="form-control"  id="nom_entreprise" maxlength="75" placeholder="Nom entreprise">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Adresse entreprise :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="adresse_entreprise" class="form-control" id="adresse_entreprise" maxlength="75" placeholder="Adresse entreprise">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Url entreprise :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="url_entreprise" class="form-control" id="url_entreprise" maxlength="75" placeholder="Url entreprise">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Logo de l'entreprise :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
+                                <input type="file" name="logo_entreprise" id="logo_entreprise" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Nom orateur :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="nom_orateur" class="form-control" id="nom_orateur" maxlength="75" placeholder="Nom orateur">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Prénom orateur :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="prenom_orateur" class="form-control" id="prenom_orateur" maxlength="75" placeholder="Prénom orateur">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Courriel orateur :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="courriel_orateur" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>Téléphone orateur :
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="text" name="tel_orateur" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
+                            </td>
+                        </tr>
+                    </table>
                     <br>
-                    <input type="submit" value="Ajouter" name="ajout_evenement" class="btn btn-primary">
+                    <input type="submit" value="Ajouter" name="ajout_presentation" class="btn btn-primary">
                 </fieldset>
                 <br>
             </form>
@@ -319,18 +320,21 @@
             if (document.getElementById('ck1').checked){
                 document.getElementById('champ_cache1').style.display="none";
                 document.getElementById('champ_cache2').style.display="block";
+                document.getElementById('champ_cache3').style.display="block";
+                document.getElementById('champ_cache4').style.display="none";
             }
             else {
                 document.getElementById('champ_cache1').style.display="block";
                 document.getElementById('champ_cache2').style.display="none";
+                document.getElementById('champ_cache3').style.display="none";
+                document.getElementById('champ_cache4').style.display="none";
             }
-            if (document.getElementById('ck2').checked){
+
+            if ((document.getElementById('ck1').checked) && (document.getElementById('ck2').checked)){
+                document.getElementById('champ_cache1').style.display="none";
+                document.getElementById('champ_cache2').style.display="block";
                 document.getElementById('champ_cache3').style.display="none";
                 document.getElementById('champ_cache4').style.display="block";
-            }
-            else {
-                document.getElementById('champ_cache3').style.display="block";
-                document.getElementById('champ_cache4').style.display="none";
             }
         }
     </script>

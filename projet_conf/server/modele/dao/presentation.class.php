@@ -166,9 +166,9 @@ class presentation	 {
 			entreprise.nom_entp as nom_entreprise, 
 			entreprise.logo_entp as logo_entreprise
 			FROM presentation, presente, orateur, entreprise 
-			WHERE id_presentation.presentation = id_presentation.presente
-			AND id_orateur.presente = id_orateur.orateur
-			AND id_entp.orateur = id_entp.entreprise");
+			WHERE presentation.id_presentation = presente.id_presentation
+			AND presente.id_orateur = orateur.id_orateur
+			AND orateur.id_entp = entreprise.id_entp");
 
 		$result = array ();
 
