@@ -46,7 +46,9 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 $(document).on('ready',function(){
 
 $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php",'pres',function( data ) {
-
+	/* en essai Max créé blocs du planning	
+		$(' <div class="panel-group" id="accordion"><div class="panel panel-default"><div class="panel-heading"> <h4 class="panel-title" class="text-center"><a data-toggle="collapse" class="btn-block" data-parent="#accordion" href="#collapseOne"> </a></h4></div><div id="collapseOne" class="panel-collapse collapse in"><div class="panel-body"><div class="row"></div></div></div> </div></div>').appendTo('.planning');
+	*/
 	$('<h4 class="titre_pres" ></h4>').prependTo('body .container #collapseOne .panel-body');
 	$('<div class="col-sm-4 panel" >date</div>').prependTo('body .container #collapseOne .panel-body .row');
 	$('<div class="col-sm-4 panel" >heure_deb</div>').prependTo('body .container #collapseOne .panel-body .row');

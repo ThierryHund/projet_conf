@@ -74,13 +74,12 @@ class presentation	 {
 	
 		$request = $conn->prepare ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description,
 										orateur.id_orateur, nom_orateur, prenom_orateur, entreprise.id_entp, nom_entp, logo_entp, url_entp
-								FROM presentation, presente, orateur, entreprise, evenement, est_compose
+								FROM presentation, presente, orateur, entreprise, evenement
 								WHERE evenement.id_evnt = :id_evnt
 								AND presentation.id_presentation = presente.id_presentation
 								AND presente.id_orateur = orateur.id_orateur
 								AND orateur.id_entp = entreprise.id_entp
-								AND evenement.id_evnt = est_compose.id_evnt
-								AND est_compose.id_presentation = presentation.id_presentation
+								AND evenement.id_evnt = presentation.id_evnt
 								AND evenement.heure_fin >= heure_fin_presentation
 								");
 		$request->execute ( array (
