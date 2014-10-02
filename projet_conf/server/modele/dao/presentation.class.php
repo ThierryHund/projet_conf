@@ -41,19 +41,18 @@ class presentation	 {
 	
 	
 	// //////////////////////////////
-	// retourne présentation pour tel evenement
+	// retourne présentation
+	// Max, fonctionne
 	// //////////////////////////////
 	public static function getPresentation() {
 		$conn = Connection::get ();
 		
-		$select = $conn->query ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, 
-										orateur.id_orateur, nom_orateur, prenom_orateur, entreprise.id_entp, nom_entp, logo_entp, url_entp
-								FROM presentation, presente, orateur, entreprise, evenement, est_compose
+		$select = $conn->query ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, orateur.id_orateur, nom_orateur, prenom_orateur, entreprise.id_entp, nom_entp, logo_entp, url_entp
+								FROM presentation, presente, orateur, entreprise, evenement
 								WHERE presentation.id_presentation = presente.id_presentation
 								AND presente.id_orateur = orateur.id_orateur
 								AND orateur.id_entp = entreprise.id_entp
-								AND evenement.id_evnt = est_compose.id_evnt
-								AND est_compose.id_presentation = presentation.id_presentation
+								AND evenement.id_evnt = presentation.id_evnt								
 								AND evenement.heure_fin >= heure_fin_presentation
 								"			
 								);
@@ -64,7 +63,7 @@ class presentation	 {
 		return $result;
 	}
 	
-	
+/*	
 	// //////////////////////////////
 	// retourne liste des prez d'un evnt avec timestamp
 	//utilisé par thierry pour planning event
@@ -124,11 +123,12 @@ class presentation	 {
 	}
 	
 	
-	
+*/	
 	
 	
 	// //////////////////////////////
 	// retourne présentation en cours
+	// Max, fonctionne
 	// //////////////////////////////
 	public static function getCurrentPres() {
 		$conn = Connection::get ();
@@ -144,15 +144,34 @@ class presentation	 {
 								);
 		$result = array ();
 		
-		$row = $select->fetch(PDO::FETCH_ASSOC);
+		$result = $select->fetch(PDO::FETCH_ASSOC);
 		
 		return $result;
 	}
 	
 	// //////////////////////////////
-	// retourne présentation en cours
+	// retourne prochaine présentation
+	// Max fonctionnement incertain
 	// //////////////////////////////
-
+	public static function getNextPres() {
+		$conn = Connection::get ();
+		
+		$select = $conn->query ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, orateur.id_orateur, nom_orateur, prenom_orateur, entreprise.id_entp, nom_entp, logo_entp 
+								FROM presentation, presente, orateur, entreprise 
+								WHERE date_presentation >= CURRENT_DATE
+								AND heure_debut_presentation > CURRENT_TIME							
+								AND presentation.id_presentation = presente.id_presentation
+								AND presente.id_orateur = orateur.id_orateur
+								AND orateur.id_entp = entreprise.id_entp
+								ORDER BY heure_debut_presentation"			
+								);
+		$result = array ();
+		
+		$row = $select->fetch(PDO::FETCH_ASSOC);
+		
+		return $result;
+	}
+	
 	// //////////////////////////////
 	// retourne présentations
 	//JC Fonctionne
@@ -182,32 +201,11 @@ class presentation	 {
 		
 		return $result;
 	}
-	
-	// //////////////////////////////
-	// retourne prochaine présentation
-	// //////////////////////////////
-	public static function getNextPres() {
-		$conn = Connection::get ();
 		
-		$select = $conn->query ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, orateur.id_orateur, nom_orateur, prenom_orateur, entreprise.id_entp, nom_entp, logo_entp 
-								FROM presentation, presente, orateur, entreprise 
-								WHERE date_presentation >= CURRENT_DATE
-								AND heure_debut_presentation > CURRENT_TIME							
-								AND presentation.id_presentation = presente.id_presentation
-								AND presente.id_orateur = orateur.id_orateur
-								AND orateur.id_entp = entreprise.id_entp
-								ORDER BY heure_debut_presentation"			
-								);
-		$result = array ();
-		
-		$row = $select->fetch(PDO::FETCH_ASSOC);
-		
-		return $result;
-	}
-	
 	
 	// //////////////////////////////
 	// retourne toutes les présentations de la journée
+	// MAx fonctionnement incertain
 	// //////////////////////////////
 	public static function getAujPres() {
 		$conn = Connection::get ();

@@ -19,9 +19,9 @@ $(document).on('ready',function(){
 $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php",'current_pres',function( data ) {
 
   //ajout titre présentation en cours
-  $( 'body .container .row:nth-child(3) .col-lg-12:nth-child(1) .panel-title' ).html( data['titre_presentation'] );
+  $( '.pres_titre_cur' ).html( data['titre_presentation'] );
   //ajout description en cours
-  $( 'body .container .row:nth-child(3) .col-lg-12:nth-child(1) .panel-body .col-lg-11' ).html( data['description'] )
+  $( '.pres_desc_cur' ).html( data['description'] )
   
 },"json");});
 
@@ -34,9 +34,9 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 
 
   //ajout titre présentation suivante
-  $( 'body .container .row:nth-child(3) .col-lg-12:nth-child(2) .panel-title' ).html( data['titre_presentation'] );
+  $( '.pres_titre_next' ).html( data['titre_presentation'] );
   //ajout description suivante
-  $( 'body .container .row:nth-child(3) .col-lg-12:nth-child(2) .panel-body .col-lg-11' ).html( data['description'] );
+  $( 'pres_desc_next' ).html( data['description'] );
   
 },"json");});
 
