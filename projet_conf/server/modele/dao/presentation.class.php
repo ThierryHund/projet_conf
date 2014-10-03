@@ -1,8 +1,6 @@
 <?php
-
 require_once "connection.class.php";
-
-class presentation	 {
+class presentation {
 	private $id_presentation;
 	private $titre_presentation;
 	private $description;
@@ -19,7 +17,6 @@ class presentation	 {
 	private $adresse_entp;
 	private $url_entp;
 	private $logo_entp;
-	
 	public function __construct($id_presentation, $titre_presentation, $description, $heure_debut_presentation, $heure_fin_presentation, $date_presentation, $id_orateur, $nom_orateur, $prenom_orateur, $courriel_orateur, $tel_orateur, $id_entp, $nom_entp, $adresse_entp, $url_entp, $logo_entp) {
 		$this->id_presentation = $id_presentation;
 		$this->titre_presentation = $titre_presentation;
@@ -39,7 +36,6 @@ class presentation	 {
 		$this->logo_entp = $logo_entp;
 	}
 	
-	
 	// //////////////////////////////
 	// retourne présentation
 	// Max, fonctionne
@@ -54,76 +50,88 @@ class presentation	 {
 								AND orateur.id_entp = entreprise.id_entp
 								AND evenement.id_evnt = presentation.id_evnt								
 								AND evenement.heure_fin >= heure_fin_presentation
-								"			
-								);
+								" );
 		$result = array ();
 		
-		$result = $select->fetch(PDO::FETCH_ASSOC);
+		$result = $select->fetch ( PDO::FETCH_ASSOC );
 		
 		return $result;
 	}
 	
-/*	
 	// //////////////////////////////
-	// retourne liste des prez d'un evnt avec timestamp
-	//utilisé par thierry pour planning event
-	//en cours
-	////////////////////////////////
+	// retourne liste des prez d'un evnt avec timestamp et innfo auteur entp regroupé dans un tableau
+	// utilisé par thierry pour planning event
+	// en cours
+	// //////////////////////////////
 	public static function getPrezByEvent($id_evnt) {
 		$conn = Connection::get ();
-	
-		$request = $conn->prepare ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description,
-										orateur.id_orateur, nom_orateur, prenom_orateur, entreprise.id_entp, nom_entp, logo_entp, url_entp
-								FROM presentation, presente, orateur, entreprise, evenement
+		
+		$request = $conn->prepare ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation, description, nom_type, orateur.id_orateur, nom_orateur, prenom_orateur, tel_orateur, courriel_orateur, nom_entp, adresse_entp, url_entp, logo_entp
+								FROM presentation, evenement, type_presentation, presente, orateur, entreprise
 								WHERE evenement.id_evnt = :id_evnt
 								AND presentation.id_presentation = presente.id_presentation
+								AND evenement.id_evnt = presentation.id_evnt
+								AND presentation.id_type = type_presentation.id_type
 								AND presente.id_orateur = orateur.id_orateur
 								AND orateur.id_entp = entreprise.id_entp
-								AND evenement.id_evnt = presentation.id_evnt
-								AND evenement.heure_fin >= heure_fin_presentation
-								");
+								
+								
+								" );
 		$request->execute ( array (
-				'id_evnt' => $id_evnt
+				'id_evnt' => $id_evnt 
 		) );
 		
-		$array =array();
+		$liste_prez = array ();
+		$liste_final = array ();
 		
-		while ( $row = $request->fetch (PDO::FETCH_ASSOC) ) {
-			$array[] = $row;
+		while ( $row = $request->fetch ( PDO::FETCH_ASSOC ) ) {
+			$liste_prez [] = $row;
 		}
 		
-		$result = array ();
-
-		for($i =  0; $i < count($array); $i++){
-			$result[]['id_presentation'] ='';
-			$result[]['titre_presentation'] ='';
-			$result[]['heure_debut_presentation'] = '';
-			$result[]['heure_fin_presentation'] = '';
-			$result[]['date_presentation'] = '';
-			$result[]['description'] = '';
-			$result[]['id_orateur'] = '';
-			$result[]['nom_orateur'] = '';
-			$result[]['prenom_orateur'] = '';
-			$result[]['id_entp'] = '';
-			$result[]['nom_entp'] = '';
-			$result[]['logo_entp'] = '';
-			$result[]['url_entp'] == '';
-			
-			
-			if( ($array[i]['id_presentation'] != $array[i+1]['id_presentation']))
-			{
+		$j = - 1;
+		for($i = 0; $i < count ( $liste_prez ); $i ++) {
+			if (($i != 0) && ($liste_prez [$i] ['titre_presentation'] == $liste_prez [$i - 1] ['titre_presentation'])) {
+				$temp = array (
+						"id" => $liste_prez [$i] ['id_orateur'],
+						"prenom" => $liste_prez [$i] ['prenom_orateur'],
+						"nom" => $liste_prez [$i] ['nom_orateur'],
+						"courriel" => $liste_prez [$i] ['courriel_orateur'],
+						"tel" => $liste_prez [$i] ['tel_orateur'],
+						"nom_entp" => $liste_prez [$i] ['nom_entp'],
+						"adresse_entp" => $liste_prez [$i] ['adresse_entp'],
+						"url_entp" => $liste_prez [$i] ['url_entp'],
+						"logo_entp" => $liste_prez [$i] ['logo_entp'] 
+				);
 				
-				array_splice($array, $i,1);
+				$liste_final [$j] ['auteurs'] [] = $temp;
+			} else {
+				$j ++;
+				$liste_final [$j] ['id_presentation'] = $liste_prez [$i] ['id_presentation'];
+				$liste_final [$j] ['titre_presentation'] = $liste_prez [$i] ['titre_presentation'];
+				$liste_final [$j] ['heure_debut_presentation'] = $liste_prez [$i] ['heure_debut_presentation'];
+				$liste_final [$j] ['heure_fin_presentation'] = $liste_prez [$i] ['heure_fin_presentation'];
+				$liste_final [$j] ['date_presentation'] = $liste_prez [$i] ['date_presentation'];
+				$liste_final [$j] ['description'] = $liste_prez [$i] ['description'];
+				$liste_final [$j] ['type_presentation'] = $liste_prez [$i] ['nom_type'];
+				
+				$temp = array (
+						"id" => $liste_prez [$i] ['id_orateur'],
+						"prenom" => $liste_prez [$i] ['prenom_orateur'],
+						"nom" => $liste_prez [$i] ['nom_orateur'],
+						"courriel" => $liste_prez [$i] ['courriel_orateur'],
+						"tel" => $liste_prez [$i] ['tel_orateur'],
+						"nom_entp" => $liste_prez [$i] ['nom_entp'],
+						"adresse_entp" => $liste_prez [$i] ['adresse_entp'],
+						"url_entp" => $liste_prez [$i] ['url_entp'],
+						"logo_entp" => $liste_prez [$i] ['logo_entp'] 
+				);
+				
+				$liste_final [$j] ['auteurs'] [] = $temp;
 			}
-		};
-	
-		return $result;
-
+			;
+		}
+		return $liste_final;
 	}
-	
-	
-*/	
-	
 	
 	// //////////////////////////////
 	// retourne présentation en cours
@@ -139,11 +147,10 @@ class presentation	 {
 								AND CURRENT_TIME < heure_fin_presentation
 								AND presentation.id_presentation = presente.id_presentation
 								AND presente.id_orateur = orateur.id_orateur
-								AND orateur.id_entp = entreprise.id_entp"			
-								);
+								AND orateur.id_entp = entreprise.id_entp" );
 		$result = array ();
 		
-		$result = $select->fetch(PDO::FETCH_ASSOC);
+		$result = $select->fetch ( PDO::FETCH_ASSOC );
 		
 		return $result;
 	}
@@ -162,23 +169,22 @@ class presentation	 {
 								AND presentation.id_presentation = presente.id_presentation
 								AND presente.id_orateur = orateur.id_orateur
 								AND orateur.id_entp = entreprise.id_entp
-								ORDER BY heure_debut_presentation"			
-								);
+								ORDER BY heure_debut_presentation" );
 		$result = array ();
 		
-		$row = $select->fetch(PDO::FETCH_ASSOC);
+		$row = $select->fetch ( PDO::FETCH_ASSOC );
 		
 		return $result;
 	}
 	
 	// //////////////////////////////
 	// retourne présentations
-	//JC Fonctionne
+	// JC Fonctionne
 	// //////////////////////////////
 	public static function getPresArray() {
 		$conn = Connection::get ();
 		
-		$select = $conn->query ("SELECT presentation.id_presentation as id,
+		$select = $conn->query ( "SELECT presentation.id_presentation as id,
 			presentation.titre_presentation as titre, 
 			presentation.description as description, 
 			orateur.id_orateur, 
@@ -190,15 +196,14 @@ class presentation	 {
 			FROM presentation, presente, orateur, entreprise 
 			WHERE presentation.id_presentation = presente.id_presentation
 			AND presente.id_orateur = orateur.id_orateur
-			AND orateur.id_entp = entreprise.id_entp");
-
+			AND orateur.id_entp = entreprise.id_entp" );
+		
 		$result = array ();
 		
-		$result = $select->fetchAll(PDO::FETCH_ASSOC);
-
+		$result = $select->fetchAll ( PDO::FETCH_ASSOC );
+		
 		return $result;
 	}
-		
 	
 	// //////////////////////////////
 	// retourne toutes les présentations de la journée
@@ -213,17 +218,16 @@ class presentation	 {
 								WHERE presentation.id_presentation = presente.id_presentation
 								AND presente.id_orateur = orateur.id_orateur
 								AND orateur.id_entp = entreprise.id_entp
-								ORDER BY heure_debut_presentation"			
-								);
+								ORDER BY heure_debut_presentation" );
 		$result = array ();
 		
-		$result = $select->fetch(PDO::FETCH_ASSOC);
+		$result = $select->fetch ( PDO::FETCH_ASSOC );
 		
 		return $result;
 	}
 	
-	////////////////////////////////////////////////////////////////////////////////////////////////////
-	////Getters
+	// //////////////////////////////////////////////////////////////////////////////////////////////////
+	// //Getters
 	
 	// //////////////////////////////
 	// retourne id_presentation
@@ -238,14 +242,14 @@ class presentation	 {
 	public function getTitrePres() {
 		return $this->titre_presentation;
 	}
-
+	
 	// //////////////////////////////
 	// retourne description
 	// //////////////////////////////
 	public function getDescriptionPres() {
 		return $this->description;
 	}
-
+	
 	// //////////////////////////////
 	// retourne heure_debut_presentation
 	// //////////////////////////////
@@ -294,7 +298,7 @@ class presentation	 {
 	public function getCourrielOrateur() {
 		return $this->courriel_orateur;
 	}
-		
+	
 	// //////////////////////////////
 	// retourne tel_orateur
 	// //////////////////////////////
