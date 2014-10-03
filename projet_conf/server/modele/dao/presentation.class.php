@@ -193,11 +193,9 @@ class presentation	 {
 			AND orateur.id_entp = entreprise.id_entp");
 
 		$result = array ();
-
-		$result = $select->fetch(PDO::FETCH_ASSOC);
 		
+		$result = $select->fetchAll(PDO::FETCH_ASSOC);
 
-		
 		return $result;
 	}
 		

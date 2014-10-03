@@ -1,8 +1,13 @@
 $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",'consulter_presentation',function( data ) {
-	$( '.id' ).html('<td>'+data['id']+'</td>');
-	$( '.titre' ).html('<td>'+data['titre']+'</td>');
-	$( '.description' ).html('<td>'+data['description']+'</td>');
-	$( '.nom_orateur' ).html('<td>'+data['nom_orateur']+'</td>');
-	$( '.prenom_orateur' ).html('<td>'+data['prenom_orateur']+'</td>');
-	$( '.nom_entreprise' ).html('<td>'+data['nom_entreprise']+'</td>');
+	$.each(data, function() {
+	    $('.info').append(
+	        '<tr><td>'
+	        + this.id+ '</td><td>'
+	        + this.titre +'</td><td>'
+	        + this.description+ '</td><td>'
+	        + this.nom_orateur +'</td><td>'
+	        + this.prenom_orateur + '</td><td>'
+	        + this.nom_entreprise +'</td></tr>'
+	    );
+	});
 },"json");

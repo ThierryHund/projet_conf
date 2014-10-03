@@ -78,7 +78,7 @@ class evenement {
 
 		$result = array ();
 
-		$result = $select->fetch(PDO::FETCH_ASSOC);
+		$result = $select->fetchAll(PDO::FETCH_ASSOC);
 		
 		return $result;
 	}
