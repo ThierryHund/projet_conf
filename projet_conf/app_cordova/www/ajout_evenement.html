@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -88,8 +88,9 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-                                <input name="avatar" type="file" />
+                                <label for="avatar">Selectionner l'image à télecharger (JPG ou PNG | max. 2 Mo) :</label><br />
+                                <input type="file" name="avatar" id="avatar" /><br />
+                                <input type="hidden" name="MAX_FILE_SIZE" value="2097152"/><br />
                             </td>
                         </tr>
                         <tr>
@@ -168,8 +169,9 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="hidden" name="MAX_FILE_SIZE" value="12345" />
-                                <input type="file" name="logo_orga" id="logo" />
+                              <label for="logo_orga">Selectionner l'image à télecharger (JPG ou PNG | max. 2 Mo) :</label><br />
+                                <input type="file" name="logo_orga" id="logo" /><br />
+                                <input type="hidden" name="MAX_FILE_SIZE" value="2097152"/><br />
                             </td>
                         </tr>
                         <tr>
