@@ -58,15 +58,17 @@ class presentation {
 		return $result;
 	}
 	
-	/////////////////////////////////
+	// ///////////////////////////////
 	// retourne liste des prez d'un evnt avec timestamp et info auteur entp regroupé dans un tableau
-	//utilisé par thierry pour planning event
-	//en cours
-	////////////////////////////////
+	// utilisé par thierry pour planning event
+	// en cours
+	// //////////////////////////////
 	public static function getPrezByEvent($id_evnt) {
 		$conn = Connection::get ();
-	
-		$request = $conn->prepare ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation,TIMESTAMP(date_presentation,heure_debut_presentation) as timestamp, description, nom_type, orateur.id_orateur, nom_orateur, prenom_orateur, tel_orateur, courriel_orateur, nom_entp, adresse_entp, url_entp, logo_entp
+		$result = array ();
+		
+		// on recupere les données sql avec un timestamp
+		$request = $conn->prepare ( "SELECT presentation.id_presentation, titre_presentation, heure_debut_presentation, heure_fin_presentation, date_presentation,TIMESTAMP(date_presentation,heure_debut_presentation) as timestamp_debut, TIMESTAMP(date_presentation,heure_fin_presentation) as timestamp_fin, description, nom_type, orateur.id_orateur, nom_orateur, prenom_orateur, tel_orateur, courriel_orateur, nom_entp, adresse_entp, url_entp, logo_entp
 								FROM presentation, evenement, type_presentation, presente, orateur, entreprise
 								WHERE evenement.id_evnt = :id_evnt
 								AND presentation.id_presentation = presente.id_presentation
@@ -76,45 +78,95 @@ class presentation {
 								AND orateur.id_entp = entreprise.id_entp
 								
 								
-								");
+								" );
 		$request->execute ( array (
-				'id_evnt' => $id_evnt
+				'id_evnt' => $id_evnt 
 		) );
 		
+		$liste_prez = array ();
+		$liste_final = array ();
 		
-		$liste_prez =array();
-		$liste_final = array();
-		
-		while ( $row = $request->fetch (PDO::FETCH_ASSOC) ) {
-			$liste_prez[] = $row;
+		while ( $row = $request->fetch ( PDO::FETCH_ASSOC ) ) {
+			$liste_prez [] = $row;
 		}
 		
-		
-		$j = -1;
-		for($i = 0;$i<count($liste_prez);$i++){
-			if( ($i != 0) &&  ($liste_prez[$i]['titre_presentation']== $liste_prez[$i-1]['titre_presentation'])){
-				$temp = array("id" => $liste_prez[$i]['id_orateur'], "prenom" => $liste_prez[$i]['prenom_orateur'], "nom" => $liste_prez[$i]['nom_orateur'], "courriel" => $liste_prez[$i]['courriel_orateur'], "tel" => $liste_prez[$i]['tel_orateur'], "nom_entp" => $liste_prez[$i]['nom_entp'], "adresse_entp" => $liste_prez[$i]['adresse_entp'], "url_entp" => $liste_prez[$i]['url_entp'], "logo_entp" => $liste_prez[$i]['logo_entp']);
-
-				$liste_final[$j]['auteurs'][] = $temp;
-							
-
-			}else{
-				$j++;
-				$liste_final[$j]['id_presentation'] = $liste_prez[$i]['id_presentation'];
-				$liste_final[$j]['titre_presentation'] = $liste_prez[$i]['titre_presentation'];
-				$liste_final[$j]['heure_debut_presentation'] = $liste_prez[$i]['heure_debut_presentation'];
-				$liste_final[$j]['heure_fin_presentation'] = $liste_prez[$i]['heure_fin_presentation'];
-				$liste_final[$j]['date_presentation'] = $liste_prez[$i]['date_presentation'];
-				$liste_final[$j]['timestamp'] = $liste_prez[$i]['timestamp'];
-				$liste_final[$j]['description'] = $liste_prez[$i]['description'];
-				$liste_final[$j]['type_presentation'] = $liste_prez[$i]['nom_type'];
-
-				$temp = array("id" => $liste_prez[$i]['id_orateur'], "prenom" => $liste_prez[$i]['prenom_orateur'], "nom" => $liste_prez[$i]['nom_orateur'], "courriel" => $liste_prez[$i]['courriel_orateur'], "tel" => $liste_prez[$i]['tel_orateur'], "nom_entp" => $liste_prez[$i]['nom_entp'], "adresse_entp" => $liste_prez[$i]['adresse_entp'], "url_entp" => $liste_prez[$i]['url_entp'], "logo_entp" => $liste_prez[$i]['logo_entp']);
-
-				$liste_final[$j]['auteurs'][] = $temp;
-				};
+		// on trie les données pour obtenir un tableau ou les auteurs sont regroupés dans une seule case
+		$j = - 1;
+		for($i = 0; $i < count ( $liste_prez ); $i ++) {
+			if (($i != 0) && ($liste_prez [$i] ['titre_presentation'] == $liste_prez [$i - 1] ['titre_presentation'])) {
+				$temp = array (
+						"id" => $liste_prez [$i] ['id_orateur'],
+						"prenom" => $liste_prez [$i] ['prenom_orateur'],
+						"nom" => $liste_prez [$i] ['nom_orateur'],
+						"courriel" => $liste_prez [$i] ['courriel_orateur'],
+						"tel" => $liste_prez [$i] ['tel_orateur'],
+						"nom_entp" => $liste_prez [$i] ['nom_entp'],
+						"adresse_entp" => $liste_prez [$i] ['adresse_entp'],
+						"url_entp" => $liste_prez [$i] ['url_entp'],
+						"logo_entp" => $liste_prez [$i] ['logo_entp'] 
+				);
+				
+				$liste_final [$j] ['auteurs'] [] = $temp;
+			} else {
+				$j ++;
+				$liste_final [$j] ['id_presentation'] = $liste_prez [$i] ['id_presentation'];
+				$liste_final [$j] ['titre_presentation'] = $liste_prez [$i] ['titre_presentation'];
+				$liste_final [$j] ['heure_debut_presentation'] = $liste_prez [$i] ['heure_debut_presentation'];
+				$liste_final [$j] ['heure_fin_presentation'] = $liste_prez [$i] ['heure_fin_presentation'];
+				$liste_final [$j] ['date_presentation'] = $liste_prez [$i] ['date_presentation'];
+				$liste_final [$j] ['timestamp_debut'] = date ( 'Y-m-d H:i:s', strtotime ( $liste_prez [$i] ['timestamp_debut'] ) );
+				$liste_final [$j] ['timestamp_fin'] = date ( 'Y-m-d H:i:s', strtotime ( $liste_prez [$i] ['timestamp_fin'] ) );
+				$liste_final [$j] ['description'] = $liste_prez [$i] ['description'];
+				$liste_final [$j] ['type_presentation'] = $liste_prez [$i] ['nom_type'];
+				
+				$temp = array (
+						"id" => $liste_prez [$i] ['id_orateur'],
+						"prenom" => $liste_prez [$i] ['prenom_orateur'],
+						"nom" => $liste_prez [$i] ['nom_orateur'],
+						"courriel" => $liste_prez [$i] ['courriel_orateur'],
+						"tel" => $liste_prez [$i] ['tel_orateur'],
+						"nom_entp" => $liste_prez [$i] ['nom_entp'],
+						"adresse_entp" => $liste_prez [$i] ['adresse_entp'],
+						"url_entp" => $liste_prez [$i] ['url_entp'],
+						"logo_entp" => $liste_prez [$i] ['logo_entp'] 
+				);
+				
+				$liste_final [$j] ['auteurs'] [] = $temp;
+			}
+			;
 		}
-return $liste_final;
+		
+		$result ['liste_prez'] = $liste_final;
+		
+		// on récupère les présentation en cours
+		$current_prez = array ();
+		$current_date = date ( 'Y-m-d H:i:s', time () );
+		foreach ( $liste_final as $prez ) {
+			if ($prez ['timestamp_debut'] <= $current_date && $prez ['timestamp_fin'] > $current_date) {
+				$current_prez [] = $prez;
+			}
+		}
+		
+		$result ['prez_en_cours'] = $current_prez;
+		
+		// on récupère la prochaine presentation
+		$next_prez = array ();
+		$trouve = false;
+		$temp;
+		for($i = 0; $i < count ( $liste_final ); $i ++) {
+			if ($liste_final [$i] ['timestamp_debut'] > $current_date && $trouve == false) {
+				$next_prez [] = $liste_final [$i];
+				$trouve = true;
+				$temp = $liste_final [$i] ['timestamp_debut'];
+			} elseif ($liste_final [$i] ['timestamp_debut'] == $temp) {
+				$next_prez [] = $liste_final [$i];
+			}
+			var_dump ( $liste_final [$i] ['timestamp_debut'] == $temp );
+		}
+		
+		$result ['prez_suivante'] = $next_prez;
+		
+		return $result;
 	}
 	
 	// //////////////////////////////
