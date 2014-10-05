@@ -61,7 +61,7 @@ class presentation {
 	// ///////////////////////////////
 	// retourne liste des prez d'un evnt avec timestamp et info auteur entp regroupé dans un tableau
 	// utilisé par thierry pour planning event
-	// 
+	// en cours
 	// //////////////////////////////
 	public static function getPrezByEvent($id_evnt) {
 		$conn = Connection::get ();

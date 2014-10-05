@@ -9,24 +9,12 @@ $currentevent = Evenement::getEventArray();
 
 if(isset($_REQUEST['accueil'])){
 	$event = Evenement::getCurrentEventArray();
-	
-	echo json_encode($event);
+	$prezs = Presentation::getPrezByEvent($event['id_evnt']);
+	$array['event'] = $event;
+	$array['prezs'] = $prezs;
+	echo json_encode($array);
 }
 
-if(isset($_REQUEST['current_pres'])){
-    $current_pres = Presentation::getCurrentPres();
-    echo json_encode($current_pres);
-}
-
-if(isset($_REQUEST['next_pres'])){
-    $next_pres = Presentation::getNextPres();
-    echo json_encode($next_pres);
-}
-
-if(isset($_REQUEST['pres'])){
-    $pres = Presentation::getPresentation();
-    echo json_encode($pres);
-}
 
 if(isset($_REQUEST['haut'])){
     $event = Evenement::getCurrentEventArray();
