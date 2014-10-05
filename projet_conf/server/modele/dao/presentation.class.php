@@ -61,7 +61,7 @@ class presentation {
 	// ///////////////////////////////
 	// retourne liste des prez d'un evnt avec timestamp et info auteur entp regroupé dans un tableau
 	// utilisé par thierry pour planning event
-	// en cours
+	// 
 	// //////////////////////////////
 	public static function getPrezByEvent($id_evnt) {
 		$conn = Connection::get ();
@@ -136,7 +136,15 @@ class presentation {
 			;
 		}
 		
-		$result ['liste_prez'] = $liste_final;
+		// $result ['liste_prez'] = $liste_final;
+		
+		// on tri les presentation par jour
+		$liste_trie = array ();
+		for($i = 0; $i < count ( $liste_final ); $i ++) {
+			$liste_trie [$liste_final [$i] ['date_presentation']] [] = $liste_final [$i];
+		}
+		
+		$result ['liste_prez'] = $liste_trie;
 		
 		// on récupère les présentation en cours
 		$current_prez = array ();
@@ -149,7 +157,7 @@ class presentation {
 		
 		$result ['prez_en_cours'] = $current_prez;
 		
-		// on récupère la prochaine presentation
+		// on récupère la ou les prochaines presentations
 		$next_prez = array ();
 		$trouve = false;
 		$temp;
@@ -161,7 +169,6 @@ class presentation {
 			} elseif ($liste_final [$i] ['timestamp_debut'] == $temp) {
 				$next_prez [] = $liste_final [$i];
 			}
-			var_dump ( $liste_final [$i] ['timestamp_debut'] == $temp );
 		}
 		
 		$result ['prez_suivante'] = $next_prez;
