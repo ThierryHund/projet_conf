@@ -134,7 +134,7 @@ if(isset($_POST['ajout_evenement'])){
                 $id_evnt=$ligne['id'];
             }    
         
-            echo'<p style=color:green;font-weight:bold;> Evenement ajouté avec succès </p> <br/>';
+            echo'<p style=color:green;font-weight:bold;> Evénement ajouté avec succès </p> <br/>';
         }
     }
     if(isset($_POST['checkbox'])){
@@ -178,150 +178,164 @@ if(isset($_POST['ajout_evenement'])){
             $req->execute(array(
             'id_evnt'=>$id_evnt,
             'id_organisateur'=>$id_organisateur));
+
+            echo'<p style=color:green;font-weight:bold;> Organisateur ajouté avec succès </p> <br/>';
         }
     }
 }
 
 if(isset($_POST['ajout_presentation'])){
-    $select_evenement='';
-    $titre_presentation='';
-    $select_type_presentation='';
-    $desc_presentation='';
-    $select_orateur='';
-    $nom_orateur='';
-    $prenom_orateur='';
-    $courriel_orateur='';
-    $tel_orateur='';
-    $select_entreprise='';
-    $nom_entreprise='';
-    $adresse_entreprise='';
-    $url_entreprise='';
-    $checkbox='';
-    $checkbox2='';
+    $img = new UploadImages('avatar');
+    $imgName = $img->getName();
+    $dir = dirname("http://localhost/webprojet/projet_conf/projet_conf/server/images");
 
-    if (isset($_POST['select_evenement']) && !empty($_POST['select_evenement'])){     
-        $select_evenement=$_POST['select_evenement'];
-    }
-    if (isset($_POST['titre_presentation']) && !empty($_POST['titre_presentation'])){
-        $titre_presentation=$_POST['titre_presentation'];
-    }
-    if (isset($_POST['select_type_presentation']) && !empty($_POST['select_type_presentation'])){
-        $select_type_presentation=$_POST['select_type_presentation'];
-    }
-    if (isset($_POST['desc_presentation']) && !empty($_POST['desc_presentation'])){
-        $desc_presentation=$_POST['desc_presentation'];
-    }
-    if (isset($_POST['select_orateur']) && !empty($_POST['select_orateur'])){
-        $select_orateur=$_POST['select_orateur'];
-    }
-    if ((isset($_POST['select_evenement']) && empty($_POST['select_evenement'])) || (isset($_POST['titre_presentation']) && empty($_POST['titre_presentation'])) || (isset($_POST['desc_presentation']) && empty($_POST['desc_presentation'])) || (isset($_POST['select_type_presentation']) && empty($_POST['select_type_presentation'])) || (isset($_POST['select_orateur']) && empty($_POST['select_orateur']))){
-        echo 'Erreur dans l\'un des champs';
-    }
-    else {
-        $req = $conn->prepare('INSERT INTO presentation(id_evnt, titre_presentation, id_type, description) VALUES ("'.$select_evenement.'","'.$titre_presentation.'","'.$select_type_presentation.'","'.$desc_presentation.'")');
-        $req->execute(array(
-        'id_evnt'=>$select_evenement,
-        'titre_presentation'=>$titre_presentation,
-        'id_type'=>$select_type_presentation,
-        'description'=>$desc_presentation));
+    if(true == $img->validUpload()){ 
+        $select_evenement='';
+        $titre_presentation='';
+        $select_type_presentation='';
+        $desc_presentation='';
+        $select_orateur='';
+        $nom_orateur='';
+        $prenom_orateur='';
+        $courriel_orateur='';
+        $tel_orateur='';
+        $select_entreprise='';
+        $nom_entreprise='';
+        $adresse_entreprise='';
+        $url_entreprise='';
+        $checkbox='';
+        $checkbox2='';
 
-        $chercheID = $conn->query('SELECT id_presentation as id FROM presentation WHERE titre_presentation LIKE "'.$titre_presentation.'"');
-        $donnees = $chercheID->fetchAll();
-        foreach ($donnees as $ligne){
-            $id_presentation=$ligne['id'];
+        if (isset($_POST['select_evenement']) && !empty($_POST['select_evenement'])){     
+            $select_evenement=$_POST['select_evenement'];
         }
-
-        $req = $conn->prepare('INSERT INTO presente (id_presentation,id_orateur) VALUES ("'.$id_presentation.'","'.$select_orateur.'")');
-        $req->execute(array(
-        'id_presentation'=>$id_presentation,
-        'id_orateur'=>$select_orateur));
-    }
-
-    if(($_POST['checkbox2']) && ($_POST['checkbox'])){
-        if (isset($_POST['nom_entreprise']) && !empty($_POST['nom_entreprise'])){     
-            $nom_entreprise=$_POST['nom_entreprise'];
+        if (isset($_POST['titre_presentation']) && !empty($_POST['titre_presentation'])){
+            $titre_presentation=$_POST['titre_presentation'];
         }
-        if (isset($_POST['adresse_entreprise']) && !empty($_POST['adresse_entreprise'])){
-            $adresse_entreprise=$_POST['adresse_entreprise'];
+        if (isset($_POST['select_type_presentation']) && !empty($_POST['select_type_presentation'])){
+            $select_type_presentation=$_POST['select_type_presentation'];
         }
-        if (isset($_POST['url_entreprise']) && !empty($_POST['url_entreprise'])){
-            $url_entreprise=$_POST['url_entreprise'];
+        if (isset($_POST['desc_presentation']) && !empty($_POST['desc_presentation'])){
+            $desc_presentation=$_POST['desc_presentation'];
         }
-        if (isset($_POST['courriel_orga']) && !empty($_POST['courriel_orga'])){
-            $courriel_orga=$_POST['courriel_orga'];
+        if (isset($_POST['select_orateur']) && !empty($_POST['select_orateur'])){
+            $select_orateur=$_POST['select_orateur'];
         }
-        if (isset($_POST['tel_orga']) && !empty($_POST['tel_orga'])){     
-            $tel_orga=$_POST['tel_orga'];
-        }
-        if (isset($_POST['nom_orateur']) && !empty($_POST['nom_orateur'])){
-            $nom_orateur=$_POST['nom_orateur'];
-        }
-        if (isset($_POST['prenom_orateur']) && !empty($_POST['prenom_orateur'])){
-            $prenom_orateur=$_POST['prenom_orateur'];
-        }
-        if (isset($_POST['courriel_orateur']) && !empty($_POST['courriel_orateur'])){
-            $courriel_orateur=$_POST['courriel_orateur'];
-        }
-        if (isset($_POST['tel_orateur']) && !empty($_POST['tel_orateur'])){     
-            $tel_orateur=$_POST['tel_orateur'];
-        }
-        if (isset($_POST['select_entreprise']) && !empty($_POST['select_entreprise'])){
-            $select_entreprise=$_POST['select_entreprise'];
-        }
-        if ((isset($_POST['nom_entreprise']) && empty($_POST['nom_entreprise'])) || (isset($_POST['adresse_entreprise']) && empty($_POST['adresse_entreprise'])) || (isset($_POST['url_entreprise']) && empty($_POST['url_entreprise'])) || (isset($_POST['nom_orateur']) && empty($_POST['nom_orateur'])) || (isset($_POST['prenom_orateur']) && empty($_POST['prenom_orateur'])) || (isset($_POST['courriel_orateur']) && empty($_POST['courriel_orateur'])) || (isset($_POST['tel_orateur']) && empty($_POST['tel_orateur'])) || (isset($_POST['select_entreprise']) && empty($_POST['select_entreprise']))){
+        if ((isset($_POST['select_evenement']) && empty($_POST['select_evenement'])) || (isset($_POST['titre_presentation']) && empty($_POST['titre_presentation'])) || (isset($_POST['desc_presentation']) && empty($_POST['desc_presentation'])) || (isset($_POST['select_type_presentation']) && empty($_POST['select_type_presentation'])) || (isset($_POST['select_orateur']) && empty($_POST['select_orateur']))){
             echo 'Erreur dans l\'un des champs';
         }
         else {
-            $req = $conn->prepare('INSERT INTO entreprise (nom_entp, adresse_entp, url_entp, logo_entp) VALUES ("'.$nom_entreprise.'","'.$adresse_entreprise.'","'.$url_entreprise.'","img/")');
+            $req = $conn->prepare('INSERT INTO presentation(id_evnt, titre_presentation, id_type, description) VALUES ("'.$select_evenement.'","'.$titre_presentation.'","'.$select_type_presentation.'","'.$desc_presentation.'")');
             $req->execute(array(
-            'nom_entp'=>$nom_entreprise,
-            'adresse_entp'=>$adresse_entreprise,
-            'url_entp'=>$url_entreprise,
-            'logo_entp'=>"img/"));
+            'id_evnt'=>$select_evenement,
+            'titre_presentation'=>$titre_presentation,
+            'id_type'=>$select_type_presentation,
+            'description'=>$desc_presentation));
 
-            $chercheID2 = $conn->query('SELECT id_entp as id FROM entreprise WHERE nom_entp LIKE "'.$nom_entreprise.'"');
-            $donnees = $chercheID2->fetchAll();
+            $chercheID = $conn->query('SELECT id_presentation as id FROM presentation WHERE titre_presentation LIKE "'.$titre_presentation.'"');
+            $donnees = $chercheID->fetchAll();
             foreach ($donnees as $ligne){
-                $id_entreprise=$ligne['id'];
+                $id_presentation=$ligne['id'];
             }
 
-            $req = $conn->prepare('INSERT INTO orateur (nom_orateur, prenom_orateur, courriel_orateur, tel_orateur, id_entp) VALUES ("'.$nom_orateur.'","'.$prenom_orateur.'","'.$courriel_orateur.'","'.$tel_orateur.'","'.$id_entreprise.'")');
+            $req = $conn->prepare('INSERT INTO presente (id_presentation,id_orateur) VALUES ("'.$id_presentation.'","'.$select_orateur.'")');
             $req->execute(array(
-            'nom_orateur'=>$nom_orateur,
-            'prenom_orateur'=>$prenom_orateur,
-            'courriel_orateur'=>$courriel_orateur,
-            'tel_orateur'=>$tel_orateur,
-            'id_entp'=>$id_entreprise));
-        }
-    }
+            'id_presentation'=>$id_presentation,
+            'id_orateur'=>$select_orateur));
 
-    if($_POST['checkbox']){
-        if (isset($_POST['nom_orateur']) && !empty($_POST['nom_orateur'])){
-            $nom_orateur=$_POST['nom_orateur'];
+            echo'<p style=color:green;font-weight:bold;> Présentation ajouté avec succès </p> <br/>';
         }
-        if (isset($_POST['prenom_orateur']) && !empty($_POST['prenom_orateur'])){
-            $prenom_orateur=$_POST['prenom_orateur'];
+
+        if(($_POST['checkbox2']) && ($_POST['checkbox'])){
+            if (isset($_POST['nom_entreprise']) && !empty($_POST['nom_entreprise'])){     
+                $nom_entreprise=$_POST['nom_entreprise'];
+            }
+            if (isset($_POST['adresse_entreprise']) && !empty($_POST['adresse_entreprise'])){
+                $adresse_entreprise=$_POST['adresse_entreprise'];
+            }
+            if (isset($_POST['url_entreprise']) && !empty($_POST['url_entreprise'])){
+                $url_entreprise=$_POST['url_entreprise'];
+            }
+            if (isset($_POST['courriel_orga']) && !empty($_POST['courriel_orga'])){
+                $courriel_orga=$_POST['courriel_orga'];
+            }
+            if (isset($_POST['tel_orga']) && !empty($_POST['tel_orga'])){     
+                $tel_orga=$_POST['tel_orga'];
+            }
+            if (isset($_POST['nom_orateur']) && !empty($_POST['nom_orateur'])){
+                $nom_orateur=$_POST['nom_orateur'];
+            }
+            if (isset($_POST['prenom_orateur']) && !empty($_POST['prenom_orateur'])){
+                $prenom_orateur=$_POST['prenom_orateur'];
+            }
+            if (isset($_POST['courriel_orateur']) && !empty($_POST['courriel_orateur'])){
+                $courriel_orateur=$_POST['courriel_orateur'];
+            }
+            if (isset($_POST['tel_orateur']) && !empty($_POST['tel_orateur'])){     
+                $tel_orateur=$_POST['tel_orateur'];
+            }
+            if (isset($_POST['select_entreprise']) && !empty($_POST['select_entreprise'])){
+                $select_entreprise=$_POST['select_entreprise'];
+            }
+            if ((isset($_POST['nom_entreprise']) && empty($_POST['nom_entreprise'])) || (isset($_POST['adresse_entreprise']) && empty($_POST['adresse_entreprise'])) || (isset($_POST['url_entreprise']) && empty($_POST['url_entreprise'])) || (isset($_POST['nom_orateur']) && empty($_POST['nom_orateur'])) || (isset($_POST['prenom_orateur']) && empty($_POST['prenom_orateur'])) || (isset($_POST['courriel_orateur']) && empty($_POST['courriel_orateur'])) || (isset($_POST['tel_orateur']) && empty($_POST['tel_orateur'])) || (isset($_POST['select_entreprise']) && empty($_POST['select_entreprise']))){
+                echo 'Erreur dans l\'un des champs';
+            }
+            else {
+                $req = $conn->prepare('INSERT INTO entreprise (nom_entp, adresse_entp, url_entp, logo_entp) VALUES ("'.$nom_entreprise.'","'.$adresse_entreprise.'","'.$url_entreprise.'","'.$dir.'/images/'.$imgName.'")');
+                $req->execute(array(
+                'nom_entp'=>$nom_entreprise,
+                'adresse_entp'=>$adresse_entreprise,
+                'url_entp'=>$url_entreprise,
+                'logo_entp'=>$imgName));
+
+                $chercheID2 = $conn->query('SELECT id_entp as id FROM entreprise WHERE nom_entp LIKE "'.$nom_entreprise.'"');
+                $donnees = $chercheID2->fetchAll();
+                foreach ($donnees as $ligne){
+                    $id_entreprise=$ligne['id'];
+                }
+
+                $req = $conn->prepare('INSERT INTO orateur (nom_orateur, prenom_orateur, courriel_orateur, tel_orateur, id_entp) VALUES ("'.$nom_orateur.'","'.$prenom_orateur.'","'.$courriel_orateur.'","'.$tel_orateur.'","'.$id_entreprise.'")');
+                $req->execute(array(
+                'nom_orateur'=>$nom_orateur,
+                'prenom_orateur'=>$prenom_orateur,
+                'courriel_orateur'=>$courriel_orateur,
+                'tel_orateur'=>$tel_orateur,
+                'id_entp'=>$id_entreprise));
+
+                echo'<p style=color:green;font-weight:bold;> Entreprise et orateur ajouté avec succès </p> <br/>';
+            }
         }
-        if (isset($_POST['courriel_orateur']) && !empty($_POST['courriel_orateur'])){
-            $courriel_orateur=$_POST['courriel_orateur'];
-        }
-        if (isset($_POST['tel_orateur']) && !empty($_POST['tel_orateur'])){     
-            $tel_orateur=$_POST['tel_orateur'];
-        }
-        if (isset($_POST['select_entreprise']) && !empty($_POST['select_entreprise'])){
-            $select_entreprise=$_POST['select_entreprise'];
-        }
-        if ((isset($_POST['nom_orateur']) && empty($_POST['nom_orateur'])) || (isset($_POST['prenom_orateur']) && empty($_POST['prenom_orateur'])) || (isset($_POST['courriel_orateur']) && empty($_POST['courriel_orateur'])) || (isset($_POST['tel_orateur']) && empty($_POST['tel_orateur'])) || (isset($_POST['select_entreprise']) && empty($_POST['select_entreprise']))){
-            echo 'Erreur dans l\'un des champs';
-        }
-        else {
-            $req = $conn->prepare('INSERT INTO orateur (nom_orateur, prenom_orateur, courriel_orateur, tel_orateur, id_entp) VALUES ("'.$nom_orateur.'","'.$prenom_orateur.'","'.$courriel_orateur.'","'.$tel_orateur.'","'.$select_entreprise.'")');
-            $req->execute(array(
-            'nom_orateur'=>$nom_orateur,
-            'prenom_orateur'=>$prenom_orateur,
-            'courriel_orateur'=>$courriel_orateur,
-            'tel_orateur'=>$tel_orateur,
-            'id_entp'=>$select_entreprise));
-        }
-    }   
+
+        if($_POST['checkbox']){
+            if (isset($_POST['nom_orateur']) && !empty($_POST['nom_orateur'])){
+                $nom_orateur=$_POST['nom_orateur'];
+            }
+            if (isset($_POST['prenom_orateur']) && !empty($_POST['prenom_orateur'])){
+                $prenom_orateur=$_POST['prenom_orateur'];
+            }
+            if (isset($_POST['courriel_orateur']) && !empty($_POST['courriel_orateur'])){
+                $courriel_orateur=$_POST['courriel_orateur'];
+            }
+            if (isset($_POST['tel_orateur']) && !empty($_POST['tel_orateur'])){     
+                $tel_orateur=$_POST['tel_orateur'];
+            }
+            if (isset($_POST['select_entreprise']) && !empty($_POST['select_entreprise'])){
+                $select_entreprise=$_POST['select_entreprise'];
+            }
+            if ((isset($_POST['nom_orateur']) && empty($_POST['nom_orateur'])) || (isset($_POST['prenom_orateur']) && empty($_POST['prenom_orateur'])) || (isset($_POST['courriel_orateur']) && empty($_POST['courriel_orateur'])) || (isset($_POST['tel_orateur']) && empty($_POST['tel_orateur'])) || (isset($_POST['select_entreprise']) && empty($_POST['select_entreprise']))){
+                echo 'Erreur dans l\'un des champs';
+            }
+            else {
+                $req = $conn->prepare('INSERT INTO orateur (nom_orateur, prenom_orateur, courriel_orateur, tel_orateur, id_entp) VALUES ("'.$nom_orateur.'","'.$prenom_orateur.'","'.$courriel_orateur.'","'.$tel_orateur.'","'.$select_entreprise.'")');
+                $req->execute(array(
+                'nom_orateur'=>$nom_orateur,
+                'prenom_orateur'=>$prenom_orateur,
+                'courriel_orateur'=>$courriel_orateur,
+                'tel_orateur'=>$tel_orateur,
+                'id_entp'=>$select_entreprise));
+
+                echo'<p style=color:green;font-weight:bold;> Orateur ajouté avec succès </p> <br/>';
+            }
+        } 
+    } 
 }
