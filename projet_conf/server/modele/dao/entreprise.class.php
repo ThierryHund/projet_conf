@@ -1,13 +1,14 @@
 <?php
 require_once "connection.class.php";
-class entreprise {
+
+class Entreprise {
 	private $id_entreprise;
 	private $nom;
 	private $adresse_entp;
 	private $url;
 	private $logo;
 	public function __construct($id_entreprise, $nom, $adresse_entp, $url, $logo) {
-		$this->id_enttreprise = $id_entreprise;
+		$this->id_entreprise = $id_entreprise;
 		$this->nom = $nom;
 		$this->adresse_entp = $adresse_entp;
 		$this->url = $url;
@@ -84,6 +85,24 @@ class entreprise {
 		return new Entreprise ( $result [0] ['id_entreprise'], $result [0] ['nom'], $result [0] ['adresse_entp'], $result [0] ['url'], $result [0] ['logo'] );
 		
 		// return $result[0][0];
+	}
+
+	// //////////////////////////////
+	// retourne un tableau d'entreprise
+	// JC, fonctionne
+	// //////////////////////////////
+	public static function getEntreprises() {
+		$conn = Connection::get ();
+		
+		$select = $conn->query ( "SELECT id_entp as id, 
+								nom_entp as nom_entp 
+								FROM entreprise" );
+
+		$result = array ();
+		
+		$result = $select->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $result;
 	}
 	
 	// //////////////////////////////

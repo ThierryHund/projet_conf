@@ -2,8 +2,11 @@
 
 require_once "modele/dao/connection.class.php";
 require_once "modele/dao/evenement.class.php";
+require_once "modele/dao/entreprise.class.php";
 require_once "modele/dao/presentation.class.php";
 require_once "modele/dao/organisateur.class.php";
+require_once "modele/dao/type_presentation.class.php";
+require_once "modele/dao/orateur.class.php";
 require_once "uploadImages.class.php";
 
 $conn = Connection::get ();
@@ -36,9 +39,14 @@ if(isset($_REQUEST['getEvent'])){
     echo json_encode($event);
 }
 
-if(isset($_REQUEST['getTypePres'])){
-    $type = type_presentation::getTypePres();
+if(isset($_REQUEST['getType'])){
+    $type = Type_presentation::getType();
     echo json_encode($type);
+}
+
+if(isset($_REQUEST['getOrateur'])){
+    $orateur = Orateur::getOrateur();
+    echo json_encode($orateur);
 }
 
 if(isset($_REQUEST['consulter_evenement'])){
@@ -49,6 +57,11 @@ if(isset($_REQUEST['consulter_evenement'])){
 if(isset($_REQUEST['consulter_presentation'])){
     $pres = Presentation::getPresArray();
     echo json_encode($pres);
+}
+
+if(isset($_REQUEST['getEntreprise'])){
+    $entp = Entreprise::getEntreprises();
+    echo json_encode($entp);
 }
 
 if(isset($_POST['ajout_evenement'])){

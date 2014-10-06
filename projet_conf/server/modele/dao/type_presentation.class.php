@@ -1,7 +1,7 @@
 <?php
 require_once "connection.class.php";
 
-class type_presentation {
+class Type_presentation {
 	private $id_type;
 	private $nom_type;
 	
@@ -76,15 +76,14 @@ class type_presentation {
   }
 	
 	// Retourne un tableau des types de présentation
-  // JC, fonctionne
-	public static function getTypePres()
+  	// JC, fonctionne
+	public static function getType()
   {
 
     $conn = Connection::get();
-    $request = $conn->query ("SELECT id_type as id, 
-    						nom_type as nom
-							FROM type_presentation" 
-							);
+    $select = $conn->query ("SELECT id_type as id, 
+    						nom_type as nom_type
+							FROM type_presentation");
 	
     $result = array ();
 
