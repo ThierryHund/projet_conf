@@ -1,21 +1,27 @@
-$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php",'pres',function( data ) {
-
-	//ajout titre presentation
-  $( 'body .container .row:nth-child(1) .col-lg-6:nth-child(1)' ).html( data['titre_presentation'] );
-	//ajout presentation orateur nom et prénom
-  $( 'body .container .row:nth-child(2) .col-md-3:nth-child(1)' ).html( data['prenom_orateur'] +" " +data['nom_orateur'] );
-  //ajout du logo
-  $( 'body .container .row:nth-child(2) .col-md-3:nth-child(2)' ).html('<a href="'+data['url_entp']+'" target="_blank"><img src="'+data['logo_entp']+'"></a>');
-  //ajout date
-  $( 'body .container .row:nth-child(3) .col-sm-3:nth-child(1)' ).html( data['date_presentation'] );
-  //ajout heure debut presentation
-  $( 'body .container .row:nth-child(3) .col-sm-3:nth-child(2)' ).html( data['heure_debut_presentation'] );
-  //ajout heure fin presentation
-  $( 'body .container .row:nth-child(3) .col-sm-3:nth-child(3)' ).html( data['heure_fin_presentation'] );
-	//ajout description de la présentation
-  $( 'body .container .row:nth-child(4) .col-lg-6:nth-child(1)' ).html( data['description'] )
+	$(document).on('ready',function(){
 	
-},"json");
+	var url = window.location.href;
+var id_prez= url.split("?")[1].split("=")[1];
+
+var donnee = new Array();
+donnee['id'] = 4;
+$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php",{id:id_prez},function( data ) {
+	//ajout titre presentation
+  $( '.titre' ).html( data[0]['titre_presentation'] );
+	//ajout presentation orateur nom et prénom
+ // $( 'orateur' ).html( data['prenom_orateur'] +" " +data['nom_orateur'] );
+  //ajout du logo
+ // $( 'logo' ).html('<a href="'+data['url_entp']+'" target="_blank"><img src="'+data['logo_entp']+'"></a>');
+  //ajout date
+  $( '.date' ).html( data[0]['date_presentation'] );
+  //ajout heure debut presentation
+  $( '.debut' ).html( data[0]['heure_debut_presentation'] );
+  //ajout heure fin presentation
+  $( 'fin' ).html( data[0]['heure_fin_presentation'] );
+	//ajout description de la présentation
+  $( '.desc' ).html( data[0]['description'] )
+	
+},"json");})
 
 
 

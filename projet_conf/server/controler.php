@@ -15,6 +15,10 @@ if(isset($_REQUEST['accueil'])){
 	echo json_encode($array);
 }
 
+if(isset($_REQUEST['id'])){
+    $prez = Presentation::getPresentation($_REQUEST['id']);
+	echo json_encode($prez);
+}
 
 if(isset($_REQUEST['haut'])){
     $event = Evenement::getCurrentEventArray();
