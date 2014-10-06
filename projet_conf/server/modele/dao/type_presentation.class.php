@@ -75,6 +75,24 @@ class type_presentation {
 
   }
 	
+	// Retourne un tableau des types de présentation
+  // JC, fonctionne
+	public static function getTypePres()
+  {
+
+    $conn = Connection::get();
+    $request = $conn->query ("SELECT id_type as id, 
+    						nom_type as nom
+							FROM type_presentation" 
+							);
+	
+    $result = array ();
+
+	$result = $select->fetchAll(PDO::FETCH_ASSOC);
+		
+	return $result;
+
+  }
 	
 	
 	// //////////////////////////////

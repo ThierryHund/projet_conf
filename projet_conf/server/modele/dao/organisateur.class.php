@@ -31,13 +31,12 @@ class Organisateur {
 		$select = $conn->query ( "SELECT id_organisateur as id,
 								societe_organisateur as soc_orga
 								FROM organisateur" );
+		
 		$result = array ();
+
+		$result = $select->fetchAll(PDO::FETCH_ASSOC);
 		
-		$result = $select->fetch(PDO::FETCH_ASSOC);
-		
-		foreach ($donnees as $ligne) {
-	        echo '<option value="'.$ligne['id'].'">'.$ligne['soc_orga'].'</option>';
-	    }
+		return $result;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////

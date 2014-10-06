@@ -31,6 +31,16 @@ if(isset($_REQUEST['getOrganisateur'])){
     echo json_encode($orga);
 }
 
+if(isset($_REQUEST['getEvent'])){
+    $event = Evenement::getEventArray();
+    echo json_encode($event);
+}
+
+if(isset($_REQUEST['getTypePres'])){
+    $type = type_presentation::getTypePres();
+    echo json_encode($type);
+}
+
 if(isset($_REQUEST['consulter_evenement'])){
     $event = Evenement::getEventArray();
     echo json_encode($event);
@@ -109,12 +119,11 @@ if(isset($_POST['ajout_evenement'])){
             $donnees = $chercheID->fetchAll();
             foreach ($donnees as $ligne){
                 $id_evnt=$ligne['id'];
-            }
-                
+            }    
         
-        echo'<p style=color:green;font-weight:bold;> Evenement ajouté avec succès </p> <br/>';
+            echo'<p style=color:green;font-weight:bold;> Evenement ajouté avec succès </p> <br/>';
+        }
     }
-}
     if(isset($_POST['checkbox'])){
         if (isset($_POST['soc_orga']) && !empty($_POST['soc_orga'])){     
             $soc_orga=$_POST['soc_orga'];
@@ -301,6 +310,5 @@ if(isset($_POST['ajout_presentation'])){
             'tel_orateur'=>$tel_orateur,
             'id_entp'=>$select_entreprise));
         }
-    }
-    
+    }   
 }
