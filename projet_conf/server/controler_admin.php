@@ -42,28 +42,6 @@ if(isset($_REQUEST['consulter_presentation'])){
 }
 
 if(isset($_POST['ajout_evenement'])){
-    // if(!empty($_FILES['logo_even']['tmp_name'])){
-    //     $content_dir = 'img/'; // dossier où sera déplacé le fichier
-    //     $tmp_file = $_FILES['logo_even']['tmp_name'];
-    //     if( !is_uploaded_file($tmp_file) )
-    //     {
-    //         exit("Le fichier est introuvable");
-    //     }
-    //     // on vérifie maintenant l'extension
-    //     $type_file = $_FILES['logo_even']['type'];
-    //     if( !strstr($type_file, 'jpg') && !strstr($type_file, 'jpeg') && !strstr($type_file, 'bmp') && !strstr($type_file, 'gif') )
-    //     {
-    //         exit("Le fichier n'est pas une image");
-    //     }
-    //     // on copie le fichier dans le dossier de destination
-    //     $name_file = $_FILES['logo_even']['name'];
-    //     if( !move_uploaded_file($tmp_file, $content_dir . $name_file) )
-    //     {
-    //         exit("Impossible de copier le fichier dans $content_dir");
-    //     }
-    //      echo $directory=$content_dir.'""'.$name_file;
-    // }
-
     $img = new UploadImages('avatar');
     $imgName = $img->getName();
     $dir = dirname("http://localhost/webprojet/projet_conf/projet_conf/server/images");
@@ -86,6 +64,7 @@ if(isset($_POST['ajout_evenement'])){
         $heure_fin='';
         $latitude='';
         $longitude='';
+        $checkbox='';
 
         if (isset($_POST['titre_evenement']) && !empty($_POST['titre_evenement'])){     
             $titre_evenement=$_POST['titre_evenement'];
@@ -136,7 +115,7 @@ if(isset($_POST['ajout_evenement'])){
         echo'<p style=color:green;font-weight:bold;> Evenement ajouté avec succès </p> <br/>';
     }
 }
-    if($_POST['checkbox']){
+    if(isset($_POST['checkbox'])){
         if (isset($_POST['soc_orga']) && !empty($_POST['soc_orga'])){     
             $soc_orga=$_POST['soc_orga'];
         }
@@ -195,6 +174,8 @@ if(isset($_POST['ajout_presentation'])){
     $nom_entreprise='';
     $adresse_entreprise='';
     $url_entreprise='';
+    $checkbox='';
+    $checkbox2='';
 
     if (isset($_POST['select_evenement']) && !empty($_POST['select_evenement'])){     
         $select_evenement=$_POST['select_evenement'];
