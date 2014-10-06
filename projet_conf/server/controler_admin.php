@@ -66,6 +66,7 @@ if(isset($_POST['ajout_evenement'])){
 
     $img = new UploadImages('avatar');
     $imgName = $img->getName();
+    $dir = dirname("http://localhost/webprojet/projet_conf/projet_conf/server/images");
 
     if(true == $img->validUpload()){    
 
@@ -112,7 +113,7 @@ if(isset($_POST['ajout_evenement'])){
             echo 'Erreur dans l\'un des champs';
         }
         else {
-            $req = $conn->prepare('INSERT INTO evenement (titre_evnt, adresse, logo, date_debut, date_fin, heure_debut, heure_fin, latitude, longitude, desc_evnt) VALUES ("'.$titre_evenement.'","'.$lieu_evenement.'","'.(__DIR__).'/images/'.$imgName.'","'.$date_debut.'","'.$date_fin.'","'.$heure_debut.'","'.$heure_fin.'",0,0,"'.$desc_evnt.'")');
+            $req = $conn->prepare('INSERT INTO evenement (titre_evnt, adresse, logo, date_debut, date_fin, heure_debut, heure_fin, latitude, longitude, desc_evnt) VALUES ("'.$titre_evenement.'","'.$lieu_evenement.'","'.$dir.'/images/'.$imgName.'","'.$date_debut.'","'.$date_fin.'","'.$heure_debut.'","'.$heure_fin.'",0,0,"'.$desc_evnt.'")');
             $req->execute(array(
             'titre_evnt'=>$titre_evenement,
             'adresse'=>$lieu_evenement,
