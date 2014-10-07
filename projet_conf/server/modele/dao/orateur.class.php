@@ -22,7 +22,7 @@ class Orateur {
 	
 	
 	// //////////////////////////////
-	// retourne les organisateurs
+	// retourne les orateurs
 	// JC, fonctionne
 	// //////////////////////////////
 	public static function getOrateur() {
@@ -37,6 +37,35 @@ class Orateur {
 		$result = $select->fetchAll(PDO::FETCH_ASSOC);
 		
 		return $result;
+	}
+
+	// //////////////////////////////
+	// insert un nouvelle orateur
+	// JC, fonctionne
+	// //////////////////////////////
+	public static function insertOrateur($nom_orateur, $prenom_orateur, $courriel_orateur, $tel_orateur, $select_entreprise) {
+		$conn = Connection::get ();
+
+        if ((empty($nom_orateur)) || (empty($prenom_orateur)) || (empty($courriel_orateur)) || (empty($tel_orateur)) || (empty($select_entreprise))){
+            echo 'Erreur dans l\'un des champs';
+        }
+        else {
+            $req = $conn->prepare('INSERT INTO orateur (nom_orateur, prenom_orateur, courriel_orateur, tel_orateur, id_entp) VALUES ("'.$nom_orateur.'","'.$prenom_orateur.'","'.$courriel_orateur.'","'.$tel_orateur.'","'.$select_entreprise.'")');
+            $req->execute(array(
+            'nom_orateur'=>$nom_orateur,
+            'prenom_orateur'=>$prenom_orateur,
+            'courriel_orateur'=>$courriel_orateur,
+            'tel_orateur'=>$tel_orateur,
+            'id_entp'=>$select_entreprise));
+
+            $chercheID = $conn->query('SELECT id_orateur as id FROM orateur WHERE nom_orateur LIKE "'.$nom_orateur.'"');
+            $donnees = $chercheID->fetchAll();
+            foreach ($donnees as $ligne){
+                $id_orateur=$ligne['id'];
+            }
+        }
+
+        return $id_orateur;
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////

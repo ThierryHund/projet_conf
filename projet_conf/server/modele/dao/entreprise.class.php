@@ -104,6 +104,34 @@ class Entreprise {
 		
 		return $result;
 	}
+
+	// //////////////////////////////
+	// insert une nouvelle entreprise
+	// JC, fonctionne
+	// //////////////////////////////
+	public static function insertEntreprise($nom_entreprise, $adresse_entreprise, $imgName, $url_entreprise) {
+		$conn = Connection::get ();
+
+        if ((empty($nom_entreprise)) || (empty($adresse_entreprise)) || (empty($url_entreprise))){
+            echo 'Erreur dans l\'un des champs';
+        }
+        else {
+            $req = $conn->prepare('INSERT INTO entreprise (nom_entp, adresse_entp, url_entp, logo_entp) VALUES ("'.$nom_entreprise.'","'.$adresse_entreprise.'","'.$url_entreprise.'","'.$imgName.'")');
+            $req->execute(array(
+            'nom_entp'=>$nom_entreprise,
+            'adresse_entp'=>$adresse_entreprise,
+            'url_entp'=>$url_entreprise,
+            'logo_entp'=>$imgName));
+
+            $chercheID = $conn->query('SELECT id_entp as id FROM entreprise WHERE nom_entp LIKE "'.$nom_entreprise.'"');
+            $donnees = $chercheID->fetchAll();
+            foreach ($donnees as $ligne){
+                $id_entreprise=$ligne['id'];
+            }
+        }
+
+        return $id_entreprise;
+	}
 	
 	// //////////////////////////////
 	// retourne id

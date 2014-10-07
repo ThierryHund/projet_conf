@@ -330,6 +330,45 @@ class presentation {
 		
 		return $result;
 	}
+
+	// //////////////////////////////
+	// insert une nouvelle présentation
+	// JC, fonctionne
+	// //////////////////////////////
+	public static function insertPres($titre_presentation, $desc_presentation,  $heure_debut, $heure_fin, $date, $select_evenement, $select_type_presentation, $select_orateur) {
+		$conn = Connection::get ();
+
+        if ((empty($select_evenement)) || (empty($titre_presentation)) || (empty($desc_presentation)) || (empty($select_type_presentation))){
+            echo 'Erreur dans l\'un des champs';
+        }
+        else {
+            $req = $conn->prepare('INSERT INTO presentation(titre_presentation, description, heure_debut_presentation, heure_fin_presentation, date_presentation, id_evnt, id_type) VALUES ("'.$titre_presentation.'","'.$desc_presentation.'", "'.$heure_debut.'", "'.$heure_fin.'", "'.$date.'","'.$select_evenement.'","'.$select_type_presentation.'")');
+            $req->execute(array(
+            'titre_presentation'=>$titre_presentation,
+            'description'=>$desc_presentation,
+            'heure_debut_presentation'=>$heure_debut,
+            'heure_fin_presentation'=>$heure_fin,
+            'date_presentation'=>$date,
+            'id_evnt'=>$select_evenement,
+            'id_type'=>$select_type_presentation, ));
+
+            $chercheID = $conn->query('SELECT id_presentation as id FROM presentation WHERE titre_presentation LIKE "'.$titre_presentation.'"');
+            $donnees = $chercheID->fetchAll();
+            foreach ($donnees as $ligne){
+                $id_presentation=$ligne['id'];
+            }
+
+         	if(!empty($select_orateur)){
+         		$req = $conn->prepare('INSERT INTO presente (id_presentation,id_orateur) VALUES ("'.$id_presentation.'","'.$select_orateur.'")');
+	            $req->execute(array(
+	            'id_presentation'=>$id_presentation,
+	            'id_orateur'=>$select_orateur));
+         	}
+            
+        }
+
+        return $id_presentation;
+	}
 	
 	// //////////////////////////////////////////////////////////////////////////////////////////////////
 	// //Getters

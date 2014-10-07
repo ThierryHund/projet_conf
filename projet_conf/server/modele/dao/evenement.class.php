@@ -87,7 +87,41 @@ class evenement {
 		
 		return $result;
 	}
-	
+
+	/////////////////////////////////
+	// Insert un événement
+	// JC, fonctionne
+	////////////////////////////////////////////
+	public static function insertEvent($titre_evenement, $lieu_evenement, $imgName, $date_debut, $date_fin, $heure_debut, $heure_fin, $desc_evnt) {
+		$conn = Connection::get ();
+
+        if ((empty($titre_evenement)) || (empty($lieu_evenement)) || (empty($desc_evnt)) || (empty($date_debut)) || (empty($date_fin)) || (empty($heure_debut)) || (empty($heure_fin))){
+            echo 'Erreur dans l\'un des champs';
+        }
+        else {
+		$req = $conn->prepare('INSERT INTO evenement (titre_evnt, adresse, logo, date_debut, date_fin, heure_debut, heure_fin, latitude, longitude, desc_evnt) VALUES ("'.$titre_evenement.'","'.$lieu_evenement.'","'.$imgName.'","'.$date_debut.'","'.$date_fin.'","'.$heure_debut.'","'.$heure_fin.'",0,0,"'.$desc_evnt.'")');
+            $req->execute(array(
+            'titre_evnt'=>$titre_evenement,
+            'adresse'=>$lieu_evenement,
+            'logo'=>$imgName,
+            'date_debut'=>$date_debut,
+            'date_fin'=>$date_fin,
+            'heure_debut'=>$heure_debut,
+            'heure_fin'=>$heure_fin,
+            'latitude'=>"0",
+            'longitude'=>"0",
+            'desc_evnt'=>$desc_evnt));
+
+	        $chercheID = $conn->query('SELECT id_evnt as id FROM evenement WHERE titre_evnt LIKE "'.$titre_evenement.'"');
+	        $donnees = $chercheID->fetchAll();
+	        foreach ($donnees as $ligne){
+	            $id_evnt=$ligne['id'];
+	        } 
+		}
+
+		return $id_evnt;
+	}
+
 	// //////////////////////////////
 	// retourne id
 	// //////////////////////////////
