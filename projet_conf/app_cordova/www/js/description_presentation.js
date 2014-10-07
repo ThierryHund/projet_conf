@@ -8,16 +8,24 @@ donnee['id'] = 4;
 $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php",{id:id_prez},function( data ) {
 	//ajout titre presentation
   $( '.titre' ).html( data[0]['titre_presentation'] );
-	//ajout presentation orateur nom et prénom
- // $( 'orateur' ).html( data['prenom_orateur'] +" " +data['nom_orateur'] );
+	
+/*	
+	 $.each(data['auteurs'], function(i, val){
+			$('.orateur' ).append( "<div class='text-center' id='"+i+"'>"+i+"</div>");
+		
+			$.each(val, function(j, val2){ $('#'+i ).append( "<p class='list-group-item'>"+val2['prenom']+" "+val2['nom']+"</p>")});			 
+	});
+ */		
   //ajout du logo
- // $( 'logo' ).html('<a href="'+data['url_entp']+'" target="_blank"><img src="'+data['logo_entp']+'"></a>');
+ /* $.each(data['auteurs'], function(i, val){
+		$( '.logo' ).html('<a href="'+data['url_entp']+'" target="_blank"><img src="'+data['logo_entp']+'"></a>')});
+*/	
   //ajout date
   $( '.date' ).html( data[0]['date_presentation'] );
   //ajout heure debut presentation
   $( '.debut' ).html( data[0]['heure_debut_presentation'] );
   //ajout heure fin presentation
-  $( 'fin' ).html( data[0]['heure_fin_presentation'] );
+  $( '.fin' ).html( data[0]['heure_fin_presentation'] );
 	//ajout description de la présentation
   $( '.desc' ).html( data[0]['description'] )
 	
