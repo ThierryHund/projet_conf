@@ -1,5 +1,7 @@
 <?php
 
+header('Content-type: text/html; charset=UTF-8'); 
+
 require_once "modele/dao/connection.class.php";
 require_once "modele/dao/evenement.class.php";
 require_once "modele/dao/entreprise.class.php";
