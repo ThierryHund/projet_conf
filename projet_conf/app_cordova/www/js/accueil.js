@@ -6,7 +6,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
   $( '.desc_event' ).html( data['event']['desc_evnt'] );
   
   //ajout logo
-  $( '.logo' ).html('<img class="img-responsive" src="'+data['event']['logo']+'">' );
+  $( '.logo' ).prepend('<img class="img-responsive" src="'+data['event']['logo']+'">' );
   
   //ajout info evenement et organisateur
   

@@ -7,11 +7,20 @@ HOME CSS
 
 body {
   padding-top: 70px;
+ // background-color: #6f5499;
 
+}
+
+.logo{
+padding-bottom:15px;
 }
 
 .container{
 max-width:750px;
+}
+
+.oganisateur, p{
+padding:15px;
 }
 
 .starter-template {
