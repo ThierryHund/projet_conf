@@ -57,7 +57,7 @@
 		</div>
 		
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3 panel">
+			<div class="col-md-8 col-md-offset-2 panel">
 				
 				<div class="panel panel-default">
 					<div class="panel-body">
@@ -71,7 +71,12 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-12 panel" ng-controller="Maps">
-				<google-map center="map.center" zoom="map.zoom">
+				<div class="panel panel-default">
+				<div class="panel-body">
+				<div class="panel-heading">
+							<h3 class="panel-title text-center">Localisation</h3>
+						</div>
+					<google-map center="map.center" zoom="map.zoom">
 					<marker idKey ="1" coords="marker.coords">
 						<window isIconVisibleOnClick="true">
 							<p>
@@ -79,7 +84,9 @@
 							</p>
 						</window>
 					</marker>
-				</google-map>				
+				</google-map>
+				</div>
+				</div>				
 			</div>
 		</div>
 	
