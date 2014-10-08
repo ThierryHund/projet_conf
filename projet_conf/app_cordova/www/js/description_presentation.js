@@ -13,13 +13,13 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 	 $.each(data[0]['auteurs'], function(i, val){
 			$('.orateur' ).append( "<div class='text-center'>"+val['prenom']+" "+val['nom']+"</div>");
 		
-			$.each(val, function(j, val2){ $('#'+i ).append( "<p class='list-group-item'>"+val2['prenom']+" "+val2['nom']+"</p>")});			 
+			//$.each(val, function(j, val2){ $('#'+i ).append( "<p class='list-group-item'>"+val2['prenom']+" "+val2['nom']+"</p>")});			 
 	});
 		
   //ajout du logo
- /* $.each(data['auteurs'], function(i, val){
-		$( '.logo' ).html('<a href="'+data['url_entp']+'" target="_blank"><img src="'+data['logo_entp']+'"></a>')});
-*/	
+  $.each(data[0]['auteurs'], function(i, val){
+		$( '.logo' ).append('<a href="'+val['url_entp']+'" target="_blank"><img src="'+val['logo_entp']+'" class="img-thumbnail"></a>')});
+	
   //ajout date
   $( '.date' ).html( data[0]['date_presentation'] );
   //ajout heure debut presentation

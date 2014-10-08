@@ -91,11 +91,11 @@ class presentation {
 				$j ++;
 				$liste_final [$j] ['id_presentation'] = $liste_prez [$i] ['id_presentation'];
 				$liste_final [$j] ['titre_presentation'] = $liste_prez [$i] ['titre_presentation'];
-				$liste_final [$j] ['heure_debut_presentation'] = $liste_prez [$i] ['heure_debut_presentation'];
-				$liste_final [$j] ['heure_fin_presentation'] = $liste_prez [$i] ['heure_fin_presentation'];
-				$liste_final [$j] ['date_presentation'] = $liste_prez [$i] ['date_presentation'];
-				$liste_final [$j] ['timestamp_debut'] = date ( 'Y-m-d H:i:s', strtotime ( $liste_prez [$i] ['timestamp_debut'] ) );
-				$liste_final [$j] ['timestamp_fin'] = date ( 'Y-m-d H:i:s', strtotime ( $liste_prez [$i] ['timestamp_fin'] ) );
+				$liste_final [$j] ['heure_debut_presentation'] = date ( 'H:i', strtotime ($liste_prez [$i] ['heure_debut_presentation']));
+				$liste_final [$j] ['heure_fin_presentation'] = date ( 'H:i', strtotime ($liste_prez [$i] ['heure_fin_presentation']));
+				$liste_final [$j] ['date_presentation'] = date ( 'd-M-Y', strtotime ($liste_prez [$i] ['date_presentation']));
+				$liste_final [$j] ['timestamp_debut'] = date ( 'd-M-Y H:i', strtotime ( $liste_prez [$i] ['timestamp_debut'] ) );
+				$liste_final [$j] ['timestamp_fin'] = date ( 'd-M-Y H:i', strtotime ( $liste_prez [$i] ['timestamp_fin'] ) );
 				$liste_final [$j] ['description'] = $liste_prez [$i] ['description'];
 				$liste_final [$j] ['type_presentation'] = $liste_prez [$i] ['nom_type'];
 				
@@ -115,6 +115,9 @@ class presentation {
 			}
 			;
 		}
+		//var_dump($liste_final [$j] ['timestamp_debut']);
+		//var_dump($liste_final [$j] ['timestamp_fin']);
+		//var_dump($liste_final [0]);
 		return $liste_final;
 	}
 	
@@ -173,11 +176,11 @@ class presentation {
 				$j ++;
 				$liste_final [$j] ['id_presentation'] = $liste_prez [$i] ['id_presentation'];
 				$liste_final [$j] ['titre_presentation'] = $liste_prez [$i] ['titre_presentation'];
-				$liste_final [$j] ['heure_debut_presentation'] = $liste_prez [$i] ['heure_debut_presentation'];
-				$liste_final [$j] ['heure_fin_presentation'] = $liste_prez [$i] ['heure_fin_presentation'];
-				$liste_final [$j] ['date_presentation'] = $liste_prez [$i] ['date_presentation'];
-				$liste_final [$j] ['timestamp_debut'] = date ( 'Y-m-d H:i:s', strtotime ( $liste_prez [$i] ['timestamp_debut'] ) );
-				$liste_final [$j] ['timestamp_fin'] = date ( 'Y-m-d H:i:s', strtotime ( $liste_prez [$i] ['timestamp_fin'] ) );
+				$liste_final [$j] ['heure_debut_presentation'] = date ( 'H:i', strtotime ($liste_prez [$i] ['heure_debut_presentation']));
+				$liste_final [$j] ['heure_fin_presentation'] = date ( 'H:i', strtotime ($liste_prez [$i] ['heure_fin_presentation']));
+				$liste_final [$j] ['date_presentation'] = date ( 'd-M-Y', strtotime ($liste_prez [$i] ['date_presentation']));
+				$liste_final [$j] ['timestamp_debut'] = date ( 'd-M-Y H:i', strtotime ( $liste_prez [$i] ['timestamp_debut'] ) );
+				$liste_final [$j] ['timestamp_fin'] = date ( 'd-M-Y H:i', strtotime ( $liste_prez [$i] ['timestamp_fin'] ) );
 				$liste_final [$j] ['description'] = $liste_prez [$i] ['description'];
 				$liste_final [$j] ['type_presentation'] = $liste_prez [$i] ['nom_type'];
 				
@@ -211,7 +214,7 @@ class presentation {
 		
 		// on récupère les présentation en cours
 		$current_prez = array ();
-		$current_date = date ( 'Y-m-d H:i:s', time () );
+		$current_date = date ( 'd-M-Y H:i', time () );
 		foreach ( $liste_final as $prez ) {
 			if ($prez ['timestamp_debut'] <= $current_date && $prez ['timestamp_fin'] > $current_date) {
 				$current_prez [] = $prez;

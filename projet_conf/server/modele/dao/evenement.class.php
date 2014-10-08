@@ -43,14 +43,15 @@ class evenement {
 		return $result;
 	}
 	
-/////////////////////////////////
+	/////////////////////////////////
 	//renvoi l'evnt en cours ou le prochain evt (avec l'organisateur)
 	//utilisé par thierry et fonctionnel
 	////////////////////////////////////////////
 		public static function getCurrentEventArray() {
 		$conn = Connection::get ();
 		
-		$select = $conn->query ( "SELECT evenement.id_evnt,titre_evnt, heure_debut, heure_fin, date_debut, date_fin, logo, adresse, latitude, longitude, desc_evnt, societe_organisateur, nom_organisateur, prenom_organisateur, courriel_organisateur, tel_organisateur
+		$conn->query("SET lc_time_names = 'fr_FR'");
+		$select = $conn->query ( "SELECT evenement.id_evnt,titre_evnt, DATE_FORMAT(heure_debut, '%H:%i') as heure_debut, DATE_FORMAT(heure_fin, '%H:%i') as heure_fin, DATE_FORMAT(date_debut, '%W %d %M %Y') as date_debut, DATE_FORMAT(date_fin, '%W %d %M %Y') as date_fin, logo, adresse, latitude, longitude, desc_evnt, societe_organisateur, nom_organisateur, prenom_organisateur, courriel_organisateur, tel_organisateur
 									FROM evenement, organise, organisateur 
 									WHERE date_fin >= CURRENT_DATE
 									AND evenement.id_evnt = organise.id_evnt
@@ -59,7 +60,7 @@ class evenement {
 		$result = array ();
 		
 		$result = $select->fetch(PDO::FETCH_ASSOC);
-		
+		//var_dump($result);
 		return $result;
 	}
 

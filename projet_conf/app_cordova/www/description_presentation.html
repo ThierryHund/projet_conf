@@ -1,76 +1,75 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<html>
+		<head>
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap -->
-<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+			<!-- Bootstrap -->
+			<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<link href="css/index.css" rel="stylesheet">
+			<!-- Custom styles for this template -->
+			<link href="css/index.css" rel="stylesheet">
 
-<title>Conferensus</title>
+			<title>Conferensus</title>
+		</head>
 
-</head>
+		<body>
 
-<body>
+			<!-- header -->
+			<script type="text/javascript" src="js/haut.js"></script>
 
-	<!-- header -->
-    <script type="text/javascript" src="js/haut.js"></script>
-
-	<div class="container">
-		<div class="row">
-			<h2 class="col-lg-12 panel titre">Titre présentation</h2>
-										
-		</div>
-		<div class="row">
-			<div class="col-md-3 panel orateur">Orateur</div>
-			<div class="col-md-3 panel logo">Logo entreprise</div>
-			
-			
-		</div>
-		<div class="row">	
-			<div class="col-sm-3 panel date">Date</div>
-			<div class="col-sm-3 panel debut">Heure de début</div>
-			<div class="col-sm-3 panel fin">Heure de fin</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-6 panel desc">
+			<div class="container container-fluid">
+				<div class="row">
+					<h2 class="col-lg-12 panel text-centered titre">Titre présentation</h2>
+												
+				</div>
+				<div class="row row-centered ">
+					<h4 class="col-md-3 panel col-centered orateur">Par</h4>
+					<h4 class="col-md-3 panel col-centered logo"></h4>
+					
+					
+				</div>
+				<div class="row row-centered ">	
+					<div class="col-sm-3 panel date">Date</div>
+					<div class="col-sm-3 panel debut">Heure de début</div>
+					<div class="col-sm-3 panel fin">Heure de fin</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6 panel desc">
+					</div>
+					
+				</div>
+				<div class="row">
+					<div class="col-lg-6 panel">
+						<a href="http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/index.html" target="_self">Retour à l'accueil</a>
+					</div>
+					
+				</div>
+				
 			</div>
+
+		   
+			<!-- librairie js -->
+			<script type="text/javascript" src="js/jquery.js"></script>
+			<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+			<script type="text/javascript" src="js/angular.js"></script>
+			<script type="text/javascript" src="js/angular.min.js"></script>
+			<script type="text/javascript" src="angular-route.js"></script>
+			<script type="text/javascript" src="angular-route.min.js"></script>
+			<script type="text/javascript" src="js/app.js"></script>
+			<script type="text/javascript" src="js/NavCtrl.js"></script>
 			
-		</div>
-		<div class="row">
-			<div class="col-lg-6 panel">
-				<a href="http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/index.html" target="_self">Retour à l'accueil</a>
-			</div>
+			<!-- gestion contenu description presentation -->
+			<script type="text/javascript" src="js/description_presentation.js"></script>
+			<script type="text/javascript" src="js/haut-requete.js"></script>
 			
-		</div>
-		
-	</div>
+			<!-- google maps -->
+			<script src='//maps.googleapis.com/maps/api/js?sensor=false&language=fr'></script>
+			<script type="text/javascript" src='js/lodash.js'></script>
+			<script type="text/javascript" src='js/angular-google-maps.js'></script>
 
-   
-	<!-- librairie js -->
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/angular.js"></script>
-	<script type="text/javascript" src="js/angular.min.js"></script>
-	<script type="text/javascript" src="angular-route.js"></script>
-	<script type="text/javascript" src="angular-route.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript" src="js/NavCtrl.js"></script>
-	
-	<!-- gestion contenu description presentation -->
-	<script type="text/javascript" src="js/description_presentation.js"></script>
-	<script type="text/javascript" src="js/haut-requete.js"></script>
-	
-	<!-- google maps -->
-	<script src='//maps.googleapis.com/maps/api/js?sensor=false&language=fr'></script>
-	<script type="text/javascript" src='js/lodash.js'></script>
-	<script type="text/javascript" src='js/angular-google-maps.js'></script>
-
-</body>
+		</body>
 
 
-</html>
+	</html>
