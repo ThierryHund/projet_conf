@@ -173,9 +173,9 @@ class presentation {
 				$j ++;
 				$liste_final [$j] ['id_presentation'] = $liste_prez [$i] ['id_presentation'];
 				$liste_final [$j] ['titre_presentation'] = $liste_prez [$i] ['titre_presentation'];
-				$liste_final [$j] ['heure_debut_presentation'] = $liste_prez [$i] ['heure_debut_presentation'];
-				$liste_final [$j] ['heure_fin_presentation'] = $liste_prez [$i] ['heure_fin_presentation'];
-				$liste_final [$j] ['date_presentation'] = $liste_prez [$i] ['date_presentation'];
+				$liste_final [$j] ['heure_debut_presentation'] = date ( 'H:i', strtotime ( $liste_prez [$i] ['heure_debut_presentation'] ));
+				$liste_final [$j] ['heure_fin_presentation'] = date ( 'H:i', strtotime ( $liste_prez [$i] ['heure_fin_presentation'] ));
+				$liste_final [$j] ['date_presentation'] = date ( 'd-m-Y', strtotime ( $liste_prez [$i] ['date_presentation'] ));
 				$liste_final [$j] ['timestamp_debut'] = date ( 'Y-m-d H:i:s', strtotime ( $liste_prez [$i] ['timestamp_debut'] ) );
 				$liste_final [$j] ['timestamp_fin'] = date ( 'Y-m-d H:i:s', strtotime ( $liste_prez [$i] ['timestamp_fin'] ) );
 				$liste_final [$j] ['description'] = $liste_prez [$i] ['description'];
