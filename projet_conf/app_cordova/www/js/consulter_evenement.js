@@ -20,4 +20,24 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 	    );
 
 	});
+
+	var supprimer = document.getElementById('suppr');
+
+  	$(supprimer).click(function() {
+		if(confirm("Voulez-vous supprimer cet événement ?")){
+			alert("Evénement supprimé !");
+			location.reload();
+
+				// $.get( "http://localhost/~Apple/webprojet/projet_conf/projet_conf/server/controler_admin.php", 'supprEvenement', function( data ) {
+				// 	console.log(data);
+					
+				// }, "json");
+				
+		}
+
+	});
+
+
+
+
 },"json");

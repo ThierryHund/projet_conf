@@ -59,4 +59,38 @@ padding:15px;
   padding-top: 0px;
 }
 
+/*
+
+ACCUEIL ADMIN CSS
+
+*/
+
+.jumbotron h1, .jumbotron .h1 {
+
+    margin: 0 0 20px 0;
+}
+
+.jumbotron h2, .jumbotron .h2 {
+
+    float:left;
+    margin: -3px 10px 25px 0;
+}
+
+th {
+    white-space: nowrap;
+
+}
+
+#suppr {
+
+    -moz-user-select: text;
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    font: inherit;
+    margin: 0px 20px 5px;
+    overflow: visible;
+    padding: 0;
+}
+
 
