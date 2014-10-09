@@ -1,14 +1,13 @@
 $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",'consulter_presentation',function( data ) {
 	$.each(data, function() {
+	$('.info').append(
 	        '<tr><td class="hidden">'
 	        + this.id+ '</td><td>'
 	        + this.titre +'</td><td>'
-	        + this.heure_deb+ '</td><td>'
-	        + this.heure_fin +'</td><td>'
-	        + this.date_deb + '</td><td>'
-	        + this.date_fin+ '</td><td>'
-	        + this.adresse +'</td><td>'
-	        + this.description +'</td><td>'
+	        + this.description+ '</td><td>'
+	        + this.nom_orateur +'</td><td>'
+	        + this.prenom_orateur + '</td><td>'
+	        + this.nom_entreprise+ '</td><td>'
 	        // + '<button type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-pencil" </span> </button>'
 	        // +'<button type="button" class="btn btn-default btn-xs"> <span class="glyphicon glyphicon-remove" </span> </button>'
  

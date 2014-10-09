@@ -19,19 +19,19 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 	$( '.organisateur p' ).append('<ul class="list-unstyled">');
 	
     if(data['event']['date_debut']){
-		$( '.organisateur p' ).append('<li>'+data['event']['date_debut']+'</li>');
+		$( '.organisateur p' ).append('<li>'+"Du "+data['event']['date_debut']+'</li>');
 	}
 	
     if(data['event']['date_fin']){
-		$( '.organisateur p' ).append('<li>'+data['event']['date_fin']+'</li>');
+		$( '.organisateur p' ).append('<li>'+" au "+data['event']['date_fin']+'</li>');
 	}	
 	
     if(data['event']['heure_debut']){
-		$( '.organisateur p' ).append('<li>'+data['event']['heure_debut']+'</li>');
+		$( '.organisateur p' ).append('<li>'+"Heure de début: "+data['event']['heure_debut']+'</li>');
 	}		
 	
     if(data['event']['heure_fin']){
-		$( '.organisateur p' ).append('<li>'+data['event']['heure_fin']+'</li>');
+		$( '.organisateur p' ).append('<li>'+"Heure de fin: "+data['event']['heure_fin']+'</li>');
 	}	
 	
 	
@@ -63,18 +63,18 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 	
   //ajout prez suivantes
   $.each(data['prezs']['prez_suivante'], function(i, val){
-		$('.next_prez' ).append( "<a href='description_presentation.html?id="+val['id_presentation']+"' class='list-group-item "+((i%2!=0)?'active':'')+"'><h4>"+val['heure_debut_presentation']+" "+val['heure_fin_presentation']+"</h4><p>"+val['titre_presentation']+"</p></a>")});
+		$('.next_prez' ).append( "<a href='description_presentation.html?id="+val['id_presentation']+"' class='list-group-item "+((i%2!=0)?'active':'')+"'><h5>"+"De "+val['heure_debut_presentation']+" à "+val['heure_fin_presentation']+"</h5><h5>"+val['titre_presentation']+"</h5></a>")});
 		
   //ajout prez en cours
   $.each(data['prezs']['prez_en_cours'], function(i, val){
-		$('.current_prez' ).append( "<a href='description_presentation.html?id="+val['id_presentation']+"' class='list-group-item "+((i%2!=0)?'active':'')+"'><h4>"+val['heure_debut_presentation']+" "+val['heure_fin_presentation']+"</h4><p>"+val['titre_presentation']+"</p></a>")});
+		$('.current_prez' ).append( "<a href='description_presentation.html?id="+val['id_presentation']+"' class='list-group-item "+((i%2!=0)?'active':'')+"'><h5>"+"De "+val['heure_debut_presentation']+" à "+val['heure_fin_presentation']+"</h5><h5>"+val['titre_presentation']+"</h5></a>")});
 		
    //ajout planning
    $.each(data['prezs']['liste_prez'], function(i, val){
    
 		$('.planning' ).append( "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title' class='text-center'><a data-toggle='collapse' class='btn-block text-center' data-parent='#accordion' href='#"+i+"'>"+i+"</a></h4></div><div id='"+i+"' class='panel-collapse collapse'></div></div>");
 	
-		$.each(val, function(j, val2){ $('#'+i ).append( "<a href='description_presentation.html?id="+val2['id_presentation']+"' class='list-group-item "+((j%2==0)?'active':'')+"'><h4>"+val2['heure_debut_presentation']+" "+val2['heure_fin_presentation']+"</h4><p>"+val2['titre_presentation']+"</p></a>")});
+		$.each(val, function(j, val2){ $('#'+i ).append( "<a href='description_presentation.html?id="+val2['id_presentation']+"' class='list-group-item "+((j%2==0)?'active':'')+"'><h5>"+"De "+val2['heure_debut_presentation']+" à "+val2['heure_fin_presentation']+"</h5><h5>"+val2['titre_presentation']+"</h5></a>")});
 	
 	
 	
