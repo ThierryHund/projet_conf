@@ -11,13 +11,28 @@ body {
 
 }
 
-.logo{
-padding-bottom:15px;
+body {
+    background-color: rgba(149, 160, 141, 0.3);
 }
 
-.logo-entp{
-max-height:100px !important;
+.logo{
+padding-bottom:15px;
+
 }
+
+.logo img{
+margin: auto;
+max-width:250px;
+}
+
+.titre{
+padding-bottom: 30px;
+}
+
+.desc_event{
+padding-bottom:20px;
+}
+
 
 .container{
 max-width:750px;
@@ -57,40 +72,6 @@ padding:15px;
 
 .body {
   padding-top: 0px;
-}
-
-/*
-
-ACCUEIL ADMIN CSS
-
-*/
-
-.jumbotron h1, .jumbotron .h1 {
-
-    margin: 0 0 20px 0;
-}
-
-.jumbotron h2, .jumbotron .h2 {
-
-    float:left;
-    margin: -3px 10px 25px 0;
-}
-
-th {
-    white-space: nowrap;
-
-}
-
-#suppr {
-
-    -moz-user-select: text;
-    background: none repeat scroll 0 0 transparent;
-    border: 0 none;
-    cursor: pointer;
-    font: inherit;
-    margin: 0px 20px 5px;
-    overflow: visible;
-    padding: 0;
 }
 
 
