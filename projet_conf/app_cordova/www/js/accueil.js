@@ -1,6 +1,6 @@
 	$(document).on('ready',function(){
 
-$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php",'accueil',function( data ) {
+$.get( "http://thierryhund.perso.sfr.fr/server/controler.php",'accueil',function( data ) {
 
   //ajout description evt
   $( '.desc_event' ).html( data['event']['desc_evnt'] );
@@ -21,7 +21,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 	//$( '.organisateur p' ).append('<ul class="list-unstyled">');
 	
     if(data['event']['date_debut']){
-		$( '.organisateur' ).append('<h4>Du '+data['event']['date_debut']+' '+data['event']['heure_debut']+' au '+data['event']['date_fin']+' '+data['event']['heure_fin'])+'</h4>';
+		$( '.organisateur' ).append('<h4>Du '+data['event']['date_debut']+' '+data['event']['heure_debut'].replace(':','h')+' au '+data['event']['date_fin']+' '+data['event']['heure_fin'].replace(':','h'))+'</h4>';
 	}	
 		
     if(data['event']['adresse']){
@@ -62,7 +62,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
    
 		$('.planning' ).append( "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title' class='text-center'><a data-toggle='collapse' class='btn-block text-center' data-parent='#accordion' href='#"+i+"'>"+i.replace(/-/g,'/')+"</a></h4></div><div id='"+i+"' class='panel-collapse collapse'></div></div>");
 	
-		$.each(val, function(j, val2){ $('#'+i ).append( "<a href='description_presentation.html?id="+val2['id_presentation']+"' class='list-group-item "+((j%2==0)?'active':'')+"'>"+val2['heure_debut_presentation'].replace(':','h')+" "+val2['heure_fin_presentation'].replace(':','h')+" : "+val2['titre_presentation']+"</h4></a>")});
+		$.each(val, function(j, val2){ $('#'+i ).append( "<a href='description_presentation.html?id="+val2['id_presentation']+"' class='list-group-item "+((j%2==0)?'active':'')+"'>De "+val2['heure_debut_presentation'].replace(':','h')+" à "+val2['heure_fin_presentation'].replace(':','h')+" : "+val2['titre_presentation']+"</h4></a>")});
 	
 	
 	
