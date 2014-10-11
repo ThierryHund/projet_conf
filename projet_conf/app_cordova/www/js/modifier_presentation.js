@@ -9,10 +9,10 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 	        '<tr><td class="hidden">'
 	        + this.id+ '</td><td>'
 	        + this.titre_presentation +'</td><td>'
-	        + this.description+ '</td><td>'
-	        + this.nom +' ' + this.prenom +'</td><td>'
-	        + this.entreprise+ '</td><td>'
-	        +'</td></tr>'
+	        + this.description+ '</td><td>Le '
+	        + this.date_presentation +' de ' 
+	        + this.heure_debut +' à ' 
+	        + this.heure_fin+'</td></tr>'
 	    );
 	});
 	

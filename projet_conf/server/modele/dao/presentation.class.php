@@ -317,21 +317,15 @@ class presentation {
 		$conn = Connection::get ();
 		
 		$select = $conn->query ( "SELECT presentation.id_presentation, titre_presentation as titre_presentation, 
-			heure_debut_presentation as heure_debut, 
-			heure_fin_presentation as heure_fin, 
-			date_presentation as date_presentation, 
-			description as description, 
-			nom_type as type_presentation, 
-			nom_orateur as nom, 
-			prenom_orateur as prenom, 
-			nom_entp as entreprise
-								FROM presentation, evenement, type_presentation, presente, orateur, entreprise
+								heure_debut_presentation as heure_debut, 
+								heure_fin_presentation as heure_fin, 
+								DATE_FORMAT(date_presentation, GET_FORMAT(DATE, 'EUR')) as date_presentation, 
+								description as description, 
+								nom_type as type_presentation
+								FROM presentation, evenement, type_presentation
 								WHERE presentation.id_presentation = '".$id."'
-								AND presentation.id_presentation = presente.id_presentation
 								AND evenement.id_evnt = presentation.id_evnt
 								AND presentation.id_type = type_presentation.id_type
-								AND presente.id_orateur = orateur.id_orateur
-								AND orateur.id_entp = entreprise.id_entp
 								ORDER BY id_presentation" );
 		
 		$result = array ();
