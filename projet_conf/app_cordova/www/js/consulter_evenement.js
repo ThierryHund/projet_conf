@@ -3,8 +3,8 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 	    $('.infoEvent').append(
 	        '<tr><td class="hidden">'
 	        + this.id+ '</td><td id="nospace">'
-	        + this.titre +'</td><td>'
-	       	+ this.date_deb +' à ' + this.heure_deb+'</td><td>'
+	        + this.titre +'</td><td id="widthDate">'
+	       	+ this.date_deb +' à ' + this.heure_deb+'</td><td id="widthDate">'
 	       	+ this.date_fin +' à ' + this.heure_fin+'</td><td id="adresse">'
 	        + this.adresse +'</td><td>'
 	        + this.description +'</td><td>'
