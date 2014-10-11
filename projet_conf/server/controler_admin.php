@@ -66,6 +66,11 @@ if(isset($_REQUEST['getEntreprise'])){
     echo json_encode($entp);
 }
 
+if(isset($_REQUEST['id'])){
+    $prez = Presentation::getPresArrayByPresId($_REQUEST['id']);
+    echo json_encode($prez);
+}
+
 if(isset($_POST['ajout_evenement'])){
     $img = new UploadImages('avatar');
     $imgName = $img->getName();
