@@ -11,6 +11,10 @@
 <!-- Custom styles for this template -->
 <link href="css/index.css" rel="stylesheet">
 
+<!-- Appel Api Google Maps pour obtenir coordonnées Latitude et Longitude -->
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+
 <title>Conferensus</title>
 </head>
 
@@ -42,6 +46,9 @@
                         <tr>
                             <td>
                                 <input type="text" name="lieu_evenement" class="form-control" id="lieu_evenement" maxlength="75" placeholder="Lieu événement">
+                                <input type="button" onclick="geolocalise()" value="géolocaliser" />
+                                Latitude : <input type="text" id="lat" value="" />
+                                Longitude : <input type="text" id="lng" value="" />
                             </td>
                         </tr>
                         <tr>
@@ -179,6 +186,8 @@
     <script type="text/javascript" src="js/angular.js"></script>
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/ajouter_evenement.js"></script>
+    <script type="text/javascript" src="js/geolocalise.js"></script>
+
 
     <script type="text/javascript">
         document.getElementById('champ_cache1').style.display="block";
