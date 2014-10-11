@@ -1,6 +1,6 @@
 $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",'consulter_presentation',function( data ) {
 	$.each(data, function() {
-	$('.info').append(
+	$('.infoPres').append(
 	        '<tr><td class="hidden">'
 	        + this.id+ '</td><td>'
 	        + this.titre +'</td><td>'
