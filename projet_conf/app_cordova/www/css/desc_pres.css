@@ -1,0 +1,29 @@
+
+body {
+	padding-top: 70px;
+	background-color: rgba(149, 160, 141, 0.3);
+}
+
+.titre {
+	padding: 20px;
+}
+
+.logo-entp {
+	max-height: 100px !important;
+}
+
+.container-fluid {
+	max-width: 750px;
+	
+}
+
+.row {
+	
+	background: #eeeeee;
+	border-radius: 5px;
+	padding: 5px 10px 5px 10px;
+}
+
+.body {
+	padding-top: 0px;
+}
