@@ -79,7 +79,7 @@ if(isset($_POST['ajout_evenement'])){
 
     if( true == $img->validUpload() && isset($_POST['lat']) && isset($_POST['lng']) ){
 
-        $id_evnt = Evenement::insertEvent($_POST['titre_evenement'],$_POST['lieu_evenement'],$imgName,$_POST['date_debut'],$_POST['date_fin'],$_POST['heure_debut'],$_POST['heure_fin'],addslashes($_POST['lat']),addslashes($_POST['lng']),$_POST['desc_evnt']);
+        $id_evnt = Evenement::insertEvent($_POST['titre_evenement'],$_POST['lieu_evenement'],$dir.'/images/'.$imgName,$_POST['date_debut'],$_POST['date_fin'],$_POST['heure_debut'],$_POST['heure_fin'],addslashes($_POST['lat']),addslashes($_POST['lng']),$_POST['desc_evnt']);
     }
 
     if(isset($_POST['checkbox'])){
