@@ -322,7 +322,7 @@ class presentation {
 								heure_fin_presentation as heure_fin, 
 								DATE_FORMAT(date_presentation, GET_FORMAT(DATE, 'EUR')) as date_presentation, 
 								description as description,
-								orateur.id_orateur, 
+								orateur.id_orateur as id_orateur, 
 								orateur.nom_orateur as nom_orateur, 
 								orateur.prenom_orateur as prenom_orateur, 
 								nom_type as type_presentation
@@ -340,6 +340,27 @@ class presentation {
 		$result = $select->fetchAll(PDO::FETCH_ASSOC);
 		
 		return $result;
+	}
+
+	// //////////////////////////////
+	// Met à jours une présentation
+	// JC Fonctionne
+	// //////////////////////////////
+	public static function updatePres($titre,$description,$date,$heure_debut,$heure_fin,$id_orateur) {
+		$conn = Connection::get ();
+
+		$maj = $conn->prepare('UPDATE presentation set titre_presentation = "'.$titre.'", 
+			set description = "'.$description.'",
+			set date_presentation = "'.$date.'",
+			set heure_debut_presentation = "'.$heure_debut.'",
+			set heure_fin_presentation = "'.$heure_fin.'",
+			WHERE id_presentation='.$id_pres);
+        $maj->execute(array(
+        'titre_presentation'=>$titre,
+        'description'=>$description,
+        'date_presentation'=>$date,
+        'heure_debut_presentation'=>$heure_debut,
+        'heure_fin_presentation'=>$heure_fin ));
 	}
 	
 	// //////////////////////////////

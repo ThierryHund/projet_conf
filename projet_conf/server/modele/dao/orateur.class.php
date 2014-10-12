@@ -40,6 +40,29 @@ class Orateur {
 	}
 
 	// //////////////////////////////
+	// retourne les orateurs de la même entreprise
+	// JC, fonctionne
+	// //////////////////////////////
+	public static function getOrateursArray($id_orateur) {
+		$conn = Connection::get ();
+		
+		$select = $conn->query ( "SELECT id_orateur as id,
+								nom_orateur as nom_orateur,
+								prenom_orateur as prenom_orateur
+								FROM orateur
+								WHERE id_entp=(SELECT id_entp
+									FROM orateur
+									WHERE id_orateur ='".$id_orateur."')" );
+		
+		$result = array ();
+
+		$result = $select->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $result;
+	}
+	
+
+	// //////////////////////////////
 	// insert un nouvelle orateur
 	// JC, fonctionne
 	// //////////////////////////////

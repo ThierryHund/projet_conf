@@ -71,6 +71,11 @@ if(isset($_REQUEST['id'])){
     echo json_encode($prez);
 }
 
+if(isset($_REQUEST['id_orateur'])){
+    $orateurs = Orateur::getOrateursArray($_REQUEST['id_orateur']);
+    echo json_encode($orateurs);
+}
+
 if(isset($_POST['ajout_evenement'])){
     $img = new UploadImages('avatar');
     $imgName = $img->getName();
@@ -107,4 +112,8 @@ if(isset($_POST['ajout_presentation'])){
     if(isset($_POST['checkbox']) && !($_POST['checkbox2'])){
         $id_orateur = Orateur::insertOrateur($_POST['nom_orateur'],$_POST['prenom_orateur'],$_POST['courriel_orateur'],$_POST['tel_orateur'],$_POST['select_entreprise']);
     } 
+}
+
+if(isset($_POST['modifier_presentation'])){
+    $id_evnt = Presentation::updatePres($_POST['titre_presentation'],$_POST['description'],$_POST['date'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['orateurs']);
 }

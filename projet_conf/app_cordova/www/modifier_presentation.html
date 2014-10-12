@@ -36,6 +36,7 @@
                       <th>Orateur</th>
                     </tr>
                   </thead>
+                  <form method="post" action="../../server/controler_admin.php" enctype="multipart/form-data" id="modifier_presentation">
                   <tbody class="info">
                   </tbody>
                     <form method="post" action="../../server/controler_admin.php" enctype="multipart/form-data" id="modifier_presentation">
@@ -44,13 +45,11 @@
                         <td><input type="text" name="description" class="form-control" id="description" maxlength="75" placeholder="Description"></td>
                         <td><input type="date" name="date"> de <input type="time" name="heure_debut"> à <input type="time" name="heure_fin"></td>
                         <td>
-                          <select id="select_orateur" name="orateurs" class="liste">>
+                          <select id="select_orateur" name="orateurs" class="liste">
                                     <option value="0" selected>Non renseigné</option>
                           </select>
                         </td>
                       </tr>
-                  <tbody class="info2">
-                  </tbody>
                 </table>
                   <input type="submit" value="Modifier" name="modifier_presentation" class="btn btn-primary">
                 </form>

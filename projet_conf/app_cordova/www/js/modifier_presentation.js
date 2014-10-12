@@ -14,9 +14,18 @@
 		        + this.heure_debut +' à ' 
 		        + this.heure_fin+'</td><td>'
 		        + this.nom_orateur +' ' + this.prenom_orateur+ '</td></tr>'
-
 		    );
+			$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{id_orateur:this.id_orateur},function( data ) {
+			$.each(data, function() {
+			    $('.liste').append(
+			        '<option value="'+this.id+'">'+this.nom_orateur+' '+this.prenom_orateur+'</option>'
+			    );
+			});
+		},"json");
 		});
+			
 	},"json")
 ;})
+
+
 
