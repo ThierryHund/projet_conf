@@ -47,8 +47,9 @@
                             <td>
                                 <input type="text" name="lieu_evenement" class="form-control" id="lieu_evenement" maxlength="75" placeholder="Lieu événement">
                                 <input type="button" onclick="geolocalise()" value="géolocaliser" />
-                                Latitude : <input type="text" id="lat" value="" />
-                                Longitude : <input type="text" id="lng" value="" />
+                                Latitude : <input type="text" name="lat" id="lat" value="" />
+                                Longitude : <input type="text" name="lng" id="lng" value="" />
+                                <div class="hidden" id="answer">Réponse de l'appel AJAX :</div>
                             </td>
                         </tr>
                         <tr>
