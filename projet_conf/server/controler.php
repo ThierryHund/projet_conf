@@ -23,5 +23,10 @@ if(isset($_REQUEST['id'])){
 if(isset($_REQUEST['haut'])){
     $event = Evenement::getCurrentEventArray();
 	echo json_encode($event);
+}
+
+if(isset($_REQUEST['getPosition'])){
+    $position = Evenement::getCurrentEventArray();
+    echo json_encode($position);
 };
 
