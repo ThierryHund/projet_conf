@@ -51,18 +51,18 @@ $.get( "http://thierryhund.perso.sfr.fr/server/controler.php",'accueil',function
 	
   //ajout prez suivantes
   $.each(data['prezs']['prez_suivante'], function(i, val){
-		$('.next_prez' ).append( "<a href='description_presentation.html?id="+val['id_presentation']+"' class='list-group-item "+((i%2!=0)?'active':'')+"'>De "+val['heure_debut_presentation'].replace(':','h')+" à "+val['heure_fin_presentation'].replace(':','h')+" : "+val['titre_presentation']+"</a>")});
+		$('.next_prez' ).append( "<a href='description_presentation.html?id="+val['id_presentation']+"' class='list-group-item "+((i%2!=0)?'active':'')+"'>"+val['heure_debut_presentation'].replace(':','h')+" à "+val['heure_fin_presentation'].replace(':','h')+" : "+val['titre_presentation']+"</a>")});
 		
   //ajout prez en cours
   $.each(data['prezs']['prez_en_cours'], function(i, val){
-		$('.current_prez' ).append( "<a href='description_presentation.html?id="+val['id_presentation']+"' class='list-group-item "+((i%2!=0)?'active':'')+"'>De "+val['heure_debut_presentation'].replace(':','h')+" à "+val['heure_fin_presentation'].replace(':','h')+" : "+val['titre_presentation']+"</a>")});
+		$('.current_prez' ).append( "<a href='description_presentation.html?id="+val['id_presentation']+"' class='list-group-item "+((i%2!=0)?'active':'')+"'>"+val['heure_debut_presentation'].replace(':','h')+" à "+val['heure_fin_presentation'].replace(':','h')+" : "+val['titre_presentation']+"</a>")});
 		
    //ajout planning
    $.each(data['prezs']['liste_prez'], function(i, val){
    
 		$('.planning' ).append( "<div class='panel panel-default'><div class='panel-heading'><h4 class='panel-title' class='text-center'><a data-toggle='collapse' class='btn-block text-center' data-parent='#accordion' href='#"+i+"'>"+i.replace(/-/g,'/')+"</a></h4></div><div id='"+i+"' class='panel-collapse collapse'></div></div>");
 	
-		$.each(val, function(j, val2){ $('#'+i ).append( "<a href='description_presentation.html?id="+val2['id_presentation']+"' class='list-group-item "+((j%2==0)?'active':'')+"'>De "+val2['heure_debut_presentation'].replace(':','h')+" à "+val2['heure_fin_presentation'].replace(':','h')+" : "+val2['titre_presentation']+"</h4></a>")});
+		$.each(val, function(j, val2){ $('#'+i ).append( "<a href='description_presentation.html?id="+val2['id_presentation']+"' class='list-group-item "+((j%2==0)?'active':'')+"'>"+val2['heure_debut_presentation'].replace(':','h')+" à "+val2['heure_fin_presentation'].replace(':','h')+" : "+val2['titre_presentation']+"</h4></a>")});
 	
 	
 	
