@@ -1,12 +1,10 @@
 $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",'consulter_evenement',function( data ) {
-  $.each(data, function() {
+   $.each(data, function() {
 	    $('.infoEvent').append(
 	        '<tr><td class="hidden">'
-	        + this.id+ '</td><td id="nospace">'
-	        + this.titre +'</td><td id="widthDate">'
-	       	+ this.date_deb +' à ' + this.heure_deb+'</td><td id="widthDate">'
-	       	+ this.date_fin +' à ' + this.heure_fin+'</td><td id="adresse">'
-	        + this.adresse +'</td><td>'
+	        + this.id+ '</td><td>'
+	        + this.titre +"<br/>Du "+ this.date_deb +' à ' + this.heure_deb+"<br/>Au "+this.date_fin +' à ' + this.heure_fin+'</td><td id="adresse">'
+	        + this.adresse +'</td><td class="text-justify">'
 	        + this.description +'</td><td>'
 	        +'<div class="btn-group"><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Action <span class="caret" ></span></button> <ul class="dropdown-menu" role="menu"> <li><a href="consulter_presentation.html">Consulter / Editer </a></li> <li class="divider"></li> <li><a href="#" id="supprEvnt">Supprimer</a></li> </ul></div>'
 	        +'</td></tr>'
