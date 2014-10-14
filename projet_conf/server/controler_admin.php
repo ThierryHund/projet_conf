@@ -66,11 +66,13 @@ if(isset($_REQUEST['getEntreprise'])){
     echo json_encode($entp);
 }
 
+//Renvoi les infos de la présentation en fonction de l'id de la présentation
 if(isset($_REQUEST['id'])){
     $prez = Presentation::getPresArrayByPresId($_REQUEST['id']);
     echo json_encode($prez);
 }
 
+//Renvoi la liste des orateurs de la présentation de la même entreprise que l'orateur existant pour la présentation.
 if(isset($_REQUEST['id_orateur'])){
     $orateurs = Orateur::getOrateursArray($_REQUEST['id_orateur']);
     echo json_encode($orateurs);
@@ -114,6 +116,7 @@ if(isset($_POST['ajout_presentation'])){
     } 
 }
 
+//Envoi les nouvelles infos pour la presentation et la met à jours.
 if(isset($_POST['modifier_presentation'])){
-    $id_evnt = Presentation::updatePres($_POST['titre_presentation'],$_POST['description'],$_POST['date'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['orateurs']);
+    $id_evnt = Presentation::updatePres($_POST['id_presentation'],$_POST['titre_presentation'],$_POST['description'],$_POST['date'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['orateurs']);
 }

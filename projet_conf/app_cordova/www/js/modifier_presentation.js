@@ -5,7 +5,11 @@
 
 	$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{id:id_prez},function( data ) {
 		$.each(data, function() {
-		$('.info').append(
+			$('.id_hidden').val(
+				this.id
+			);
+
+			$('.info').append(
 		        '<tr><td class="hidden">'
 		        + this.id+ '</td><td>'
 		        + this.titre_presentation +'</td><td>'
@@ -15,13 +19,14 @@
 		        + this.heure_fin+'</td><td>'
 		        + this.nom_orateur +' ' + this.prenom_orateur+ '</td></tr>'
 		    );
+
 			$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{id_orateur:this.id_orateur},function( data ) {
-			$.each(data, function() {
-			    $('.liste').append(
-			        '<option value="'+this.id+'">'+this.nom_orateur+' '+this.prenom_orateur+'</option>'
-			    );
-			});
-		},"json");
+				$.each(data, function() {
+				    $('.liste').append(
+				        '<option value="'+this.id+'">'+this.nom_orateur+' '+this.prenom_orateur+'</option>'
+				    );
+				});
+			},"json");
 		});
 			
 	},"json")

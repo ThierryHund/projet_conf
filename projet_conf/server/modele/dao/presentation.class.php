@@ -316,7 +316,7 @@ class presentation {
 	public static function getPresArrayByPresId($id) {
 		$conn = Connection::get ();
 		
-		$select = $conn->query ( "SELECT presentation.id_presentation, 
+		$select = $conn->query ( "SELECT presentation.id_presentation as id, 
 								titre_presentation as titre_presentation, 
 								heure_debut_presentation as heure_debut, 
 								heure_fin_presentation as heure_fin, 
@@ -333,7 +333,7 @@ class presentation {
 								AND presentation.id_type = type_presentation.id_type
 								AND presente.id_orateur = orateur.id_orateur
 								AND orateur.id_entp = entreprise.id_entp
-								ORDER BY id_presentation" );
+								ORDER BY presentation.id_presentation" );
 		
 		$result = array ();
 		
@@ -346,21 +346,40 @@ class presentation {
 	// Met à jours une présentation
 	// JC Fonctionne
 	// //////////////////////////////
-	public static function updatePres($titre,$description,$date,$heure_debut,$heure_fin,$id_orateur) {
+	public static function updatePres($id_pres,$titre,$description,$date,$heure_debut,$heure_fin,$id_orateur) {
 		$conn = Connection::get ();
 
-		$maj = $conn->prepare('UPDATE presentation set titre_presentation = "'.$titre.'", 
-			set description = "'.$description.'",
-			set date_presentation = "'.$date.'",
-			set heure_debut_presentation = "'.$heure_debut.'",
-			set heure_fin_presentation = "'.$heure_fin.'",
-			WHERE id_presentation='.$id_pres);
-        $maj->execute(array(
-        'titre_presentation'=>$titre,
-        'description'=>$description,
-        'date_presentation'=>$date,
-        'heure_debut_presentation'=>$heure_debut,
-        'heure_fin_presentation'=>$heure_fin ));
+		//On test si le titre est modifié etc...
+	    if (!empty($titre)) {
+	        $maj = $conn->prepare('UPDATE presentation set titre_presentation = "'.$titre.'" WHERE id_presentation='.$id_pres);
+	        $maj->execute(array(
+	        'titre_presentation'=>$titre ));
+	    }
+	    if (!empty($description)) {
+	        $maj = $conn->prepare('UPDATE presentation set description = "'.$description.'" WHERE id_presentation='.$id_pres);
+	        $maj->execute(array(
+	        'description'=>$description ));
+	    }
+	    if (!empty($date)) {
+	        $maj = $conn->prepare('UPDATE presentation set date_presentation = "'.$date.'" WHERE id_presentation='.$id_pres);
+	        $maj->execute(array(
+	        'date_presentation'=>$date ));
+	    }
+	    if (!empty($heure_debut)) {
+	        $maj = $conn->prepare('UPDATE presentation set heure_debut_presentation = "'.$heure_debut.'" WHERE id_presentation='.$id_pres);
+	        $maj->execute(array(
+	        'heure_debut_presentation'=>$heure_debut ));
+	    }
+	    if (!empty($heure_fin)) {
+	        $maj = $conn->prepare('UPDATE presentation set heure_fin_presentation = "'.$heure_fin.'" WHERE id_presentation='.$id_pres);
+	        $maj->execute(array(
+	        'heure_fin_presentation'=>$heure_fin ));
+	    }
+	    if (!empty($id_orateur)) {
+	        $maj = $conn->prepare('UPDATE presente set id_orateur = "'.$id_orateur.'" WHERE id_presentation='.$id_pres);
+	        $maj->execute(array(
+	        'id_orateur'=>$id_orateur ));
+	    }
 	}
 	
 	// //////////////////////////////
