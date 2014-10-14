@@ -1,4 +1,10 @@
-$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",'consulter_presentation',function( data ) {
+	var url = window.location.href;
+	var id_evt= url.split("?")[1].split("=")[1];
+
+
+
+
+$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{ consulter_presentation: 0, id_event: id_evt },function( data ) {
 	$.each(data, function() {
 	$('.infoPres').append(
 	        '<tr><td class="hidden">'

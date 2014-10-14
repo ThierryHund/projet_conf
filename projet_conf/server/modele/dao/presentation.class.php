@@ -285,10 +285,10 @@ class presentation {
 	// retourne présentations
 	// JC Fonctionne
 	// //////////////////////////////
-	public static function getPresArray() {
+	public static function getPresArray($id_event) {
 		$conn = Connection::get ();
 		
-		$select = $conn->query ( "SELECT presentation.id_presentation as id,
+		$select = $conn->prepare ( "SELECT presentation.id_presentation as id,
 			presentation.titre_presentation as titre, 
 			presentation.description as description, 
 			orateur.id_orateur, 
@@ -297,10 +297,16 @@ class presentation {
 			entreprise.id_entp, 
 			entreprise.nom_entp as nom_entreprise, 
 			entreprise.logo_entp as logo_entreprise
-			FROM presentation, presente, orateur, entreprise 
+			FROM evenement, presentation, presente, orateur, entreprise 
 			WHERE presentation.id_presentation = presente.id_presentation
 			AND presente.id_orateur = orateur.id_orateur
-			AND orateur.id_entp = entreprise.id_entp" );
+			AND orateur.id_entp = entreprise.id_entp
+			AND evenement.id_evnt = presentation.id_evnt
+			AND evenement.id_evnt = :id_evnt" );
+			
+		$select->execute ( array (
+				'id_evnt' => $id_event 
+		) );
 		
 		$result = array ();
 		

@@ -57,7 +57,7 @@ if(isset($_REQUEST['consulter_evenement'])){
 }
 
 if(isset($_REQUEST['consulter_presentation'])){
-    $pres = Presentation::getPresArray();
+    $pres = Presentation::getPresArray($_REQUEST['id_event']);
     echo json_encode($pres);
 }
 
