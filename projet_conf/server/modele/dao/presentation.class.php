@@ -325,7 +325,7 @@ class presentation {
 								orateur.id_orateur as id_orateur, 
 								orateur.nom_orateur as nom_orateur, 
 								orateur.prenom_orateur as prenom_orateur, 
-								nom_type as type_presentation
+								type_presentation.nom_type as type
 								FROM presentation, evenement, type_presentation, presente, orateur, entreprise
 								WHERE presentation.id_presentation = '".$id."'
 								AND presentation.id_presentation = presente.id_presentation

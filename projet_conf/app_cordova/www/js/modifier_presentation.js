@@ -9,7 +9,7 @@
 				this.id
 			);
 
-			$('.info').prepend(
+			$('.info').append(
 		        '<tr><td class="hidden">'
 		        + this.id+ '</td><td>'
 		        + this.titre_presentation +'</td><td>'
@@ -18,6 +18,17 @@
 		        + this.heure_debut +' à ' 
 		        + this.heure_fin+'</td></tr>'
 		    );
+
+		    var type_presentation = this.type;
+
+			$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php","getType",function( data ) {
+				$.each(data, function() {
+
+				    $('.liste2').append(
+				        '<option value="'+this.id+'">'+this.nom_type+'</option>'
+				    );
+				});
+			},"json");
 
 			$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{id_orateur:this.id_orateur},function( data ) {
 				$.each(data, function() {
@@ -28,7 +39,8 @@
 
 				    $('.info2').append(
 				        '<tr><td>'
-				        + this.nom_orateur+' '+this.prenom_orateur+'</td></tr>'
+				        + this.nom_orateur+' '+this.prenom_orateur+'</td><td>'
+				        + type_presentation+'</td></tr>'
 				    );
 				});
 			},"json");
