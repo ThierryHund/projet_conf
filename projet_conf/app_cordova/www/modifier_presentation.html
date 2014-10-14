@@ -33,6 +33,7 @@
                       <th>Titre présentation</th>
                       <th>Description</th>
                       <th>Horaires</th>
+                      <th>Type d'événement</th>
                     </tr>
                   </thead>
                   <tbody class="info">
@@ -41,8 +42,13 @@
                     <input type="hidden" class="id_hidden" name="id_presentation" id="id_presentation">
                       <tr>
                         <td><input type="text" name="titre_presentation" class="form-control" id="titre_presentation" maxlength="75" placeholder="Titre présentation"></td>
-                        <td><input type="text" name="description" class="form-control" id="description" maxlength="75" placeholder="Description"></td>
+                        <td><input type="text" name="description" class="form-control" id="description" maxlength="255" placeholder="Description"></td>
                         <td><input type="date" name="date"> de <input type="time" name="heure_debut"> à <input type="time" name="heure_fin"></td>
+                        <td>
+                          <select id="select_type" name="type_event" class="liste2">
+                            <option value="0" selected>Non renseigné</option>
+                          </select>
+                        </td>
                       </tr>
                 </table>
 
@@ -50,7 +56,7 @@
                   <thead>
                     <tr>
                       <th>Orateurs</th>
-                      <th>Type d'événement</th>
+                      <th>Présentera</th>
                     </tr>
                   </thead>
                   <tbody class="info2">
@@ -61,12 +67,7 @@
                           <option value="0" selected>Non renseigné</option>
                         </select>
                       </td>
-                      <td>
-                        <select id="select_type" name="type_event" class="liste2">
-                          <option value="0" selected>Non renseigné</option>
-                        </select>
-                      </td>
-                    
+                    </tr>
                 </table>
                     <input type="submit" value="Modifier" name="modifier_presentation" class="btn btn-primary">
                   </form>

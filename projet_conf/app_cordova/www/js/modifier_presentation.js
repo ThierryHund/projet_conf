@@ -16,10 +16,9 @@
 		        + this.description+ '</td><td>Le '
 		        + this.date_presentation +' de ' 
 		        + this.heure_debut +' à ' 
-		        + this.heure_fin+'</td></tr>'
+		        + this.heure_fin+'</td><td>'
+		        + this.type+'</td></tr>'
 		    );
-
-		    var type_presentation = this.type;
 
 			$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php","getType",function( data ) {
 				$.each(data, function() {
@@ -39,8 +38,7 @@
 
 				    $('.info2').append(
 				        '<tr><td>'
-				        + this.nom_orateur+' '+this.prenom_orateur+'</td><td>'
-				        + type_presentation+'</td></tr>'
+				        + this.nom_orateur+' '+this.prenom_orateur+'</td></tr>'
 				    );
 				});
 			},"json");
