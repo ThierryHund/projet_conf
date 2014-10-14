@@ -27,14 +27,12 @@
         <div class="container">
             <h1>Modifier une présentation</h1><hr>
                 <table class="table table-striped table-hover ">
-                  
                   <thead>
                     <tr>
                       <th class="hidden">Id</th>
                       <th>Titre présentation</th>
                       <th>Description</th>
                       <th>Horaires</th>
-                      <th>Orateur</th>
                     </tr>
                   </thead>
                   <tbody class="info">
@@ -45,15 +43,27 @@
                         <td><input type="text" name="titre_presentation" class="form-control" id="titre_presentation" maxlength="75" placeholder="Titre présentation"></td>
                         <td><input type="text" name="description" class="form-control" id="description" maxlength="75" placeholder="Description"></td>
                         <td><input type="date" name="date"> de <input type="time" name="heure_debut"> à <input type="time" name="heure_fin"></td>
-                        <td>
-                          <select id="select_orateur" name="orateurs" class="liste">
-                                    <option value="0" selected>Non renseigné</option>
-                          </select>
-                        </td>
                       </tr>
                 </table>
-                  <input type="submit" value="Modifier" name="modifier_presentation" class="btn btn-primary">
-                </form>
+
+                <table class="table table-striped table-hover ">
+                  <thead>
+                    <tr>
+                      <th>Orateurs</th>
+                    </tr>
+                  </thead>
+                  <tbody class="info2">
+                  </tbody>
+                    <tr>
+                      <td>
+                        <select id="select_orateur" name="orateurs" class="liste">
+                          <option value="0" selected>Non renseigné</option>
+                        </select>
+                      </td>
+                    
+                </table>
+                    <input type="submit" value="Modifier" name="modifier_presentation" class="btn btn-primary">
+                  </form>
         </div>
     </div>
 

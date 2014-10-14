@@ -333,7 +333,7 @@ class presentation {
 								AND presentation.id_type = type_presentation.id_type
 								AND presente.id_orateur = orateur.id_orateur
 								AND orateur.id_entp = entreprise.id_entp
-								ORDER BY presentation.id_presentation" );
+								GROUP BY presentation.id_presentation" );
 		
 		$result = array ();
 		
