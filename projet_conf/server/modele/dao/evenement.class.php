@@ -71,10 +71,10 @@ class evenement {
 		
 		$select = $conn->query ( "SELECT id_evnt as id,
 			titre_evnt as titre, 
-			heure_debut as heure_deb, 
-			heure_fin as heure_fin, 
-			date_debut as date_deb, 
-			date_fin as date_fin,
+			DATE_FORMAT(heure_debut, '%Hh%i') as heure_deb, 
+			DATE_FORMAT(heure_fin, '%Hh%i') as heure_fin, 
+			DATE_FORMAT(date_debut, '%d/%m/%Y') as date_deb, 
+			DATE_FORMAT(date_fin, '%d/%m/%Y') as date_fin,
 			adresse as adresse,
 			desc_evnt as description
 			FROM evenement 
