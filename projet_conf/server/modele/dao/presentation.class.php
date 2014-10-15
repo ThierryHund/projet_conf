@@ -316,7 +316,7 @@ class presentation {
 	}
 
 	// //////////////////////////////
-	// retourne présentations
+	// retourne les présentations
 	// JC Fonctionne
 	// //////////////////////////////
 	public static function getPresArrayByPresId($id) {
@@ -324,8 +324,8 @@ class presentation {
 		
 		$select = $conn->query ( "SELECT presentation.id_presentation as id, 
 								titre_presentation as titre_presentation, 
-								heure_debut_presentation as heure_debut, 
-								heure_fin_presentation as heure_fin, 
+								DATE_FORMAT(heure_debut_presentation, '%Hh%i') as heure_debut, 
+								DATE_FORMAT(heure_fin_presentation, '%Hh%i') as heure_fin, 
 								DATE_FORMAT(date_presentation, GET_FORMAT(DATE, 'EUR')) as date_presentation, 
 								description as description,
 								orateur.id_orateur as id_orateur, 
@@ -352,7 +352,7 @@ class presentation {
 	// Met à jours une présentation
 	// JC Fonctionne
 	// //////////////////////////////
-	public static function updatePres($id_pres,$titre,$description,$date,$heure_debut,$heure_fin,$id_orateur) {
+	public static function updatePres($id_pres,$titre,$description,$date,$heure_debut,$heure_fin,$id_orateur,$type_event) {
 		$conn = Connection::get ();
 
 		//On test si le titre est modifié etc...
@@ -381,10 +381,24 @@ class presentation {
 	        $maj->execute(array(
 	        'heure_fin_presentation'=>$heure_fin ));
 	    }
-	    if (!empty($id_orateur)) {
-	        $maj = $conn->prepare('UPDATE presente set id_orateur = "'.$id_orateur.'" WHERE id_presentation='.$id_pres);
+	    if (!empty($type_event)) {
+	        $maj = $conn->prepare('UPDATE presentation set id_type = "'.$type_event.'" WHERE id_presentation='.$id_pres);
 	        $maj->execute(array(
-	        'id_orateur'=>$id_orateur ));
+	        'id_type'=>$type_event ));
+	    }
+	    if (!empty($id_orateur)) {
+	    	$sql = 'DELETE FROM presente WHERE id_presentation = '.$id_pres;
+		    $stmt = $conn->prepare($sql);
+		    $stmt->bindParam('id_presentation', $id_pres);
+		    $stmt->execute();
+
+	    	foreach($id_orateur as $orateur){
+	    		$req = $conn->prepare ( 'INSERT INTO presente(id_presentation,id_orateur) VALUES ("' . $id_pres . '","' . $orateur . '")' );
+				$req->execute ( array (
+						'id_presentation' => $id_pres,
+						'id_orateur' => $orateur
+				) );
+	    	}
 	    }
 	}
 	

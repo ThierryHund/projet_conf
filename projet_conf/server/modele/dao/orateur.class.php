@@ -30,7 +30,8 @@ class Orateur {
 		
 		$select = $conn->query ( "SELECT id_orateur as id,
 								nom_orateur as nom_orateur
-								FROM orateur" );
+								FROM orateur
+								ORDER BY id_orateur" );
 		
 		$result = array ();
 
@@ -52,7 +53,30 @@ class Orateur {
 								FROM orateur
 								WHERE id_entp=(SELECT id_entp
 									FROM orateur
-									WHERE id_orateur ='".$id_orateur."')" );
+									WHERE id_orateur ='".$id_orateur."')
+								ORDER BY id_orateur" );
+		
+		$result = array ();
+
+		$result = $select->fetchAll(PDO::FETCH_ASSOC);
+		
+		return $result;
+	}
+
+	// //////////////////////////////
+	// retourne les orateurs d'une présentation
+	// JC, fonctionne
+	// //////////////////////////////
+	public static function getOrateursArrayByPres($id_prez) {
+		$conn = Connection::get ();
+		
+		$select = $conn->query ( "SELECT orateur.id_orateur as id,
+								orateur.nom_orateur as nom_orateur,
+								orateur.prenom_orateur as prenom_orateur
+								FROM presente, orateur
+								WHERE presente.id_orateur=orateur.id_orateur
+								AND presente.id_presentation='".$id_prez."'
+								ORDER BY orateur.id_orateur" );
 		
 		$result = array ();
 
