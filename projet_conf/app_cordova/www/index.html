@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="app">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -74,21 +74,14 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-12" ng-controller="Maps">
+			<div class="col-lg-12">
 				<div class="panel panel-default">
 				<div class="panel-body">
 				<div class="panel-heading">
 							<h3 class="panel-title text-center">Localisation</h3>
-						</div>
-					<google-map center="map.center" zoom="map.zoom">
-					<marker idKey ="1" coords="marker.coords">
-						<window isIconVisibleOnClick="true">
-							<p>
-								{{marker.coords.message}}
-							</p>
-						</window>
-					</marker>
-				</google-map>
+				</div>
+					<div id="map">
+					</div>
 				</div>
 				</div>				
 			</div>
@@ -98,37 +91,17 @@
 	<!-- librairie js -->
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/angular.js"></script>
-	<script type="text/javascript" src="js/angular.min.js"></script>
-	<script type="text/javascript" src="js/angular-route.js"></script>
-	<script type="text/javascript" src="js/angular-route.min.js"></script>
-	<script type="text/javascript" src="js/app.js"></script>
-	<script type="text/javascript" src="js/NavCtrl.js"></script>
-	<script type="text/javascript" src="js/adaptive-background.js"></script>
-	<script type="text/javascript" src="js/background.js"></script>
+
+
 	
 	<!-- gestion contenu accueil -->
 	<script type="text/javascript" src="js/accueil.js"></script>
 	<script type="text/javascript" src="js/haut-requete.js"></script>
 
 	<!-- google maps -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCoee1ROXuFE8rvd3XXqqa7z-5DNuzdCPY"></script>
-	<script type="text/javascript" src='js/lodash.js'></script>
-	<script type="text/javascript" src='js/angular-google-maps.js'></script>
-<!-- 
-	<script type="text/javascript">
-		function initialize() {
-			var mapOptions = {
-				zoom : 8,
-				center : new google.maps.LatLng(-34.397, 150.644)
-			};
-			var map = new google.maps.Map(
-					document.getElementById('map_canvas'), mapOptions);
-		}
+	<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCoee1ROXuFE8rvd3XXqqa7z-5DNuzdCPY"></script>
+	<script type="text/javascript" src='js/google_maps.js'></script>
 
-		google.maps.event.addDomListener(window, 'load', initialize);
-	</script>
-	 -->
 </body>
 
 

@@ -47,20 +47,11 @@ padding:15px;
   text-align: center;
 }
 
-/*#map_canvas {
-        height: 300px;
-		width:300px;
+#map {
+        height:400px;
         margin: 0px;
         padding: 0px
-		}
-
-*/
-
-.angular-google-map-container { 
-
-  height: 400px; 
 }
-
 
 .row_custom{
   margin-right: -15px;
