@@ -1,9 +1,17 @@
 
-@media screen and (max-width: 400px) {
+@media all and (max-width: 400px) and (min-width: 355px){
 
 .navbar-brand
 	{
 		font-size: 16px;
+	}
+}
+
+@media all and (max-width: 355px) {
+
+.navbar-brand
+	{
+		font-size: 12px;
 	}
 }
 

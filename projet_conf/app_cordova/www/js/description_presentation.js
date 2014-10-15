@@ -10,7 +10,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 		$( '.titre' ).html( data[0]['titre_presentation'] );
 	
 		//ajout date et heure
-		$( '.date' ).append( '<p class="col-lg-12 panel align">'+"Le "+data[0]['date_presentation']+" de "+data[0]['heure_debut_presentation']+" à "+data[0]['heure_fin_presentation']+'</p>' ); 
+		$( '.date' ).append( '<p class="col-lg-12 panel text-center align">'+"Le "+data[0]['date_presentation']+" de "+data[0]['heure_debut_presentation']+" à "+data[0]['heure_fin_presentation']+'</p>' ); 
 	
 		//ajout type de presentation
 		$( '.orateur' ).prepend( '<h4>'+data[0]['type_presentation']+" présenté(e) par "+'</h4><br/>' );

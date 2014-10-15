@@ -41,3 +41,12 @@ body {
 	padding: 5px;
 }
 
+@media all and (max-width: 355px) {
+
+.btn-resp
+	{
+		margin: 5px;
+	}
+}
+
+
