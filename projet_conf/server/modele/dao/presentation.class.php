@@ -281,14 +281,14 @@ class presentation {
 		return $result;
 	}
 	
-	// //////////////////////////////
+// //////////////////////////////
 	// retourne présentations
 	// JC Fonctionne
 	// //////////////////////////////
 	public static function getPresArray($id_event) {
 		$conn = Connection::get ();
 		
-		$select = $conn->prepare ( "SELECT presentation.id_presentation as id,
+		$request = $conn->prepare ( "SELECT presentation.id_presentation as id,
 			presentation.titre_presentation as titre, 
 			presentation.description as description, 
 			orateur.id_orateur, 
@@ -296,25 +296,84 @@ class presentation {
 			orateur.prenom_orateur as prenom_orateur, 
 			entreprise.id_entp, 
 			entreprise.nom_entp as nom_entreprise, 
-			entreprise.logo_entp as logo_entreprise
+			entreprise.logo_entp as logo_entreprise,
+			TIMESTAMP(date_presentation,heure_debut_presentation) as timestamp_debut
 			FROM evenement, presentation, presente, orateur, entreprise 
 			WHERE presentation.id_presentation = presente.id_presentation
 			AND presente.id_orateur = orateur.id_orateur
 			AND orateur.id_entp = entreprise.id_entp
 			AND evenement.id_evnt = presentation.id_evnt
-			AND evenement.id_evnt = :id_evnt" );
+			AND evenement.id_evnt = :id_evnt
+			ORDER BY timestamp_debut, presentation.id_presentation" );
 			
-		$select->execute ( array (
+					$request->execute ( array (
 				'id_evnt' => $id_event 
 		) );
+			
+			//////////////////////
 		
-		$result = array ();
+		$liste_prez = array ();
+		$liste_final = array ();
 		
-		$result = $select->fetchAll ( PDO::FETCH_ASSOC );
+		while ( $row = $request->fetch ( PDO::FETCH_ASSOC ) ) {
+			$liste_prez [] = $row;
+		}
 		
-		return $result;
-	}
+		// on trie les données pour obtenir un tableau ou les auteurs sont regroupés dans une seule case
+		$j = - 1;
+		for($i = 0; $i < count ( $liste_prez ); $i ++) {
+			if (($i != 0) && ($liste_prez [$i] ['titre'] == $liste_prez [$i - 1] ['titre'])) {
+				$temp = array (
+						"id_orateur" => $liste_prez [$i] ['id_orateur'],
+						"prenom_orateur" => $liste_prez [$i] ['prenom_orateur'],
+						"nom_orateur" => $liste_prez [$i] ['nom_orateur'],
+						"courriel_orateur" => $liste_prez [$i] ['courriel_orateur'],
+						"tel_orateur" => $liste_prez [$i] ['tel_orateur'],
+						"nom_entreprise" => $liste_prez [$i] ['nom_entp'],
+						"adresse_entreprise" => $liste_prez [$i] ['adresse_entp'],
+						"url_entreprise" => $liste_prez [$i] ['url_entp'],
+						"logo_entreprise" => $liste_prez [$i] ['logo_entp'] 
+				);
+				
+				$liste_final [$j] ['auteurs'] [] = $temp;
+			} else {
+				$j ++;
+				$liste_final [$j] ['id'] = $liste_prez [$i] ['id'];
+				$liste_final [$j] ['titre'] = $liste_prez [$i] ['titre'];
+				$liste_final [$j] ['heure_debut_presentation'] = date ( 'H\hi', strtotime ( $liste_prez [$i] ['heure_debut_presentation'] ) );
+				$liste_final [$j] ['heure_fin_presentation'] = date ( 'H\hi', strtotime ( $liste_prez [$i] ['heure_fin_presentation'] ) );
+				$liste_final [$j] ['date_presentation'] = date ( 'd-m-Y', strtotime ( $liste_prez [$i] ['date_presentation'] ) );
+				$liste_final [$j] ['timestamp_debut'] = date ( 'Y-m-d H:i:s', strtotime ( $liste_prez [$i] ['timestamp_debut'] ) );
+				$liste_final [$j] ['description'] = $liste_prez [$i] ['description'];
+				$liste_final [$j] ['type_presentation'] = $liste_prez [$i] ['nom_type'];
+				
+				$temp = array (
+						"id_orateur" => $liste_prez [$i] ['id_orateur'],
+						"prenom_orateur" => $liste_prez [$i] ['prenom_orateur'],
+						"nom_orateur" => $liste_prez [$i] ['nom_orateur'],
+						"courriel_orateur" => $liste_prez [$i] ['courriel_orateur'],
+						"tel_orateur" => $liste_prez [$i] ['tel_orateur'],
+						"nom_entreprise" => $liste_prez [$i] ['nom_entp'],
+						"adresse_entreprise" => $liste_prez [$i] ['adresse_entp'],
+						"url_entreprise" => $liste_prez [$i] ['url_entp'],
+						"logo_entreprise" => $liste_prez [$i] ['logo_entp'] 
+				);
+				
+				$liste_final [$j] ['auteurs'] [] = $temp;
+			}
+			;
+		}
+			
+			
+			
+			///////////////////////
+			
 
+		
+
+		
+		return $liste_final;
+	}
 	// //////////////////////////////
 	// retourne les présentations
 	// JC Fonctionne

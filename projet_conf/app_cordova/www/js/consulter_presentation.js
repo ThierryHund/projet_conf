@@ -6,14 +6,16 @@
 
 $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{ consulter_presentation: 0, id_event: id_evt },function( data ) {
 	$.each(data, function() {
+		var auteurs = new Array();;
+		$.each(this.auteurs, function() {auteurs += this.nom_orateur +' '+ this.prenom_orateur+'<br/>' });
 	$('.infoPres').append(
 	        '<tr><td class="hidden">'
 	        + this.id+ '</td><td>'
 	        + this.titre +'</td><td class="text-justify">'
 	        + ((this.description.length<300)?this.description:(this.description.substring(0,300)+"..."))+ '</td><td>'
-	        + this.nom_orateur +' '+ this.prenom_orateur + '</td><td>'
+	        + auteurs + '</td><td>'
 	        + this.nom_entreprise+ '</td><td>'
-	        +'<div class="btn-group"><button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"> Action <span class="caret" ></span></button> <ul class="dropdown-menu" role="menu"> <li><a href="modifier_presentation.html?id='
+	        +'<div class="btn-group"><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Action <span class="caret" ></span></button> <ul class="dropdown-menu" role="menu"> <li><a href="modifier_presentation.html?id='
 	        +this.id+'">Editer</a></li> <li class="divider"></li> <li><a href="#" id="suppr">Supprimer</a></li> </ul></div>'
 	        +'</td></tr>'
 
