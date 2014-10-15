@@ -11,7 +11,7 @@ $(document).ready(function(){
   function initialize(){
 
 
-     $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler",'getPosition',function( data ) {
+     $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php",'getPosition',function( data ) {
         
           var response = eval(data);
 
