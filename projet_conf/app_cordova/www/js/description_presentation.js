@@ -22,7 +22,15 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 		});
 		
 		//ajout description de la présentation
-		$( '.desc' ).html( data[0]['description'] )
+		$( '.desc' ).html( data[0]['description'] );
+		
+		$( "#pres-prec" ).click(function() {
+			alert( "Pres précédente en travaux" );
+		});
+		
+		$( "#pres-suiv" ).click(function() {
+			alert( "Pres suivante en travaux" );
+		})
 	
 },"json");})
 
