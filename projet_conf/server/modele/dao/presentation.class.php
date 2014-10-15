@@ -329,10 +329,10 @@ class presentation {
 						"nom_orateur" => $liste_prez [$i] ['nom_orateur'],
 						"courriel_orateur" => $liste_prez [$i] ['courriel_orateur'],
 						"tel_orateur" => $liste_prez [$i] ['tel_orateur'],
-						"nom_entreprise" => $liste_prez [$i] ['nom_entp'],
-						"adresse_entreprise" => $liste_prez [$i] ['adresse_entp'],
-						"url_entreprise" => $liste_prez [$i] ['url_entp'],
-						"logo_entreprise" => $liste_prez [$i] ['logo_entp'] 
+						"nom_entreprise" => $liste_prez [$i] ['nom_entreprise'],
+						"adresse_entreprise" => $liste_prez [$i] ['adresse_entreprise'],
+						"url_entreprise" => $liste_prez [$i] ['url_entreprise'],
+						"logo_entreprise" => $liste_prez [$i] ['logo_entreprise'] 
 				);
 				
 				$liste_final [$j] ['auteurs'] [] = $temp;
@@ -353,10 +353,10 @@ class presentation {
 						"nom_orateur" => $liste_prez [$i] ['nom_orateur'],
 						"courriel_orateur" => $liste_prez [$i] ['courriel_orateur'],
 						"tel_orateur" => $liste_prez [$i] ['tel_orateur'],
-						"nom_entreprise" => $liste_prez [$i] ['nom_entp'],
-						"adresse_entreprise" => $liste_prez [$i] ['adresse_entp'],
-						"url_entreprise" => $liste_prez [$i] ['url_entp'],
-						"logo_entreprise" => $liste_prez [$i] ['logo_entp'] 
+						"nom_entreprise" => $liste_prez [$i] ['nom_entreprise'],
+						"adresse_entreprise" => $liste_prez [$i] ['adresse_entreprise'],
+						"url_entreprise" => $liste_prez [$i] ['url_entreprise'],
+						"logo_entreprise" => $liste_prez [$i] ['logo_entreprise'] 
 				);
 				
 				$liste_final [$j] ['auteurs'] [] = $temp;
