@@ -1,6 +1,6 @@
 	$(document).on('ready',function(){
 
-$.get( "http://thierryhund.perso.sfr.fr/server/controler.php",'accueil',function( data ) {
+$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php",'accueil',function( data ) {
 
   //ajout description evt
   $( '.desc_event' ).html( data['event']['desc_evnt'] );

@@ -20,23 +20,24 @@ body {
 .row {	
 	background: #eeeeee;
 	border-radius: 5px;
-	padding: 5px 10px 5px 10px;
+	padding: 5px 20px 5px 20px;
 	
 }
 
-.align {
-	display: inline;
-	padding: 5px;
-	vertical-align: baseline;
-	max-height: 40px !important;
-	
+.btn-top {	
+	padding-top: 20px;
 }
 
-.desc {
-	display: inline;
+.btn-retour {	
+	padding-bottom: 20px;
+}
+
+.align {	
+	padding: 5px;
+	max-height: 40px !important;	
+}
+
+.desc {	
 	padding: 5px;
 }
 
-.body {
-	padding-top: 0px;
-}

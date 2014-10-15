@@ -10,15 +10,15 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 		$( '.titre' ).html( data[0]['titre_presentation'] );
 	
 		//ajout date et heure
-		$( '.date' ).append( '<p class="col-sm-3 panel align">'+"Le "+data[0]['date_presentation']+'</p><p class="col-sm-3 panel align">'+"de "+data[0]['heure_debut_presentation']+" à "+data[0]['heure_fin_presentation']+'</p>' ); 
+		$( '.date' ).append( '<p class="col-lg-12 panel align">'+"Le "+data[0]['date_presentation']+" de "+data[0]['heure_debut_presentation']+" à "+data[0]['heure_fin_presentation']+'</p>' ); 
 	
 		//ajout type de presentation
 		$( '.orateur' ).prepend( '<h4>'+data[0]['type_presentation']+" présenté(e) par "+'</h4><br/>' );
 		
 		//ajout orateurs et logo/lien entreprises
 		$.each(data[0]['auteurs'], function(i, val){
-			$('.orateur' ).append( '<div class="col-sm-5 panel align">'+val['prenom']+" "+val['nom']+" "+
-			'</div><div class="col-sm-6 panel"><a class="align" href="'+val['url_entp']+'" target="_blank"><img src="'+val['logo_entp']+'" class="img-responsive logo-entp"></a></div></br>');			 
+			$('.orateur' ).append( '<div class="align"><span class="col-md-3">'+val['prenom']+" "+val['nom']+" "+
+			'</span><a class="col-md-offset-3 align" href="'+val['url_entp']+'" target="_blank"><img src="'+val['logo_entp']+'" class="img-responsive logo-entp"></a></div></br>');			 
 		});
 		
 		//ajout description de la présentation
