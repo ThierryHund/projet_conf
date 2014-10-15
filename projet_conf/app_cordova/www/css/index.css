@@ -47,10 +47,10 @@ padding:15px;
   text-align: center;
 }
 
-#map {
-        height:400px;
+#map, .map_canvas {
+        height:400px;         
         margin: 0px;
-        padding: 0px
+        padding: 0px;
 }
 
 .row_custom{

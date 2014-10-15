@@ -53,8 +53,8 @@ $(document).ready(function(){
 
 
           google.maps.event.addListener(marker, 'click', function() {
-              map.setZoom(15);
-              map.setCenter(marker.getPosition());
+              // map.setZoom(15);
+              // map.setCenter(marker.getPosition());
               toggleBounce();
               infoWindow.open(map,marker);
 
