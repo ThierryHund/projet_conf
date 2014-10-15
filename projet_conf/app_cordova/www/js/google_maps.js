@@ -24,7 +24,7 @@ $(document).ready(function(){
           options = {
             zoom: 10,
             center: coords,
-            disableDefaultUI: true,
+            // disableDefaultUI: true,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           }
 
@@ -53,6 +53,8 @@ $(document).ready(function(){
 
 
           google.maps.event.addListener(marker, 'click', function() {
+              map.setZoom(15);
+              map.setCenter(marker.getPosition());
               toggleBounce();
               infoWindow.open(map,marker);
 
