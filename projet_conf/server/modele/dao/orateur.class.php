@@ -76,7 +76,7 @@ class Orateur {
 								FROM presente, orateur
 								WHERE presente.id_orateur=orateur.id_orateur
 								AND presente.id_presentation='".$id_prez."'
-								ORDER BY orateur.id_orateur" );
+								ORDER BY orateur.id_orateur");
 		
 		$result = array ();
 

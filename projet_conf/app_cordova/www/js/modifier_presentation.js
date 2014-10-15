@@ -30,7 +30,7 @@
 
 			$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{id_orateur:this.id_orateur},function( data ) {
 				$.each(data, function() {
-				     $('.multiple').prepend(
+				     $('.multiple').append(
 						'<option value="'+this.id+'">'+this.nom_orateur+' '+this.prenom_orateur+'</option>'
 				    );
 				});
@@ -38,7 +38,7 @@
 
 			$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{id_presentation:id_prez},function( data ) {
 				$.each(data, function() {
-				    $('.info2').prepend(
+				    $('.info2').append(
 						'<tr><td>'+this.nom_orateur+' '+this.prenom_orateur+'</td></tr>'
 				    );
 				});
