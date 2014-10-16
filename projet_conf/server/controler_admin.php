@@ -118,11 +118,21 @@ if(isset($_POST['ajout_presentation'])){
 
 //Envoi les nouvelles infos pour la presentation et la met à jours.
 if(isset($_POST['modifier_presentation'])){
-    $id_evnt = Presentation::updatePres($_POST['id_presentation'],$_POST['titre_presentation'],$_POST['description'],$_POST['date'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['orateurs'],$_POST['type_event']);
+    Presentation::updatePres($_POST['id_presentation'],$_POST['titre_presentation'],$_POST['description'],$_POST['date'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['orateurs'],$_POST['type_event']);
 }
 
 //Renvoi la liste des orateurs en fonction de la présentation
 if(isset($_REQUEST['id_presentation'])){
     $orateur = Orateur::getOrateursArrayByPres($_REQUEST['id_presentation']);
     echo json_encode($orateur);
+}
+
+if(isset($_REQUEST['id_evt'])){
+    $evt = Evenement::getEventArrayById($_REQUEST['id_evt']);
+    echo json_encode($evt);
+}
+
+//Envoi les nouvelles infos pour l'événement et le met à jours.
+if(isset($_POST['modifier_evenement'])){
+    Evenement::updateEvnt($_POST['id_evenement'],$_POST['titre_evenement'],$_POST['description'],$_POST['adresse'],$_POST['date_debut'],$_POST['date_fin'],$_POST['heure_debut'],$_POST['heure_fin']);
 }

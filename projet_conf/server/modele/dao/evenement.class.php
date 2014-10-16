@@ -86,6 +86,77 @@ class evenement {
 		
 		return $result;
 	}
+
+	// ///////////////////////////////
+	// renvoi les info en fonction de l'événement
+	// JC, fonctionne
+	// //////////////////////////////////////////
+	public static function getEventArrayById($id_evt) {
+		$conn = Connection::get ();
+		
+		$select = $conn->query ( "SELECT id_evnt as id,
+			titre_evnt as titre, 
+			DATE_FORMAT(heure_debut, '%Hh%i') as heure_deb, 
+			DATE_FORMAT(heure_fin, '%Hh%i') as heure_fin, 
+			DATE_FORMAT(date_debut, '%d/%m/%Y') as date_deb, 
+			DATE_FORMAT(date_fin, '%d/%m/%Y') as date_fin,
+			adresse as adresse,
+			desc_evnt as description
+			FROM evenement
+			WHERE id_evnt='".$id_evt."'
+			ORDER BY date_debut" );
+		
+		$result = array ();
+		
+		$result = $select->fetchAll ( PDO::FETCH_ASSOC );
+		
+		return $result;
+	}
+
+	// //////////////////////////////
+	// Met à jours un événement
+	// JC Fonctionne
+	// //////////////////////////////
+	public static function updateEvnt($id_evenement,$titre_evenement,$description,$adresse,$date_debut,$date_fin,$heure_debut,$heure_fin) {
+		$conn = Connection::get ();
+
+		//On test si le titre est modifié etc...
+	    if (!empty($titre_evenement)) {
+	        $maj = $conn->prepare('UPDATE evenement set titre_evnt = "'.$titre_evenement.'" WHERE id_evnt='.$id_evenement);
+	        $maj->execute(array(
+	        'titre_presentation'=>$titre_evenement ));
+	    }
+	    if (!empty($description)) {
+	        $maj = $conn->prepare('UPDATE evenement set desc_evnt = "'.$description.'" WHERE id_evnt='.$id_evenement);
+	        $maj->execute(array(
+	        'description'=>$description ));
+	    }
+	    if (!empty($adresse)) {
+	        $maj = $conn->prepare('UPDATE evenement set adresse = "'.$adresse.'" WHERE id_evnt='.$id_evenement);
+	        $maj->execute(array(
+	        'adresse'=>$adresse ));
+	    }
+	    if (!empty($date_debut)) {
+	        $maj = $conn->prepare('UPDATE evenement set date_debut = "'.$date_debut.'" WHERE id_evnt='.$id_evenement);
+	        $maj->execute(array(
+	        'date_debut'=>$date_debut ));
+	    }
+	    if (!empty($date_fin)) {
+	        $maj = $conn->prepare('UPDATE evenement set date_fin = "'.$date_fin.'" WHERE id_evnt='.$id_evenement);
+	        $maj->execute(array(
+	        'date_fin'=>$date_fin ));
+	    }
+	    if (!empty($heure_debut)) {
+	        $maj = $conn->prepare('UPDATE evenement set heure_debut = "'.$heure_debut.'" WHERE id_evnt='.$id_evenement);
+	        $maj->execute(array(
+	        'heure_debut'=>$heure_debut ));
+	    }
+	    if (!empty($heure_fin)) {
+	        $maj = $conn->prepare('UPDATE evenement set heure_fin = "'.$heure_fin.'" WHERE id_evnt='.$id_evenement);
+	        $maj->execute(array(
+	        'heure_fin'=>$heure_fin ));
+	    }
+	}
 	
 	// ///////////////////////////////
 	// Insert un événement
