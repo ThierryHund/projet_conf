@@ -10,6 +10,7 @@
 
 <!-- Custom styles for this template -->
 <link href="css/index.css" rel="stylesheet">
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 <title>Conferensus</title>
 </head>
@@ -37,7 +38,7 @@
                       <tr>
                         <td><input type="text" name="titre_evenement" class="form-control" id="titre_evenement" maxlength="75" placeholder="Titre événement"></td>
                         <td><input type="text" name="description" class="form-control" id="description" maxlength="500" placeholder="Description"></td>
-                        <td><input type="text" name="adresse" class="form-control" id="adresse" maxlength="75" placeholder="Adresse"></td>
+                        <td><input type="text" name="adresse" class="form-control" onChange="geolocalise(this.value)" id="adresse" maxlength="75" placeholder="Adresse"></td>
                       </tr>
                 </table>
 
@@ -55,6 +56,11 @@
                       <td>de <input type="time" name="heure_debut"> à <input type="time" name="heure_fin"></td>
                     </tr>
                 </table>
+                          
+                  <div class="hidden">
+                    <input type="text" name="lat" id="lat" value="" />
+                    <input type="text" name="lng" id="lng" value="" />
+                  </div>
 
                     <input type="submit" value="Modifier" name="modifier_evenement" class="btn btn-primary">
                     <a href=javascript:history.go(-1) class="btn btn-primary"> Retour </a>
@@ -65,9 +71,37 @@
     <!-- librairie js -->
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+    
 
 
     <!-- gestion contenu accueil -->
     <script type="text/javascript" src="js/modifier_evenement.js"></script>
+    <script type="text/javascript">
+      var geocoder = new google.maps.Geocoder();
+      var addr, latitude, longitude;
+
+      /* Fonction chargée de géolocaliser l'adresse */ 
+      function geolocalise(val){
+        /* Récupération du champ "adresse" */ 
+        addr = val;
+        /* Tentative de géocodage */ 
+        geocoder.geocode( { 'address': addr}, function(results, status) {
+         /* Si géolocalisation réussie */ 
+          if (status == google.maps.GeocoderStatus.OK) {
+            /* Récupération des coordonnées */ 
+            latitude = results[0].geometry.location.lat();
+            longitude = results[0].geometry.location.lng();
+            /* Insertion des coordonnées dans les input text */ 
+            document.getElementById('lat').value = latitude;
+            document.getElementById('lng').value = longitude;
+          }
+
+          function handleResponse(){
+            $('#answer').get(0).innerHTML = sendAjax.responseText;
+          }
+        });
+      }
+
+    </script>
   </body>
 </html>

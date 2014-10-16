@@ -117,7 +117,7 @@ class evenement {
 	// Met à jours un événement
 	// JC Fonctionne
 	// //////////////////////////////
-	public static function updateEvnt($id_evenement,$titre_evenement,$description,$adresse,$date_debut,$date_fin,$heure_debut,$heure_fin) {
+	public static function updateEvnt($id_evenement,$titre_evenement,$description,$adresse,$date_debut,$date_fin,$heure_debut,$heure_fin,$latitude,$longitude) {
 		$conn = Connection::get ();
 
 		//On test si le titre est modifié etc...
@@ -155,6 +155,16 @@ class evenement {
 	        $maj = $conn->prepare('UPDATE evenement set heure_fin = "'.$heure_fin.'" WHERE id_evnt='.$id_evenement);
 	        $maj->execute(array(
 	        'heure_fin'=>$heure_fin ));
+	    }
+	    if (!empty($latitude)) {
+	        $maj = $conn->prepare('UPDATE evenement set latitude = "'.$latitude.'" WHERE id_evnt='.$id_evenement);
+	        $maj->execute(array(
+	        'latitude'=>$latitude ));
+	    }
+	    if (!empty($longitude)) {
+	        $maj = $conn->prepare('UPDATE evenement set longitude = "'.$longitude.'" WHERE id_evnt='.$id_evenement);
+	        $maj->execute(array(
+	        'longitude'=>$longitude ));
 	    }
 	}
 	

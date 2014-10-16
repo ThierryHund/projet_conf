@@ -134,5 +134,9 @@ if(isset($_REQUEST['id_evt'])){
 
 //Envoi les nouvelles infos pour l'événement et le met à jours.
 if(isset($_POST['modifier_evenement'])){
-    Evenement::updateEvnt($_POST['id_evenement'],$_POST['titre_evenement'],$_POST['description'],$_POST['adresse'],$_POST['date_debut'],$_POST['date_fin'],$_POST['heure_debut'],$_POST['heure_fin']);
+    echo $_POST['lat'];
+    echo $_POST['lng'];
+    Evenement::updateEvnt($_POST['id_evenement'],$_POST['titre_evenement'],$_POST['description'],$_POST['adresse'],$_POST['date_debut'],$_POST['date_fin'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['lat'],$_POST['lng']);
 }
+
+?>
