@@ -1,8 +1,9 @@
 	var url = window.location.href;
 	var id_evt= url.split("?")[1].split("=")[1];
 
-
-
+$('.button_ajout').append(
+	'<a href="ajout_presentation.html?id_evt='+id_evt+'" role="button" class="btn btn-primary">Ajouter Présentation</a>'
+);
 
 $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{ consulter_presentation: 0, id_event: id_evt },function( data ) {
 	$.each(data, function() {

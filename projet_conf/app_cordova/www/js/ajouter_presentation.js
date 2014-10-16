@@ -1,10 +1,10 @@
-$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",'getEvent',function( data ) {
-	$.each(data, function() {
-	    $('.liste_event').append(
-	        '<option value="'+this.id+'">'+this.titre+'</option>'
-	    );
-	});
-},"json");
+	var url = window.location.href;
+	var id_evt= url.split("?")[1].split("=")[1];
+
+$('.id_hidden').val(
+	id_evt
+);
+
 
 $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",'getType',function( data ) {
 	$.each(data, function() {

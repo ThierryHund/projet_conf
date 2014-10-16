@@ -24,18 +24,7 @@
             <form method="post" action="../../server/controler_admin.php" enctype="multipart/form-data" id="ajout_presentation">
                 <fieldset>
                     <table>
-                        <tr>
-                            <td>
-                                <br>Evénement :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <select id="select_evenement" name="select_evenement" class="liste_event">
-                                    <option value="0" selected>Non renseigné</option>
-                                </select>
-                            </td>
-                        </tr>
+                        <input type="hidden" class="id_hidden" name="id_evt" id="id_evt">
                         <tr>
                             <td>
                                 <br>Titre de la présentation :

@@ -101,7 +101,7 @@ if(isset($_POST['ajout_presentation'])){
     $checkbox='';
     $checkbox2='';
 
-    $id_presentation = Presentation::insertPres($_POST['titre_presentation'],$_POST['desc_presentation'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['date'],$_POST['select_evenement'],$_POST['select_type_presentation'],$_POST['select_orateur']);
+    $id_presentation = Presentation::insertPres($_POST['titre_presentation'],$_POST['desc_presentation'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['date'],$_POST['id_evt'],$_POST['select_type_presentation'],$_POST['select_orateur']);
 
     if((isset($_POST['checkbox2'])) && (isset($_POST['checkbox']))){
         if(true == $img->validUpload()){
