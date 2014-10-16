@@ -78,6 +78,13 @@ if(isset($_REQUEST['id_orateur'])){
     echo json_encode($orateurs);
 }
 
+// supprime l'événement dans la BdD
+if(isset($_GET['id_event'])){    
+    $idEvenement  = $_GET["id_event"];
+    Evenement::supprEvent($idEvenement); 
+}
+
+
 if(isset($_POST['ajout_evenement'])){
     $img = new UploadImages('avatar');
     $imgName = $img->getName();

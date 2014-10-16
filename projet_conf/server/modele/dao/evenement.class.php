@@ -201,6 +201,24 @@ class evenement {
 		
 		return $id_evnt;
 	}
+
+
+	// ///////////////////////////////
+	// supprime un événement
+	// Michel, fonctionne
+	// //////////////////////////////////////////
+
+	public static function supprEvent($id_evnt) {
+		$conn = Connection::get ();
+
+		  $sql = "DELETE 	
+		            FROM evenement
+			   		 WHERE id_evnt = ".$id_evnt ;
+		$result = $conn->exec($sql);
+		return $result;
+	}
+
+	
 	
 	// //////////////////////////////
 	// retourne id
