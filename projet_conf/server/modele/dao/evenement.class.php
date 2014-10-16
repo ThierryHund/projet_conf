@@ -172,7 +172,7 @@ class evenement {
 	// Insert un événement
 	// JC, fonctionne
 	// //////////////////////////////////////////
-	public static function insertEvent($titre_evenement, $lieu_evenement, $imgName, $date_debut, $date_fin, $heure_debut, $heure_fin, $desc_evnt) {
+	public static function insertEvent($titre_evenement, $lieu_evenement, $imgName, $date_debut, $date_fin, $heure_debut, $heure_fin, $latitude,$longitude,$desc_evnt) {
 		$conn = Connection::get ();
 		
 		if ((empty ( $titre_evenement )) || (empty ( $lieu_evenement )) || (empty ( $desc_evnt )) || (empty ( $date_debut )) || (empty ( $date_fin )) || (empty ( $heure_debut )) || (empty ( $heure_fin ))) {

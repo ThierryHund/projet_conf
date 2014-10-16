@@ -25,7 +25,7 @@ $(document).ready(function()
       /* Appel AJAX pour insertion en BDD */ 
       var sendAjax = $.ajax({
        type: "POST",
-       url: 'insert-in-bdd.php',
+       url: '../../server/controler_admin.php',
        data: 'lat='+latitude+'&lng='+longitude+'&adr='+addr,
        success: handleResponse
       });
@@ -37,3 +37,6 @@ $(document).ready(function()
     });
 
    }
+
+
+   
