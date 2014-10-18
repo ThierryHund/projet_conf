@@ -68,7 +68,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 	
 	});
 							
-});});
+},"json");});
 
 
 
