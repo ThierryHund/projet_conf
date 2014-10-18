@@ -3,6 +3,7 @@
 header('Content-type: text/html; charset=UTF-8'); 
 
 require_once "modele/dao/connection.class.php";
+require_once "modele/dao/admin.class.php";
 require_once "modele/dao/evenement.class.php";
 require_once "modele/dao/entreprise.class.php";
 require_once "modele/dao/presentation.class.php";
@@ -13,11 +14,16 @@ require_once "uploadImages.class.php";
 
 $conn = Connection::get ();
 
-if(isset($_POST['connexion'])){
+session_start ();
+header("Cache-Control: private");
+
+/*
+//if(isset($_POST['connexion'])){
 	if(isset($_POST['login']) && isset($_POST['password'])){
 		$login=$_POST['login'];
 		$password=$_POST['password'];
 
+			
 		$verif_login = $conn->query('SELECT *
             FROM admin
             WHERE admin.identifiant_admin LIKE "'.$login.'"
@@ -25,11 +31,43 @@ if(isset($_POST['connexion'])){
 
             $liste = $verif_login->fetchAll();
             if (count($liste) == 0) { 
-            	header('location:..\app_cordova\www\connexion.html');
+            	header('location:http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/connexion.html');
             }
-            else header('location:..\app_cordova\www\accueil.html');
+            else header('location:http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/accueil.html');
 	}
+//}
+
+*/
+
+if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset ( $_SESSION ['connecte'] )) {
+
+	if (! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) {
+		try{
+			$listeAdmin = Admin::getAdmin();
+			
+			foreach ( $listeAdmin as $value ) {
+			//var_dump ($value['identifiant_admin']);
+			//var_dump($_POST ['login']);
+				if ($value ['identifiant_admin'] == $_POST ['login'] && crypt ( $_POST ['password'], $value ['mdp_admin'] ) == $value ['mdp_admin']) {
+					$_SESSION ['connecte'] = true;
+					$_SESSION ['admin'] = Admin::get ( $value ['identifiant_admin'] );
+					echo "vous voila connecté";
+					header('location:http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/accueil.html');	
+				}
+			}
+		}catch(PDOException $erreur) {
+			echo "probleme d'acces BDD contactez un administrateur";
+			
+		}
+	}
+}else if ((isset( $_POST ['login'] ) && isset( $_POST ['password'] )) && ( empty ( $_POST ['login'] ) || empty ( $_POST ['password'] ))){
+	//header('location:http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/connexion.html');
+	echo "Chaque champs doit être rempli";
 }
+
+
+
+
 
 if(isset($_REQUEST['getOrganisateur'])){
     $orga = Organisateur::getOrganisateur();

@@ -18,11 +18,12 @@
 		<!-- header -->
     <script type="text/javascript" src="js/haut.js"></script>
 	
-        <div class="container"><h1>Connexion</h1><hr>
-          <div class="row">
-                  <form method="post" action="..\..\server\controler_admin.php" id="connexion">
-                    <p><input type="text" name="login" class="form-control" value="" placeholder="Identifiant"></p>
-                    <p><input type="password" name="password" class="form-control" value="" placeholder="Mot de passe"></p>
+        <div class="container-fluid text-center"><h1>Connexion</h1><hr>
+          <div class="row text-center">
+                 <form method="post" action="http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php" id="connexion">
+					<span id="erreur"></span>
+					<p><input type="text" name="login" class="form-control" value="" placeholder="Identifiant"></p>
+					<p><input type="password" name="password" class="form-control" value="" placeholder="Mot de passe"></p>
                     <br>
                     <input type="submit" name="connexion" class="btn btn-primary" value="Connexion">
                   </form>

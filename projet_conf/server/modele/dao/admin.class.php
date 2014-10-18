@@ -1,12 +1,16 @@
 <?php
+
 require_once "connection.class.php";
+
 class admin {
+
 	private $id_admin;
 	private $nom_admin;
 	private $prenom_admin;
 	private $identifiant_admin;
 	private $mdp_admin;
 	private $premiere_connex;
+	
 	public function __construct($id_admin, $nom_admin, $prenom_admin, $identifiant_admin, $mdp_admin, $premiere_connex) {
 		$this->id_admin = $id_admin;
 		$this->nom_admin = $nom_admin;
@@ -123,7 +127,7 @@ class admin {
 	public static function getAdmin() {
 		$conn = Connection::get ();
 		
-		$select = $conn->query ( "SELECT id_admin,identifiant_admin, mdp_admin, nom_admin, prenom_admin FROM admin" );
+		$select = $conn->query ( "SELECT id_admin, identifiant_admin, mdp_admin, nom_admin, prenom_admin FROM admin" );
 		$result = array ();
 		
 		while ( $row = $select->fetch () ) {
