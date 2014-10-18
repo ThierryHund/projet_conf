@@ -30,7 +30,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 		//assigne les liens des pres precedente et suivante aux boutons ajoutés
 		var count = data['liste_prezs'].length;
 		
-		GetPrevNextPres(id_prez)
+		GetPrevNextPres(id_prez);
 		
 				$('#pres_prec' ).append( "<a href='description_presentation.html?id="+prevPres+"' class='btn btn-primary btn-sm btn-resp'>Présentation précédente</a>");
 				$('#pres_suiv' ).append( "<a href='description_presentation.html?id="+nextPres+"' class='btn btn-primary btn-sm btn-resp'>Présentation suivante</a>");
