@@ -21,12 +21,12 @@ $('form').submit(function(e){
 		contentType: false,
 		success: function(){
 			
-			alert('Your comment was successfully added');
+			//your comment was successfully added');
 			document.location.href="http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/accueil.html";
 		},
 		error: function(){
 			console.log();
-			alert('There was an error adding your event');
+			alert('error');
 		}
 	});
 	//document.location.href="http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/accueil.html"
