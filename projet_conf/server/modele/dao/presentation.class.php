@@ -326,11 +326,11 @@ class presentation {
 						"id_orateur" => $liste_prez [$i] ['id_orateur'],
 						"prenom_orateur" => $liste_prez [$i] ['prenom_orateur'],
 						"nom_orateur" => $liste_prez [$i] ['nom_orateur'],
-						"courriel_orateur" => $liste_prez [$i] ['courriel_orateur'],
-						"tel_orateur" => $liste_prez [$i] ['tel_orateur'],
+						//"courriel_orateur" => $liste_prez [$i] ['courriel_orateur'],
+						//"tel_orateur" => $liste_prez [$i] ['tel_orateur'],
 						"nom_entreprise" => $liste_prez [$i] ['nom_entreprise'],
-						"adresse_entreprise" => $liste_prez [$i] ['adresse_entreprise'],
-						"url_entreprise" => $liste_prez [$i] ['url_entreprise'],
+						//"adresse_entreprise" => $liste_prez [$i] ['adresse_entreprise'],
+						//"url_entreprise" => $liste_prez [$i] ['url_entreprise'],
 						"logo_entreprise" => $liste_prez [$i] ['logo_entreprise'] 
 				);
 				
@@ -339,22 +339,22 @@ class presentation {
 				$j ++;
 				$liste_final [$j] ['id'] = $liste_prez [$i] ['id'];
 				$liste_final [$j] ['titre'] = $liste_prez [$i] ['titre'];
-				$liste_final [$j] ['heure_debut_presentation'] = date ( 'H\hi', strtotime ( $liste_prez [$i] ['heure_debut_presentation'] ) );
-				$liste_final [$j] ['heure_fin_presentation'] = date ( 'H\hi', strtotime ( $liste_prez [$i] ['heure_fin_presentation'] ) );
-				$liste_final [$j] ['date_presentation'] = date ( 'd-m-Y', strtotime ( $liste_prez [$i] ['date_presentation'] ) );
+			//	$liste_final [$j] ['heure_debut_presentation'] = date ( 'H\hi', strtotime ( $liste_prez [$i] ['heure_debut_presentation'] ) );
+			//	$liste_final [$j] ['heure_fin_presentation'] = date ( 'H\hi', strtotime ( $liste_prez [$i] ['heure_fin_presentation'] ) );
+			//	$liste_final [$j] ['date_presentation'] = date ( 'd-m-Y', strtotime ( $liste_prez [$i] ['date_presentation'] ) );
 				$liste_final [$j] ['timestamp_debut'] = date ( 'Y-m-d H:i:s', strtotime ( $liste_prez [$i] ['timestamp_debut'] ) );
 				$liste_final [$j] ['description'] = $liste_prez [$i] ['description'];
-				$liste_final [$j] ['type_presentation'] = $liste_prez [$i] ['nom_type'];
+			//	$liste_final [$j] ['type_presentation'] = $liste_prez [$i] ['nom_type'];
 				
 				$temp = array (
 						"id_orateur" => $liste_prez [$i] ['id_orateur'],
 						"prenom_orateur" => $liste_prez [$i] ['prenom_orateur'],
 						"nom_orateur" => $liste_prez [$i] ['nom_orateur'],
-						"courriel_orateur" => $liste_prez [$i] ['courriel_orateur'],
-						"tel_orateur" => $liste_prez [$i] ['tel_orateur'],
+						//"courriel_orateur" => $liste_prez [$i] ['courriel_orateur'],
+						//"tel_orateur" => $liste_prez [$i] ['tel_orateur'],
 						"nom_entreprise" => $liste_prez [$i] ['nom_entreprise'],
-						"adresse_entreprise" => $liste_prez [$i] ['adresse_entreprise'],
-						"url_entreprise" => $liste_prez [$i] ['url_entreprise'],
+						//"adresse_entreprise" => $liste_prez [$i] ['adresse_entreprise'],
+						//"url_entreprise" => $liste_prez [$i] ['url_entreprise'],
 						"logo_entreprise" => $liste_prez [$i] ['logo_entreprise'] 
 				);
 				

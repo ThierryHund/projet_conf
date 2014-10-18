@@ -17,7 +17,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 	        + this.titre +'</td><td class="text-justify">'
 	        + ((this.description.length<300)?this.description:(this.description.substring(0,300)+"..."))+ '</td><td>'
 	        + auteurs + '</td><td>'
-	        + entreprises+ '</td><td>'
+	        + entreprises + '</td><td>'
 	        +'<div class="btn-group"><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Action <span class="caret" ></span></button> <ul class="dropdown-menu" role="menu"> <li><a href="modifier_presentation.html?id='
 	        +this.id+'">Editer</a></li> <li class="divider"></li> <li><a href="#" id="suppr">Supprimer</a></li> </ul></div>'
 	        +'</td></tr>'
