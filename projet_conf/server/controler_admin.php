@@ -57,7 +57,7 @@ if(isset($_REQUEST['consulter_evenement'])){
 }
 
 if(isset($_REQUEST['consulter_presentation'])){
-    $pres = Presentation::getPresArray($_REQUEST['id_event']);
+    $pres = Presentation::getPresArray($_REQUEST['id_evenement']);
     echo json_encode($pres);
 }
 
@@ -99,6 +99,7 @@ if(isset($_POST['ajout_evenement'])){
     if(isset($_POST['checkbox'])){
         $id_organisateur = Organisateur::insertOrganisateur($_POST['soc_orga'],$_POST['nom_orga'],$_POST['prenom_orga'],$_POST['courriel_orga'],$_POST['tel_orga'],$id_evnt);
     }
+	//echo json_encode($_POST);
 }
 
 if(isset($_POST['ajout_presentation'])){
@@ -107,7 +108,6 @@ if(isset($_POST['ajout_presentation'])){
     $dir = dirname("http://localhost/webprojet/projet_conf/projet_conf/server/images");
     $checkbox='';
     $checkbox2='';
-
     $id_presentation = Presentation::insertPres($_POST['titre_presentation'],$_POST['desc_presentation'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['date'],$_POST['id_evt'],$_POST['select_type_presentation'],$_POST['select_orateur']);
 
     if((isset($_POST['checkbox2'])) && (isset($_POST['checkbox']))){

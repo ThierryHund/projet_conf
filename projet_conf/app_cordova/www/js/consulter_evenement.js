@@ -16,7 +16,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 	        + this.titre +"<br/>Du "+ this.date_deb +' à ' + this.heure_deb+"<br/>Au "+this.date_fin +' à ' + this.heure_fin+'</td><td id="adresse">'
 	        + this.adresse +'</td><td class="text-justify">'
 	        +((this.description.length<300)?this.description:(this.description.substring(0,300)+"...")) +'</td><td>'
-	        +'<div class="btn-group"><button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"> Action <span class="caret" ></span></button> <ul class="dropdown-menu" role="menu"> <li><a href="consulter_presentation.html?id_event='+this.id+'">Consulter / Editer </a></li> <li class="divider"></li> <li> <a href="javascript:supprime('+this.id+');" id="supprEvnt">Supprimer</a></li> </ul></div>'
+	        +'<div class="btn-group"><button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"> Action <span class="caret" ></span></button> <ul class="dropdown-menu" role="menu"> <li><a href="consulter_presentation.html?consulter_presentation=0?id_evt='+this.id+'">Consulter / Editer </a></li> <li class="divider"></li> <li> <a href="javascript:supprime('+this.id+');" id="supprEvnt">Supprimer</a></li> </ul></div>'
 	        +'</td></tr>'
 
 
@@ -33,7 +33,7 @@ function supprime(identifiant) {
 		if( confirmation )
 			{	
 
-				$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{ consulter_evenement: 0, id_event : identifiant },function( data ) {
+				$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{id_event : identifiant },function( data ) {
 				$('.infoEvent').html('');
 				$.each(data, function() {
 				$('.infoEvent').append(
@@ -51,7 +51,7 @@ function supprime(identifiant) {
 						});
 
 						},"json");
-			  document.location.href = "accueil.html?id_event="+identifiant ;
+			  document.location.href = "accueil.html";
 
 			}
 
