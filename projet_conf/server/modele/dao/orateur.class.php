@@ -90,11 +90,11 @@ class Orateur {
 	// insert un nouvelle orateur
 	// JC, fonctionne
 	// //////////////////////////////
-	public static function insertOrateur($nom_orateur, $prenom_orateur, $courriel_orateur, $tel_orateur, $select_entreprise) {
+	public static function insertOrateur($nom_orateur, $prenom_orateur, $courriel_orateur, $tel_orateur, $select_entreprise,$id_presentation) {
 		$conn = Connection::get ();
 
         if ((empty($nom_orateur)) || (empty($prenom_orateur)) || (empty($courriel_orateur)) || (empty($tel_orateur)) || (empty($select_entreprise))){
-            echo 'Erreur dans l\'un des champs';
+            echo 'INSERT INTO orateur (nom_orateur, prenom_orateur, courriel_orateur, tel_orateur, id_entp) VALUES ("'.$nom_orateur.'","'.$prenom_orateur.'","'.$courriel_orateur.'","'.$tel_orateur.'","'.$select_entreprise.'")';
         }
         else {
             $req = $conn->prepare('INSERT INTO orateur (nom_orateur, prenom_orateur, courriel_orateur, tel_orateur, id_entp) VALUES ("'.$nom_orateur.'","'.$prenom_orateur.'","'.$courriel_orateur.'","'.$tel_orateur.'","'.$select_entreprise.'")');
@@ -110,6 +110,12 @@ class Orateur {
             foreach ($donnees as $ligne){
                 $id_orateur=$ligne['id'];
             }
+            
+			$req = $conn->prepare ( 'INSERT INTO presente (id_presentation,id_orateur) VALUES ("' . $id_presentation . '","' . $id_orateur . '")' );
+			$req->execute ( array (
+					'id_presentation' => $id_presentation,
+					'id_orateur' => $id_orateur 
+			) );
         }
 
         return $id_orateur;

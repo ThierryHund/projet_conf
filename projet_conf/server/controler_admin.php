@@ -150,7 +150,7 @@ if(isset($_POST['ajout_evenement'])){
 
     if( true == $img->validUpload() && isset($_POST['lat']) && isset($_POST['lng']) ){
 
-        $id_evnt = Evenement::insertEvent($_POST['titre_evenement'],$_POST['lieu_evenement'],$dir.'/images/'.$imgName,$_POST['date_debut'],$_POST['date_fin'],$_POST['heure_debut'],$_POST['heure_fin'],addslashes($_POST['lat']),addslashes($_POST['lng']),$_POST['desc_evnt']);
+        $id_evnt = Evenement::insertEvent($_POST['titre_evenement'],$_POST['lieu_evenement'],$dir.'/images/'.$imgName,$_POST['date_debut'],$_POST['date_fin'],$_POST['heure_debut'],$_POST['heure_fin'],addslashes($_POST['lat']),addslashes($_POST['lng']),$_POST['desc_evnt'],$_POST['organisateurs']);
     }
 
     if(isset($_POST['checkbox'])){
@@ -171,12 +171,12 @@ if(isset($_POST['ajout_presentation'])){
         if(true == $img->validUpload()){
             $id_entreprise = Entreprise::insertEntreprise($_POST['nom_entreprise'],$_POST['adresse_entreprise'],$imgName,$_POST['url_entreprise']);
 
-            $id_orateur = Orateur::insertOrateur($_POST['nom_orateur'],$_POST['prenom_orateur'],$_POST['courriel_orateur'],$_POST['tel_orateur'],$id_entreprise);
+            $id_orateur = Orateur::insertOrateur($_POST['nom_orateur2'],$_POST['prenom_orateur2'],$_POST['courriel_orateur2'],$_POST['tel_orateur2'],$id_entreprise,$id_presentation);
         }
     }
 
-    if(isset($_POST['checkbox']) && !($_POST['checkbox2'])){
-        $id_orateur = Orateur::insertOrateur($_POST['nom_orateur'],$_POST['prenom_orateur'],$_POST['courriel_orateur'],$_POST['tel_orateur'],$_POST['select_entreprise']);
+    if(!(isset($_POST['checkbox2'])) && (isset($_POST['checkbox']))){
+        $id_orateur = Orateur::insertOrateur($_POST['nom_orateur'],$_POST['prenom_orateur'],$_POST['courriel_orateur'],$_POST['tel_orateur'],$_POST['entreprise'],$id_presentation);
     } 
 }
 

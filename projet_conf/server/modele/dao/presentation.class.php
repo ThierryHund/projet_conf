@@ -480,13 +480,12 @@ class presentation {
 				$id_presentation = $ligne ['id'];
 			}
 			
-			if (! empty ( $select_orateur )) {
-				$req = $conn->prepare ( 'INSERT INTO presente (id_presentation,id_orateur) VALUES ("' . $id_presentation . '","' . $select_orateur . '")' );
-				$req->execute ( array (
-						'id_presentation' => $id_presentation,
-						'id_orateur' => $select_orateur 
-				) );
-			}
+			$req = $conn->prepare ( 'INSERT INTO presente (id_presentation,id_orateur) VALUES ("' . $id_presentation . '","' . $select_orateur . '")' );
+			$req->execute ( array (
+					'id_presentation' => $id_presentation,
+					'id_orateur' => $select_orateur 
+			) );
+			
 		}
 		
 		return $id_presentation;
