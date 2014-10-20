@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="css/index.css" rel="stylesheet">
+
+<title>Conferensus</title>
+</head>
+
+<body class="body">
+  <!-- header -->
+    <script type="text/javascript" src="js/haut_admin.js"></script>
+
+    <div class="">
+        <div class="container">
+            <h1>Editer une catégorie</h1>
+			<h2>ajouter une catégorie</h2>
+			<form>
+				<input type="text" name="nom_type" class="form-control" id="nom_type" maxlength="75">
+				<input type="submit" class="btn btn-primary">
+				
+            </form>
+			<h2>liste des catégories</h2>
+                <table class="table table-striped table-hover ">
+                  <thead>
+                    <tr>
+                      <th class="hidden">Id</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody class="categories">
+                  </tbody>
+                </table>
+				<a href=javascript:history.go(-1) class="btn btn-primary"> Retour </a>
+        </div>
+    </div>
+
+    <!-- librairie js -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+
+
+    <!-- gestion contenu accueil -->
+    <script type="text/javascript" src="js/editer_categories.js"></script>
+  </body>
+</html>

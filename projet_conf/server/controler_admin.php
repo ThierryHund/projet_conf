@@ -14,7 +14,7 @@ require_once "uploadImages.class.php";
 
 $conn = Connection::get ();
 
-//session_start ();
+session_start ();
 //header("Cache-Control: private");
 
 /*
