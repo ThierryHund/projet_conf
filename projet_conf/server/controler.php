@@ -3,6 +3,7 @@
 require_once "modele/dao/connection.class.php";
 require_once "modele/dao/evenement.class.php";
 require_once "modele/dao/presentation.class.php";
+require_once "modele/dao/sendmail.class.php";
 
 $currentevent = Evenement::getEventArray();
 
@@ -32,5 +33,12 @@ if(isset($_REQUEST['haut'])){
 if(isset($_REQUEST['getPosition'])){
     $position = Evenement::getCurrentEventArray();
     echo json_encode($position);
-};
+}
+
+if(isset($_POST['send_mail'])) {
+	$subject = $_POST['subject'];
+	$texte = $_POST['message'];
+	$mailFrom = $_POST['email'];
+    SendMail::SendEmail($subject,$texte,$mailFrom);
+}
 

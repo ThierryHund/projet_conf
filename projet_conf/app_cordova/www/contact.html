@@ -20,17 +20,7 @@
     <script type="text/javascript" src="js/haut.js"></script>
 
 <div class='container'>
-<!--   <div class='sent' ng-class="{ 'hidden': !submit }">
-    <h1>
-      Message envoyé
-    </h1>
-  </div> -->
-
-      <div id="success" ng-class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert" data-textonly="true" data-textvisible="true" data-msgtext="Text only loader" data-inline="true"></button>
-        <p> Message envoyé </p>
-    </div>
-  <form name='contactForm' ng-class="{ 'hidden': submit }">
+  <form method="post" name='contactForm' id="send_mail" ng-class="{ 'hidden': submit }">
     <fieldset>
       <legend>Contactez Nous </legend>
       <label for='email' ng-class="{'required':contactForm.email.$error.required,'invalid':contactForm.email.$error.email,'ok':contactForm.email.$valid}">
@@ -53,7 +43,7 @@
       </label>
     </fieldset>
     <div class='form-controls'>
-      <button class='btn btn-send' ng-click='submit = ! submit' ng-disabled='contactForm.$invalid' type='submit'>
+      <button class='btn btn-send' ng-click='submit = ! submit' ng-disabled='contactForm.$invalid' name='send_mail' type='submit'>
         Envoyer
       </button>
     </div>
@@ -65,9 +55,7 @@
   <script src="bootstrap/dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/angular.js"></script>
   <script type="text/javascript" src="js/angular.min.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/NavCtrl.js"></script>
-  <script src="js/success-msg.js"></script>
+  <script type="text/javascript" src="js/sendmail.js"></script>
   <script type="text/javascript" src="js/haut-requete.js"></script>
 </body>
 
