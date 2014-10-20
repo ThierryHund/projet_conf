@@ -14,8 +14,8 @@ require_once "uploadImages.class.php";
 
 $conn = Connection::get ();
 
-session_start ();
-header("Cache-Control: private");
+//session_start ();
+//header("Cache-Control: private");
 
 /*
 //if(isset($_POST['connexion'])){
@@ -42,27 +42,41 @@ header("Cache-Control: private");
 if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset ( $_SESSION ['connecte'] )) {
 
 	if (! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) {
-		try{
+
+	
 			$listeAdmin = Admin::getAdmin();
-			
+            
 			foreach ( $listeAdmin as $value ) {
 			//var_dump ($value['identifiant_admin']);
 			//var_dump($_POST ['login']);
-				if ($value ['identifiant_admin'] == $_POST ['login'] && crypt ( $_POST ['password'], $value ['mdp_admin'] ) == $value ['mdp_admin']) {
-					$_SESSION ['connecte'] = true;
+			
+				$data = array();
+				
+				if ($value ['identifiant_admin'] == $_POST ['login'] && crypt ( $_POST ['password'], $value ['mdp_admin']) == $value ['mdp_admin']) {
+					session_start ();
 					$_SESSION ['admin'] = Admin::get ( $value ['identifiant_admin'] );
-					echo "vous voila connecté";
-					header('location:http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/accueil.html');	
+					//var_dump($_SESSION ['admin']);	
+					//echo "yes";
+					//$_SESSION ['connecte'] = true;
+					
+					$ok = true;
+						$data[] = 'yes';
+						//echo json_encode($data);
+									
+				} else {
+					$ok = false;
+					$data[] = 'no';
+					//echo json_encode($data);
+				}
+				
+				if($ok){
+					
+					//var_dump ($data);
+					echo json_encode($data);
 				}
 			}
-		}catch(PDOException $erreur) {
-			echo "probleme d'acces BDD contactez un administrateur";
-			
-		}
+		
 	}
-}else if ((isset( $_POST ['login'] ) && isset( $_POST ['password'] )) && ( empty ( $_POST ['login'] ) || empty ( $_POST ['password'] ))){
-	//header('location:http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/connexion.html');
-	echo "Chaque champs doit être rempli";
 }
 
 

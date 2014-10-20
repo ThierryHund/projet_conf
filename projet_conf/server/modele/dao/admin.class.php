@@ -146,10 +146,10 @@ class admin {
 		
 		// verification a faire
 		$conn = Connection::get ();
-		$result = null;
+		$result = array ();
 		
 		// requete sql preparé
-		$request = $conn->prepare ( "SELECT id_admin, identifiant_admin, mdp_admin, nom_admin, prenom_admin, premiere_connex FROM admin WHERE login=:login" );
+		$request = $conn->prepare ( "SELECT id_admin, identifiant_admin, mdp_admin, nom_admin, prenom_admin FROM admin WHERE identifiant_admin=:login" );
 		$request->execute ( array (
 				'login' => $login 
 		) );
@@ -157,10 +157,11 @@ class admin {
 		while ( $row = $request->fetch () ) {
 			$result [] = $row;
 		}
-		return new Admin ( $result [0] ['id_admin'], $result [0] ['nom_admin'], $result [0] ['prenom_admin'], $result [0] ['identifiant_admin'], $result [0] ['mdpadmin'] ,$result [0] ['premiere_connex']);
 		
-		// return $result[0][0];
+		return $result;
 	}
+	
+	
 	// //////////////////////////////
 	// retourne id
 	// //////////////////////////////
