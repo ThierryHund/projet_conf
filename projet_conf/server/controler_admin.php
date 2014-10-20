@@ -79,7 +79,22 @@ if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset (
 	}
 }
 
+if(isset($_REQUEST['getNbType'])){
+	$type = type_presentation::getNbType();
+	echo json_encode($type);
+}
 
+if(isset($_REQUEST['supprimer_categorie'])){
+	type_presentation::supprimerCategorie($_REQUEST['id_categ']);
+	$type = type_presentation::getNbType();
+	echo json_encode($type);
+}
+
+if(isset($_REQUEST['ajout_categorie'])){
+	type_presentation::creer($_REQUEST['nom_type']);
+	$type = type_presentation::getNbType();
+	echo json_encode($type);
+}
 
 
 

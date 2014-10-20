@@ -92,6 +92,36 @@ class Type_presentation {
 	return $result;
 
   }
+  
+  // suppression d'une categ
+  public static function supprimerCategorie($id) {
+  	$conn = Connection::get ();
+  
+  	$request = $conn->prepare( "DELETE type_presentation
+								FROM type_presentation
+								WHERE id_type = :id" );
+  
+  	$request->execute ( array (
+  			'id' => $id
+  	) );
+  
+  	return $result;
+  }
+  
+  //categorie et nb prez par categorie
+  public static function getNbType()
+  {
+  
+  	$conn = Connection::get();
+  	$select = $conn->query ("SELECT type_presentation.id_type as id, type_presentation.nom_type as type, count(presentation.id_presentation) as nb from type_presentation LEFT JOIN presentation on type_presentation.id_type = presentation.id_type GROUP BY type_presentation.id_type ORDER BY type_presentation.nom_type");
+  
+  	$result = array ();
+  
+  	$result = $select->fetchAll(PDO::FETCH_ASSOC);
+  
+  	return $result;
+  }
+  
 	
 	
 	// //////////////////////////////
