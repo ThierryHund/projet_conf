@@ -204,16 +204,19 @@ class evenement {
 
 
 	// ///////////////////////////////
-	// supprime un événement
+	// supprime un événement et les présentations associées
 	// Michel, fonctionne
 	// //////////////////////////////////////////
 
 	public static function supprEvent($id_evnt) {
 		$conn = Connection::get ();
 
-		  $sql = "DELETE 	
-		            FROM evenement
-			   		 WHERE id_evnt = ".$id_evnt ;
+		  $sql = " 	DELETE evenement, presentation, organise
+					FROM evenement 
+					LEFT JOIN presentation ON evenement.id_evnt = presentation.id_evnt 
+					LEFT JOIN organise ON evenement.id_evnt = organise.id_evnt 
+					WHERE evenement.id_evnt = ".$id_evnt;
+
 		$result = $conn->exec($sql);
 		return $result;
 	}

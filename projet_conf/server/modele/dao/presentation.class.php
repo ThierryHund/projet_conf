@@ -491,6 +491,24 @@ class presentation {
 		
 		return $id_presentation;
 	}
+
+
+	// ///////////////////////////////
+	// supprime une présentation
+	// Michel, fonctionne
+	// //////////////////////////////////////////
+
+	public static function supprPres($id_presentation) {
+		$conn = Connection::get ();
+
+		  $sql = "	DELETE 	
+				   	FROM presentation
+				 	WHERE id_presentation = ".$id_presentation ;
+
+		$result = $conn->exec($sql);
+		return $result;
+	}
+
 	
 	// //////////////////////////////////////////////////////////////////////////////////////////////////
 	// //Getters

@@ -122,6 +122,11 @@ if(isset($_GET['id_event'])){
     Evenement::supprEvent($idEvenement); 
 }
 
+// supprime une presentation dans la BdD
+if(isset($_GET['id_prez'])){
+    $idPres  = $_GET["id_prez"];
+    Presentation::supprPres($idPres); 
+}
 
 if(isset($_POST['ajout_evenement'])){
     $img = new UploadImages('avatar');
