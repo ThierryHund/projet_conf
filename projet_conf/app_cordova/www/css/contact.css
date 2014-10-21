@@ -10,6 +10,11 @@ CONTACT CSSS
 body {
   padding-top: 70px;
 }
+
+.container-fluid{
+max-width:750px;
+}
+
 .starter-template {
   padding: 40px 15px;
   text-align: center;

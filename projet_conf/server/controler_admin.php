@@ -14,30 +14,7 @@ require_once "uploadImages.class.php";
 
 $conn = Connection::get ();
 
-//header("Cache-Control: private");
-
-/*
-//if(isset($_POST['connexion'])){
-	if(isset($_POST['login']) && isset($_POST['password'])){
-		$login=$_POST['login'];
-		$password=$_POST['password'];
-
-			
-		$verif_login = $conn->query('SELECT *
-            FROM admin
-            WHERE admin.identifiant_admin LIKE "'.$login.'"
-            AND admin.mdp_admin LIKE "'.$password.'"');
-
-            $liste = $verif_login->fetchAll();
-            if (count($liste) == 0) { 
-            	header('location:http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/connexion.html');
-            }
-            else header('location:http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/accueil.html');
-	}
-//}
-
-*/
-
+//Vérification identifiant et mdp avec BdD. si oui accueil admin et ouverture session
 if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset ( $_SESSION ['connecte'] )) {
 
 	if (! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) {
@@ -50,6 +27,7 @@ if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset (
 			
 				if ($value ['identifiant_admin'] == $_POST ['login'] && crypt ( $_POST ['password'], $value ['mdp_admin']) == $value ['mdp_admin']) {
 					session_start ();
+					header("Cache-Control: private");
 					$_SESSION ['admin'] = Admin::get ( $value ['identifiant_admin'] );
 					//var_dump($_SESSION ['admin']);	
 					//$_SESSION ['connecte'] = true;
