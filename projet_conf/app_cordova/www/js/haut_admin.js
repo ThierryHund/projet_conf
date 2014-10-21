@@ -1,4 +1,4 @@
-document.write(
+$('body').prepend(
 "	<div class='navbar navbar-default' role='navigation'>" +
 "		<div class='container'>" +
 "			<div class='navbar-header'>" +
@@ -14,10 +14,16 @@ document.write(
 "					<li class='active'><a href='accueil.html'>Accueil</a></li>" +
 "				</ul>" +
 "				 <ul class='nav navbar-nav navbar-right'>" +
-"            			<li><a href='index.html'>Déconnexion</a></li>" +
+"            			<li><a class='deconnexion' href='connexion.html'>Déconnexion</a></li>" +
 "         		 </ul>" +
 "			</div>" +
 "			<!--/.nav-collapse -->" +
 "		</div>" +
 "	</div>" 
 );
+
+$('.deconnexion').click(function(){
+		   $.get('http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php', 
+            'deconnexion', function(data){   
+					
+			},"json");});
