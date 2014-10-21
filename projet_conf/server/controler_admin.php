@@ -45,37 +45,27 @@ if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset (
 
 	
 			$listeAdmin = Admin::getAdmin();
-            
-			foreach ( $listeAdmin as $value ) {
-			//var_dump ($value['identifiant_admin']);
-			//var_dump($_POST ['login']);
+            $data = array();
 			
-				$data = array();
-				
+			foreach ( $listeAdmin as $value ) {
+			
 				if ($value ['identifiant_admin'] == $_POST ['login'] && crypt ( $_POST ['password'], $value ['mdp_admin']) == $value ['mdp_admin']) {
 					session_start ();
 					$_SESSION ['admin'] = Admin::get ( $value ['identifiant_admin'] );
 					//var_dump($_SESSION ['admin']);	
-					//echo "yes";
 					//$_SESSION ['connecte'] = true;
 					
-					$ok = true;
-						$data[] = 'yes';
-						//echo json_encode($data);
-									
+					$data[0] = 'yes';
+					$data[1] = $_SESSION ['admin'];
+					break;
+					
 				} else {
-					$ok = false;
-					$data[] = 'no';
-					//echo json_encode($data);
+					$data[0] = 'no';
 				}
 				
-				if($ok){
-					
-					//var_dump ($data);
-					echo json_encode($data);
-				}
 			}
-		
+			
+		echo json_encode($data);
 	}
 }
 
@@ -96,6 +86,21 @@ if(isset($_REQUEST['ajout_categorie'])){
 	echo json_encode($type);
 }
 
+
+/*
+if (isset ( $_GET ['key'] )) {
+	$nav = $_GET ['key'];
+} else
+	$nav = null;
+
+// //////////////////////////////
+// deconnection
+// //////////////////////////////
+if ($nav == 'out') {
+	session_unset ();
+	session_destroy ();
+}
+*/
 
 
 if(isset($_REQUEST['getOrganisateur'])){
