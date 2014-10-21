@@ -62,23 +62,6 @@ if(isset($_REQUEST['ajout_categorie'])){
 	echo json_encode($type);
 }
 
-
-/*
-if (isset ( $_GET ['key'] )) {
-	$nav = $_GET ['key'];
-} else
-	$nav = null;
-
-// //////////////////////////////
-// deconnection
-// //////////////////////////////
-if ($nav == 'out') {
-	session_unset ();
-	session_destroy ();
-}
-*/
-
-
 if(isset($_REQUEST['getOrganisateur'])){
     $orga = Organisateur::getOrganisateur();
     echo json_encode($orga);
@@ -101,7 +84,7 @@ if(isset($_REQUEST['getOrateur'])){
 
 if(isset($_REQUEST['consulter_evenement'])){
     $event = Evenement::getEventArray();
-    echo json_encode($event);
+	echo json_encode($event);
 }
 
 if(isset($_REQUEST['consulter_presentation'])){
