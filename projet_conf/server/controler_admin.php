@@ -12,6 +12,14 @@ require_once "modele/dao/type_presentation.class.php";
 require_once "modele/dao/orateur.class.php";
 require_once "uploadImages.class.php";
 
+session_start ();
+
+if(isset($_REQUEST['deconnexion'])){
+    session_unset();
+	session_destroy();
+
+}
+
 $conn = Connection::get ();
 
 //Vérification identifiant et mdp avec BdD. si oui accueil admin et ouverture session
@@ -29,10 +37,12 @@ if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset (
 					session_start ();
 					header("Cache-Control: private");
 					$_SESSION ['admin'] = Admin::get ( $value ['identifiant_admin'] );
+					$_SESSION ['connecte'] = true;
 					//var_dump($_SESSION ['admin']);	
 					//$_SESSION ['connecte'] = true;
 					
 					$data[0] = 'yes';
+					$data[1] = $_SESSION ['connecte'];
 					break;
 					
 				} else {
@@ -42,8 +52,21 @@ if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset (
 			}
 			
 		echo json_encode($data);
+	}else{
+	
+	//accueil admin (liste evt)
+	if(isset($_REQUEST['consulter_evenement'])){
+    $event = Evenement::getEventArray();
+	$event[] = $_SESSION ['connecte'];
+    echo json_encode($event);
 	}
-}
+	
+	// supprime l'événement dans la BdD
+	if(isset($_GET['id_event'])){    
+    $idEvenement  = $_GET["id_event"];
+    Evenement::supprEvent($idEvenement); 
+	}
+
 
 if(isset($_REQUEST['getNbType'])){
 	$type = type_presentation::getNbType();
@@ -61,6 +84,23 @@ if(isset($_REQUEST['ajout_categorie'])){
 	$type = type_presentation::getNbType();
 	echo json_encode($type);
 }
+
+
+/*
+if (isset ( $_GET ['key'] )) {
+	$nav = $_GET ['key'];
+} else
+	$nav = null;
+
+// //////////////////////////////
+// deconnection
+// //////////////////////////////
+if ($nav == 'out') {
+	session_unset ();
+	session_destroy ();
+}
+*/
+
 
 if(isset($_REQUEST['getOrganisateur'])){
     $orga = Organisateur::getOrganisateur();
@@ -82,10 +122,7 @@ if(isset($_REQUEST['getOrateur'])){
     echo json_encode($orateur);
 }
 
-if(isset($_REQUEST['consulter_evenement'])){
-    $event = Evenement::getEventArray();
-	echo json_encode($event);
-}
+
 
 if(isset($_REQUEST['consulter_presentation'])){
     $pres = Presentation::getPresArray($_REQUEST['id_evenement']);
@@ -109,11 +146,7 @@ if(isset($_REQUEST['id_orateur'])){
     echo json_encode($orateurs);
 }
 
-// supprime l'événement dans la BdD
-if(isset($_GET['id_event'])){    
-    $idEvenement  = $_GET["id_event"];
-    Evenement::supprEvent($idEvenement); 
-}
+
 
 // supprime une presentation dans la BdD
 if(isset($_GET['id_prez'])){
@@ -180,6 +213,12 @@ if(isset($_POST['modifier_evenement'])){
     echo $_POST['lat'];
     echo $_POST['lng'];
     Evenement::updateEvnt($_POST['id_evenement'],$_POST['titre_evenement'],$_POST['description'],$_POST['adresse'],$_POST['date_debut'],$_POST['date_fin'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['lat'],$_POST['lng']);
+}
+
+
+
+
+}
 }
 
 ?>
