@@ -14,7 +14,6 @@ require_once "uploadImages.class.php";
 
 $conn = Connection::get ();
 
-session_start ();
 //header("Cache-Control: private");
 
 /*
@@ -56,7 +55,6 @@ if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset (
 					//$_SESSION ['connecte'] = true;
 					
 					$data[0] = 'yes';
-					$data[1] = $_SESSION ['admin'];
 					break;
 					
 				} else {
