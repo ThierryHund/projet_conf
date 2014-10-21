@@ -13,12 +13,12 @@
 		        '<tr><td class="hidden">'
 		        + this.id+ '</td><td>'
 		        + this.titre +'</td><td>'
-		        + this.description+ '</td><td>'
-		        + this.adresse+'</td></tr>'
+		        + this.description+ '</td></tr>'
 		    );
 
 			$('.info2').append(
-		        '<tr><td>Du '
+		        '<tr><td>'
+		        + this.adresse+'</td><td>Du '
 		        + this.date_deb.replace(/\./g, "/")+' au '
 		        + this.date_fin.replace(/\./g, "/")+'</td><td>De '
 		        + this.heure_deb.replace(':','h')+' à '

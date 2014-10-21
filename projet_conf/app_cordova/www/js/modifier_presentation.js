@@ -13,12 +13,21 @@
 		        '<tr><td class="hidden">'
 		        + this.id+ '</td><td>'
 		        + this.titre_presentation +'</td><td>'
-		        + this.description+ '</td><td>Le '
+		        + this.description+ '</td></tr>'
+		    );
+
+		    $('.info3').append(
+		        this.type
+		    );
+
+		    $('.info4').append(
+		        'Le '
 		        + this.date_presentation.replace(/\./g, "/") +' de ' 
 		        + this.heure_debut.replace(':','h') +' à ' 
-		        + this.heure_fin.replace(':','h')+'</td><td>'
-		        + this.type+'</td></tr>'
+		        + this.heure_fin.replace(':','h')
 		    );
+
+		    
 
 			$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php","getType",function( data ) {
 				$.each(data, function() {
@@ -39,7 +48,8 @@
 			$.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admin.php",{id_presentation:id_prez},function( data ) {
 				$.each(data, function() {
 				    $('.info2').append(
-						'<tr><td>'+this.nom_orateur+' '+this.prenom_orateur+'</td></tr>'
+				    	'<tr><td></td><td>'
+				    	+this.nom_orateur+' '+this.prenom_orateur+'</td></tr>'
 				    );
 				});
 			},"json");

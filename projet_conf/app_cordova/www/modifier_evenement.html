@@ -28,7 +28,7 @@
                       <th class="hidden">Id</th>
                       <th>Titre événement</th>
                       <th>Description</th>
-                      <th>Adresse</th>
+                      
                     </tr>
                   </thead>
                   <tbody class="info">
@@ -38,13 +38,14 @@
                       <tr>
                         <td><input type="text" name="titre_evenement" class="form-control" id="titre_evenement" maxlength="75" placeholder="Titre événement"></td>
                         <td><input type="text" name="description" class="form-control" id="description" maxlength="500" placeholder="Description"></td>
-                        <td><input type="text" name="adresse" class="form-control" onChange="geolocalise(this.value)" id="adresse" maxlength="75" placeholder="Adresse"></td>
+                        
                       </tr>
                 </table>
 
                 <table class="table table-striped table-hover ">
                   <thead>
                     <tr>
+                      <th>Adresse</th>
                       <th>Période</th>
                       <th>Horaires</th>
                     </tr>
@@ -52,6 +53,7 @@
                   <tbody class="info2">
                   </tbody>
                     <tr>
+                      <td><input type="text" name="adresse" class="form-control" onChange="geolocalise(this.value)" id="adresse" maxlength="75" placeholder="Adresse"></td>
                       <td>Du <input type="date" name="date_debut"> au <input type="date" name="date_fin"></td>
                       <td>de <input type="time" name="heure_debut"> à <input type="time" name="heure_fin"></td>
                     </tr>
