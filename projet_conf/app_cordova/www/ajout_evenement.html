@@ -9,7 +9,7 @@
 <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom styles for this template -->
-<link href="css/index.css" rel="stylesheet">
+<link href="css/ajout-admin.css" rel="stylesheet">
 
 <!-- Appel Api Google Maps pour obtenir coordonnées Latitude et Longitude -->
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
@@ -22,9 +22,9 @@
   <!-- header -->
     <script type="text/javascript" src="js/haut_admin.js"></script>
 
-    <div class="jumbotron">
-        <div class="container">
-            <h1>Ajout d'un événement</h1><hr>
+    <div>
+        <div class="container-fluid">
+            <h2 class="text-center">Ajout d'un événement</h2><hr>
             <form method="post" action="../../server/controler_admin.php" enctype="multipart/form-data" id="ajout_evenement">
                 <fieldset>
                     <table>
@@ -93,12 +93,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" name="desc_evnt" class="form-control" id="desc_evnt" maxlength="75" placeholder="Description">
+                                <input type="text" name="desc_evnt" class="form-control" id="desc_evnt" maxlength="1500" placeholder="Description">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <br>Ajouter une entreprise :
+                                <br>Ajouter un organisateur :
                             </td>
                         </tr>
                         <tr>
