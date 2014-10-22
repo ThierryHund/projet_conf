@@ -22,165 +22,144 @@
   <!-- header -->
     
 
-    <div>
+   
         <div class="container-fluid">
             <h2 class="text-center">Ajout d'un événement</h2><hr>
-            <form method="post" action="../../server/controler_admin.php" enctype="multipart/form-data" id="ajout_evenement">
-                <fieldset>
-                    <table>
-                        <tr>
-                            <td>
-                                <br>Titre de l'événement :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="titre_evenement" class="form-control" id="titre_evenement" maxlength="75" placeholder="Titre événement">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Lieu :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="lieu_evenement" class="form-control" id="lieu_evenement" maxlength="75" placeholder="Lieu événement">
+            <form method="post" class="form-horizontal" role="form" enctype="multipart/form-data" id="ajout_evenement">
+                
+                    
+					<div class="form-group">
+						<label for="titre_evenement" class="col-sm-4 control-label">Titre de l'événement</label>
+						<div class="col-sm-8">
+							 <input type="text" name="titre_evenement" class="form-control" id="titre_evenement" maxlength="75" placeholder="Titre événement" autofocus>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="lieu_evenement" class="col-sm-4 control-label">Lieu</label>
+						<div class="col-sm-8">
+								<input type="text" name="lieu_evenement" class="form-control" id="lieu_evenement" maxlength="75" placeholder="Lieu événement">
                                 <input type="button" onclick="geolocalise()" value="géolocaliser" />
-                                Latitude : <input type="text" name="lat" id="lat" value="" />
-                                Longitude : <input type="text" name="lng" id="lng" value="" />
+						</div>
+					</div>
+					<div class="form-group">
+									<label for="lat" class="col-sm-4 control-label">Latitude</label>
+									<div class="col-sm-8">
+										<input type="text" name="lat" id="lat" value="" />
+									</div>
+					</div>
+					<div class="form-group">
+									<label for="lng" class="col-sm-4 control-label">Longitude</label>
+									<div class="col-sm-8">
+										<input type="text" name="lng" id="lng" value="" />
+									</div>
+					</div>
                                 <div class="hidden" id="answer">Réponse de l'appel AJAX :</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Logo :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="avatar">Selectionner l'image à télecharger (JPG ou PNG | max. 2 Mo) :</label><br />
+					
+					
+					
+					<div class="form-group">
+						<label for="avatar" class="col-sm-4 control-label">Logo</label>
+						<div class="col-sm-8">
+							<label for="avatar">Selectionner l'image à télecharger (JPG ou PNG | max. 2 Mo) :</label><br />
                                 <input type="file" name="avatar" id="avatar" /><br />
                                 <input type="hidden" name="MAX_FILE_SIZE" value="2097152"/><br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Dates :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                du <input type="date" name="date_debut">
-                                <br>au <input type="date" name="date_fin">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Heure :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                de <input type="time" name="heure_debut">
-                                à <input type="time" name="heure_fin">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Description :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="desc_evnt" class="form-control" id="desc_evnt" maxlength="1500" placeholder="Description">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Ajouter un organisateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="checkbox" value="oui" id="ck1" onClick="afficher();" />
-                            </td>
-                        </tr>
-                    </table>
-                    <table id="champ_cache1">
-                        <tr>
-                            <td>
-                                <br>Organisateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <select id="select_ajouter" name="organisateurs" class="liste">>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="date_debut" class="col-sm-4 control-label">Dates</label>
+						<div class="col-sm-8">
+							du <input type="date" name="date_debut" id="date_debut">
+                            <br>au <input type="date" name="date_fin">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="heure_debut" class="col-sm-4 control-label">Heure</label>
+						<div class="col-sm-8">
+							de <input type="time" name="heure_debut" id="heure_debut">
+                            à <input type="time" name="heure_fin">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="desc_evnt" class="col-sm-4 control-label">Description</label>
+						<div class="col-sm-8">							
+							<textarea class="form-control" rows="3" name="desc_evnt" id="desc_evnt" maxlength="1500" placeholder="Description"></textarea>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="ck1" class="col-sm-4 control-label">Ajouter un organisateur</label>
+						<div class="col-sm-8">
+							<input type="checkbox" name="checkbox" value="oui" id="ck1" onClick="afficher();" />
+						</div>
+					</div>
+					
+                             
+							
+							
+							
+                    <div id="champ_cache1">
+                        <div class="form-group">
+							<label for="ck1" class="col-sm-4 control-label">Organisateur</label>
+							<div class="col-sm-8">
+								<select id="select_ajouter" name="organisateurs" class="liste">>
                                     <option value="0" selected>Non renseigné</option>
                                 </select>
-                            </td>
-                        </tr>
-                    </table>
-                    <table id="champ_cache2">
-                        <tr>
-                            <td>
-                                <br>Société organisatrice :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="soc_orga" class="form-control"  id="soc_orga" maxlength="75" placeholder="Société organisatrice">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Nom personnel organisateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="nom_orga" class="form-control"  id="nom_orga" maxlength="75" placeholder="Nom organisateur">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Prénom personnel organisateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="prenom_orga" class="form-control"  id="prenom_orga" maxlength="75" placeholder="Prénom organisateur">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Courriel organisateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="courriel_orga" class="form-control"  id="courriel_orga" maxlength="75" placeholder="Courriel organisateur">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Téléphone organisateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="tel_orga" class="form-control"  id="tel_orga" maxlength="10" placeholder="Téléphone organisateur">
-                            </td>
-                        </tr>
-                    </table>
-                    <br>
-                    <input type="submit" value="Ajouter" name="ajout_evenement" class="btn btn-primary">
-                    <a href="accueil.html" class="btn btn-primary"> Retour </a>
-                </fieldset>
-                <br>
+							</div>
+						</div>
+                                
+                    </div>
+					
+					<div id="champ_cache2">
+						<div class="form-group">
+								<label for="soc_orga" class="col-sm-4 control-label">Société organisatrice</label>
+								<div class="col-sm-8">
+									<input type="text" name="soc_orga" class="form-control"  id="soc_orga" maxlength="75" placeholder="Société organisatrice">
+								</div>
+						</div>
+						
+						<div class="form-group">
+								<label for="nom_orga" class="col-sm-4 control-label">Nom personnel organisateur</label>
+								<div class="col-sm-8">
+									<input type="text" name="nom_orga" class="form-control"  id="nom_orga" maxlength="75" placeholder="Nom organisateur">
+								</div>
+						</div>
+						
+						<div class="form-group">
+								<label for="prenom_orga" class="col-sm-4 control-label">Prénom personnel organisateur</label>
+								<div class="col-sm-8">
+									 <input type="text" name="prenom_orga" class="form-control"  id="prenom_orga" maxlength="75" placeholder="Prénom organisateur">
+								</div>
+						</div>
+						
+						<div class="form-group">
+								<label for="courriel_orga" class="col-sm-4 control-label">Courriel organisateur</label>
+								<div class="col-sm-8">
+									 <input type="text" name="courriel_orga" class="form-control"  id="courriel_orga" maxlength="75" placeholder="Courriel organisateur">
+								</div>
+						</div>
+						
+						<div class="form-group">
+								<label for="tel_orga" class="col-sm-4 control-label">Téléphone organisateur</label>
+								<div class="col-sm-8">
+									 <input type="text" name="tel_orga" class="form-control"  id="tel_orga" maxlength="10" placeholder="Téléphone organisateur">
+								</div>
+						</div>
+					
+                            
+					</div>
+					
+                    <div class="text-center">
+						<a href="accueil.html" class="btn btn-primary"> Retour </a>
+						<input type="submit" value="Ajouter" name="ajout_evenement" class="btn btn-primary">
+					</div>
+                <br/>
             </form>
         </div>
-    </div>
+   
 
     <!-- librairie js -->
     <script type="text/javascript" src="js/jquery.js"></script>

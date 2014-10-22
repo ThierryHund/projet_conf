@@ -14,12 +14,14 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 	var date_auj = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate() +" " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
 	
 	var count = data.length;
-		
-			
+		//console.log(count);
+		if (data.length == 1) {
+			$('.next_event').append('<h2 class="text-center">Aucun événement disponible.</h2>');
+		}
 			
 		for ( var i = 0 ; i < count ; i++){
 			if ( data[i]['tmp_fin'] > date_auj ){		
-				$('.next_event').append('<h2>Événements en cours et à venir </h2><table class="table table-striped table-bordered "> <thead><tr class="warning"><th class="hidden">Id</th><th>Titre événement</th><th>Adresse</th><th>Description</th><th></th></tr></thead><tbody class="infoEvent"> </tbody></table>');
+				$('.next_event').append('<h2 class="text-center">Événements en cours et à venir </h2><table class="table table-striped table-bordered "> <thead><tr class="warning"><th class="hidden">Id</th><th>Titre événement</th><th>Adresse</th><th>Description</th><th></th></tr></thead><tbody class="infoEvent"> </tbody></table>');
 			break;
 			}
 		}
@@ -41,7 +43,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 		 
 		for ( var i = 0 ; i < count ; i++){
 			if ( data[i]['tmp_fin'] < date_auj ){		
-				$('.past_event').append('<h2>Événements passés </h2><table class="table table-bordered "> <thead><tr><th class="hidden">Id</th><th>Titre événement</th><th>Adresse</th><th>Description</th><th></th></tr></thead><tbody class="infoPastEvent"> </tbody></table>');
+				$('.past_event').append('<h2 class="text-center">Événements passés </h2><table class="table table-bordered "> <thead><tr><th class="hidden">Id</th><th>Titre événement</th><th>Adresse</th><th>Description</th><th></th></tr></thead><tbody class="infoPastEvent"> </tbody></table>');
 			break;
 			}
 		}

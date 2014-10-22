@@ -1,272 +1,224 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap -->
-<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<link href="css/index.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="css/index.css" rel="stylesheet">
 
-<title>Conferensus</title>
+	<title>Conferensus</title>
 </head>
 
-<body class="body">
-  <!-- header -->
-    
+<body class="body">  
 
-    <div class="jumbotron">
-        <div class="container">
-            <h2>Ajout d'une présentation</h2><hr>
-            <form method="post" action="../../server/controler_admin.php" enctype="multipart/form-data" id="ajout_presentation">
-                <fieldset>
-                    <table>
+   
+        <div class="container-fluid">
+            <h2 class="text-center">Ajout d'une présentation</h2><hr>
+			
+            <form method="post" class="form-horizontal" role="form" enctype="multipart/form-data" id="ajout_presentation">
+                
+                    
                         <input type="hidden" class="id_hidden" name="id_evt" id="id_evt">
-                        <tr>
-                            <td>
-                                <br>Titre de la présentation :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="titre_presentation" class="form-control" id="titre_presentation" maxlength="75" placeholder="Titre présentation">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Dates :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                le <input type="date" name="date">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Heure :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                de <input type="time" name="heure_debut">
-                                à <input type="time" name="heure_fin">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Type de présentation :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <select id="select_type_presentation" name="select_type_presentation" class="liste_type">
+						
+						<div class="form-group">
+							<label for="titre_presentation" class="col-sm-4 control-label">Titre de la présentation</label>
+							<div class="col-sm-8">
+								<input type="text" name="titre_presentation" class="form-control" id="titre_presentation" maxlength="30" placeholder="Titre présentation" autofocus>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="date" class="col-sm-4 control-label">Date</label>
+							<div class="col-sm-8">
+								<input type="date" name="date" id="date">
+							</div>
+                         </div>
+						 
+						 <div class="form-group">
+							<label for="heure_debut" class="col-sm-4 control-label">Heure</label>
+							<div class="col-sm-8">
+								de <input type="time" name="heure_debut" id="heure_debut">
+								à <input type="time" name="heure_fin">
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="select_type_presentation" class="col-sm-4 control-label">Type de présentation</label>
+							<div class="col-sm-8">
+								<select id="select_type_presentation" name="select_type_presentation" class="liste_type">
                                     <option value="0" selected>Non renseigné</option>
                                 </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Description de la présentation :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="desc_presentation" class="form-control" id="desc_presentation" maxlength="75" placeholder="Description">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Ajouter un orateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="checkbox" value="oui" id="ck1" onClick="afficher();" />
-                            </td>
-                        </tr>
-                    </table>
-                    <table id="champ_cache1">
-                        <tr>
-                            <td>
-                                <br>Orateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <select id="select_orateur" name="select_orateur" class="liste_orateur">
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="desc_presentation" class="col-sm-4 control-label">Description de la présentation (max. 1500c.)</label>
+							<div class="col-sm-8">
+								<textarea class="form-control" rows="3" name="desc_presentation" id="desc_presentation" maxlength="1500" placeholder="Description"></textarea>
+								
+							</div>
+                        </div>
+												
+<!--//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////-->					
+                            
+						<div class="form-group" id="champ_cache1">
+								<label for="select_orateur" class="col-sm-4 control-label">Orateur</label>
+								<div class="col-sm-8">
+									<select id="select_orateur" name="select_orateur" class="liste_orateur">
+										<option value="0" selected>Non renseigné</option>
+									</select>
+								</div>
+                        </div>
+							
+<!--//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////-->
+					<!-- checkbox pour faire apparaitre les champs pour nouveau orateur-->
+						<div class="form-group">
+							<label for="ck1" class="col-sm-4 control-label">Ajouter un orateur</label>
+							<div class="col-sm-8">
+								<input type="checkbox" name="checkbox" value="oui" id="ck1" onClick="afficher();" />
+							</div>
+                        </div>
+						
+						
+				<div id="champ_cache3">	
+					
+                        
+						<div class="form-group">
+							<label for="nom_orateur" class="col-sm-4 control-label">Nom orateur</label>
+							<div class="col-sm-8">
+								<input type="text" name="nom_orateur" class="form-control" id="nom_orateur" maxlength="75" placeholder="Nom orateur">
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="prenom_orateur" class="col-sm-4 control-label">Prénom orateur</label>
+							<div class="col-sm-8">
+								 <input type="text" name="prenom_orateur" class="form-control" id="prenom_orateur" maxlength="75" placeholder="Prénom orateur">
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="courriel_orateur" class="col-sm-4 control-label">Courriel orateur</label>
+							<div class="col-sm-8">
+								 <input type="text" name="courriel_orateur" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="tel_orateur" class="col-sm-4 control-label">Téléphone orateur</label>
+							<div class="col-sm-8">
+								<input type="text" name="tel_orateur" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
+							</div>
+                        </div>
+                        
+						<div class="form-group">
+							<label for="select_entreprise" class="col-sm-4 control-label">Entreprise</label>
+							<div class="col-sm-8">
+								<select id="select_entreprise" name="entreprise" class="liste_entreprise">
                                     <option value="0" selected>Non renseigné</option>
                                 </select>
-                            </td>
-                        </tr>
-                    </table>
-                    <table id="champ_cache2">
-                        <tr>
-                            <td>
-                                <br>Ajouter une entreprise :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="checkbox2" value="oui" id="ck2" onClick="afficher();" />
-                            </td>
-                        </tr>
-                    </table>
-                    <table id="champ_cache3">
-                        <tr>
-                            <td>
-                                <br>Nom orateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="nom_orateur" class="form-control" id="nom_orateur" maxlength="75" placeholder="Nom orateur">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Prénom orateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="prenom_orateur" class="form-control" id="prenom_orateur" maxlength="75" placeholder="Prénom orateur">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Courriel orateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="courriel_orateur" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Téléphone orateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="tel_orateur" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Entreprise :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <select id="select_entreprise" name="entreprise" class="liste_entreprise">
-                                    <option value="0" selected>Non renseigné</option>
-                                </select>
-                            </td>
-                        </tr>
-                    </table>
-                    <table id="champ_cache4">
-                        <tr>
-                            <td>
-                                <br>Nom entreprise :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="nom_entreprise" class="form-control"  id="nom_entreprise" maxlength="75" placeholder="Nom entreprise">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Adresse entreprise :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="adresse_entreprise" class="form-control" id="adresse_entreprise" maxlength="75" placeholder="Adresse entreprise">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Url entreprise :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="url_entreprise" class="form-control" id="url_entreprise" maxlength="75" placeholder="Url entreprise">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Logo de l'entreprise :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="avatar">Selectionner l'image à télecharger (JPG ou PNG | max. 2 Mo) :</label><br />
+							</div>
+                        </div>
+						
+						<!-- checkbox pour faire apparaitre les champs pour nouvelle entreprise-->
+						<div class="form-group" id="champ_cache2">
+							<label for="ck2" class="col-sm-4 control-label">Ajouter une entreprise</label>
+							<div class="col-sm-8">
+								<input type="checkbox" name="checkbox2" value="oui" id="ck2" onClick="afficher();" />
+							</div>
+                        </div>
+						
+						
+                                                       
+				</div>		
+						
+				<div id="champ_cache4">
+						
+						<div class="form-group">
+							<label for="nom_entreprise" class="col-sm-4 control-label">Nom entreprise</label>
+							<div class="col-sm-8">
+								<input type="text" name="nom_entreprise" class="form-control"  id="nom_entreprise" maxlength="75" placeholder="Nom entreprise">
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="adresse_entreprise" class="col-sm-4 control-label">Adresse entreprise</label>
+							<div class="col-sm-8">
+								<input type="text" name="adresse_entreprise" class="form-control" id="adresse_entreprise" maxlength="75" placeholder="Adresse entreprise">
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="url_entreprise" class="col-sm-4 control-label">Url entreprise</label>
+							<div class="col-sm-8">
+								 <input type="text" name="url_entreprise" class="form-control" id="url_entreprise" maxlength="75" placeholder="Url entreprise">
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="avatar" class="col-sm-4 control-label">Logo de l'entreprise</label>
+							<div class="col-sm-8">
+								<label for="avatar">Selectionner l'image à télecharger (JPG ou PNG | max. 2 Mo) :</label><br />
                                 <input type="file" name="avatar" id="avatar" /><br />
                                 <input type="hidden" name="MAX_FILE_SIZE" value="2097152"/><br />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Nom orateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="nom_orateur2" class="form-control" id="nom_orateur" maxlength="75" placeholder="Nom orateur">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Prénom orateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="prenom_orateur2" class="form-control" id="prenom_orateur" maxlength="75" placeholder="Prénom orateur">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Courriel orateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="courriel_orateur2" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <br>Téléphone orateur :
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="text" name="tel_orateur2" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
-                            </td>
-                        </tr>
-                    </table>
-                    <br>
-                    <input type="submit" value="Ajouter" name="ajout_presentation" class="btn btn-primary">
-                    <a href=javascript:history.go(-1) class="btn btn-primary"> Retour </a>
-                </fieldset>
-                <br>
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="nom_orateur2" class="col-sm-4 control-label">Nom orateur</label>
+							<div class="col-sm-8">
+								  <input type="text" name="nom_orateur2" class="form-control" id="nom_orateur" maxlength="75" placeholder="Nom orateur">
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="prenom_orateur2" class="col-sm-4 control-label">Prénom orateur</label>
+							<div class="col-sm-8">
+								  <input type="text" name="prenom_orateur2" class="form-control" id="prenom_orateur" maxlength="75" placeholder="Prénom orateur">
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="courriel_orateur2" class="col-sm-4 control-label">Courriel orateur</label>
+							<div class="col-sm-8">
+								  <input type="text" name="courriel_orateur2" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
+							</div>
+                        </div>
+						
+						<div class="form-group">
+							<label for="prenom_orateur2" class="col-sm-4 control-label">Téléphone orateur</label>
+							<div class="col-sm-8">
+								  <input type="text" name="tel_orateur2" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
+							</div>
+                        </div>
+					
+                             
+					
+				</div>
+				
+						<div class="text-center">							
+								<a href=javascript:history.go(-1) class="btn btn-primary"> Retour </a>							
+								<input type="submit" value="Ajouter" name="ajout_presentation" class="btn btn-primary">							
+						</div>
+						</br>
+                
+              
             </form>
         </div>
-    </div>
+   
 
     <!-- librairie js -->
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/ajouter_presentation.js"></script>
-	
+	<!-- header -->
 	<script type="text/javascript" src="js/haut_admin.js"></script>
 
     <script type="text/javascript">
