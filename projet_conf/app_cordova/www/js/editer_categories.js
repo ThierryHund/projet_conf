@@ -1,4 +1,4 @@
-$(document).ready(function(){
+ï»¿$(document).ready(function(){
 	var identifiant;
 	var supprimer = document.getElementById('supprEvnt');
 
@@ -65,7 +65,7 @@ $('form').submit(function(e){
 
 function supprimerCategorie(identifiant) {
 
-    var confirmation = confirm( "Voulez vous vraiment supprimer cet événement ?" );
+    var confirmation = confirm( "Voulez-vous vraiment supprimer ce type de prÃ©sentation?" );
 		if( confirmation )
 			{	
 

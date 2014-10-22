@@ -165,6 +165,7 @@ if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset (
 					$id_entreprise = Entreprise::insertEntreprise($_POST['nom_entreprise'],$_POST['adresse_entreprise'],$imgName,$_POST['url_entreprise']);
 
 					$id_orateur = Orateur::insertOrateur($_POST['nom_orateur2'],$_POST['prenom_orateur2'],$_POST['courriel_orateur2'],$_POST['tel_orateur2'], $id_entreprise,$id_presentation);
+					
 				}
 			}
 
