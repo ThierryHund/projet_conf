@@ -19,7 +19,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 			
 		for ( var i = 0 ; i < count ; i++){
 			if ( data[i]['tmp_fin'] > date_auj ){		
-				$('.next_event').append('<h2>Evénements en cours et à venir </h2><table class="table table-striped table-bordered "> <thead><tr class="warning"><th class="hidden">Id</th><th>Titre événement</th><th>Adresse</th><th>Description</th><th></th></tr></thead><tbody class="infoEvent"> </tbody></table>');
+				$('.next_event').append('<h2>Événements en cours et à venir </h2><table class="table table-striped table-bordered "> <thead><tr class="warning"><th class="hidden">Id</th><th>Titre événement</th><th>Adresse</th><th>Description</th><th></th></tr></thead><tbody class="infoEvent"> </tbody></table>');
 			break;
 			}
 		}
@@ -41,7 +41,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 		 
 		for ( var i = 0 ; i < count ; i++){
 			if ( data[i]['tmp_fin'] < date_auj ){		
-				$('.past_event').append('<h2>Evénements passés </h2><table class="table table-bordered "> <thead><tr><th class="hidden">Id</th><th>Titre événement</th><th>Adresse</th><th>Description</th><th></th></tr></thead><tbody class="infoPastEvent"> </tbody></table>');
+				$('.past_event').append('<h2>Événements passés </h2><table class="table table-bordered "> <thead><tr><th class="hidden">Id</th><th>Titre événement</th><th>Adresse</th><th>Description</th><th></th></tr></thead><tbody class="infoPastEvent"> </tbody></table>');
 			break;
 			}
 		}
