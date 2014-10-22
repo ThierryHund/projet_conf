@@ -34,7 +34,7 @@ if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset (
 			foreach ( $listeAdmin as $value ) {
 			
 				if ($value ['identifiant_admin'] == $_POST ['login'] && crypt ( $_POST ['password'], $value ['mdp_admin']) == $value ['mdp_admin']) {
-					session_start ();
+					//session_start ();
 					header("Cache-Control: private");
 					$_SESSION ['admin'] = Admin::get ( $value ['identifiant_admin'] );
 					$_SESSION ['connecte'] = true;

@@ -75,6 +75,8 @@ class evenement {
 			DATE_FORMAT(heure_fin, '%Hh%i') as heure_fin, 
 			DATE_FORMAT(date_debut, '%d/%m/%Y') as date_deb, 
 			DATE_FORMAT(date_fin, '%d/%m/%Y') as date_fin,
+			TIMESTAMP(date_debut, heure_debut) as tmp_deb,
+			TIMESTAMP(date_fin, heure_fin) as tmp_fin,
 			adresse as adresse,
 			desc_evnt as description
 			FROM evenement 
