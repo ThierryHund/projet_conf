@@ -38,7 +38,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 	}	
 
     if(data['event']['tel_organisateur']){
-		$( '.organisateur .contact' ).append(data['event']['tel_organisateur'])+'<br/>';
+		$( '.organisateur .contact' ).append('Tel : '+data['event']['tel_organisateur']+'<br/>');
 	}	
 	
     if(data['event']['courriel_organisateur']){
