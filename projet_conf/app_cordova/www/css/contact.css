@@ -3,9 +3,7 @@
 CONTACT CSSS
 
 */
-/*.ui-loader {
-  display: none !important;
-}*/
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css);
 
 body {
   padding-top: 70px;

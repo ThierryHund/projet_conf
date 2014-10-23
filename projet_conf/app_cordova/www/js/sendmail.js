@@ -13,8 +13,7 @@ $('form').submit(function(e){
 		success: function(){
 
 				alert("Message envoyé avec succès!")
-				document.location.href="http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/contact.html";
-				//setTimeout(function(){$('Message envoyé avec succès!').fadeOut();}, 1500);
+				document.location.href="contact.html";
 			
 		},
 		error: function(){
