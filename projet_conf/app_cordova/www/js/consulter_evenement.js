@@ -21,7 +21,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 			
 		for ( var i = 0 ; i < count ; i++){
 			if ( data[i]['tmp_fin'] > date_auj ){		
-				$('.next_event').append('<h2 class="text-center">Événements en cours et à venir </h2><table class="table table-striped table-bordered "> <thead><tr class="warning"><th class="hidden">Id</th><th>Titre événement</th><th>Adresse</th><th>Description</th><th></th></tr></thead><tbody class="infoEvent"> </tbody></table>');
+				$('.next_event').append('<h2 class="text-center">Événements en cours et à venir </h2><table class="table table-striped table-bordered "> <thead><tr class="warning"><th class="hidden">Id</th><th class="titre_evt">Titre événement</th><th class="adresse_evt hidden-sm hidden-xs">Adresse</th><th class="desc_evt hidden-xs">Description</th><th></th></tr></thead><tbody class="infoEvent"> </tbody></table>');
 			break;
 			}
 		}
@@ -30,8 +30,8 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 					$('.infoEvent').append(
 						'<tr><td class="hidden">'
 						+ this.id+ '</td><td>'
-						+ this.titre +"<br/>Du "+ this.date_deb +' à ' + this.heure_deb+"<br/>Au "+this.date_fin +' à ' + this.heure_fin+'</td><td id="adresse">'
-						+ this.adresse +'</td><td class="text-justify">'
+						+ this.titre +"<br/>Du "+ this.date_deb +' à ' + this.heure_deb+"<br/>Au "+this.date_fin +' à ' + this.heure_fin+'</td><td id="adresse" class="hidden-sm hidden-xs">'
+						+ this.adresse +'</td><td class="text-justify hidden-xs ">'
 						+((this.description.length<300)?this.description:(this.description.substring(0,300)+"...")) +'</td><td>'
 						+'<div class="btn-group"><button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"> Action <span class="caret" ></span></button> <ul class="dropdown-menu" role="menu"> <li><a href="consulter_presentation.html?consulter_presentation=0?id_evt='+this.id+'">Consulter </a></li> <li><a href="modifier_evenement.html?id_evt='+this.id+'"> Modifier </a></li> <li class="divider"></li> <li> <a href="javascript:supprimeEvent('+this.id+');" id="supprEvnt">Supprimer</a></li> </ul></div>'
 						+'</td></tr>'
@@ -43,7 +43,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 		 
 		for ( var i = 0 ; i < count ; i++){
 			if ( data[i]['tmp_fin'] < date_auj ){		
-				$('.past_event').append('<h2 class="text-center">Événements passés </h2><table class="table table-bordered "> <thead><tr><th class="hidden">Id</th><th>Titre événement</th><th>Adresse</th><th>Description</th><th></th></tr></thead><tbody class="infoPastEvent"> </tbody></table>');
+				$('.past_event').append('<h2 class="text-center">Événements passés </h2><table class="table table-bordered "> <thead><tr><th class="hidden">Id</th><th class="titre_evt">Titre événement</th><th class="adresse_evt hidden-sm hidden-xs">Adresse</th><th class="desc_evt">Description</th><th></th></tr></thead><tbody class="infoPastEvent"> </tbody></table>');
 			break;
 			}
 		}
@@ -53,8 +53,8 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 					$('.infoPastEvent').append(
 						'<tr class="success"><td class="hidden">'
 						+ this.id+ '</td><td>'
-						+ this.titre +"<br/>Du "+ this.date_deb +' à ' + this.heure_deb+"<br/>Au "+this.date_fin +' à ' + this.heure_fin+'</td><td id="adresse">'
-						+ this.adresse +'</td><td class="text-justify">'
+						+ this.titre +"<br/>Du "+ this.date_deb +' à ' + this.heure_deb+"<br/>Au "+this.date_fin +' à ' + this.heure_fin+'</td><td id="adresse" class="hidden-sm hidden-xs">'
+						+ this.adresse +'</td><td class="text-justify hidden-xs">'
 						+((this.description.length<300)?this.description:(this.description.substring(0,300)+"...")) +'</td><td>'
 						+'<div class="btn-group"><button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"> Action <span class="caret" ></span></button> <ul class="dropdown-menu" role="menu"> <li><a href="consulter_presentation.html?consulter_presentation=0?id_evt='+this.id+'">Consulter </a></li> <li><a href="modifier_evenement.html?id_evt='+this.id+'"> Modifier </a></li> <li class="divider"></li> <li> <a href="javascript:supprimeEvent('+this.id+');" id="supprEvnt">Supprimer</a></li> </ul></div>'
 						+'</td></tr>'

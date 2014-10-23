@@ -91,14 +91,12 @@ th, #nospace {
 
 }
 
-#adresse {
-  width: 155px;
 
-}
 
 #widthDate {
   width: 100px;
 
+}
 }
 
 @media all and (max-width: 355px) {
@@ -108,5 +106,18 @@ th, #nospace {
 		margin: 5px;
 	}
 }
+
+.titre_evt{
+min-width:255px;
+}
+
+.adresse_evt{
+min-width:150px;
+}
+
+.desc_evt{
+min-width:150px;
+}
+
 
 

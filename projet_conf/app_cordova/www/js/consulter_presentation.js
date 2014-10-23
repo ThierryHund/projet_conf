@@ -28,9 +28,9 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 	$('.infoPres').append(
 	        '<tr><td class="hidden">'
 	        + this.id+ '</td><td>'
-	        + this.titre +'</td><td class="text-justify">'
-	        + ((this.description.length<300)?this.description:(this.description.substring(0,300)+"..."))+ '</td><td>'
-	        + auteurs + '</td><td>'
+	        + this.titre +'</td><td class="text-justify hidden-xs">'
+	        + ((this.description.length<300)?this.description:(this.description.substring(0,300)+"..."))+ '</td><td class="hidden-xs">'
+	        + auteurs + '</td><td class="hidden-sm hidden-xs">'
 	        + entreprises + '</td><td>'
 	        +'<div class="btn-group"><button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"> Action <span class="caret" ></span></button> <ul class="dropdown-menu" role="menu"> <li><a href="modifier_presentation.html?id='
 	        +this.id+'">Editer</a></li> <li class="divider"></li> <li> <a href="javascript:supprimePres('+this.id+');" id="supprPres">Supprimer</a></li></ul></div>'
