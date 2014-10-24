@@ -91,31 +91,26 @@ th, #nospace {
 
 }
 
-
-
 #widthDate {
   width: 100px;
 
 }
 
-@media all and (max-width: 355px) {
-
-.btn-resp
-	{
-		margin: 5px;
-	}
+.btn-resp {
+	margin: 5px 15px 5px 15px;
 }
 
+
 .titre_evt{
-min-width:200px;
+	min-width:200px;
 }
 
 .adresse_evt{
-min-width:150px;
+	min-width:150px;
 }
 
 .desc_evt{
-min-width:150px;
+	min-width:150px;
 }
 
 

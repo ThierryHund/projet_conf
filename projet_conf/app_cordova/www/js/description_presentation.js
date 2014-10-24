@@ -32,8 +32,8 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler.php"
 		
 		GetPrevNextPres(id_prez);
 		
-				$('#pres_prec' ).append( "<a href='description_presentation.html?id="+prevPres+"' class='btn btn-primary btn-sm btn-resp'>Présentation précédente</a>");
-				$('#pres_suiv' ).append( "<a href='description_presentation.html?id="+nextPres+"' class='btn btn-primary btn-sm btn-resp'>Présentation suivante</a>");
+				$('#pres_prec' ).append( "<a href='description_presentation.html?id="+prevPres+"' class='btn btn-primary btn-resp'>Présentation précédente</a>");
+				$('#pres_suiv' ).append( "<a href='description_presentation.html?id="+nextPres+"' class='btn btn-primary btn-resp'>Présentation suivante</a>");
 	
 	
 	// Permet d'obtenir les prez précédente et suivante à partir de celle dans l'URL

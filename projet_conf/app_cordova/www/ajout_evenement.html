@@ -29,14 +29,14 @@
                 
                     
 					<div class="form-group">
-						<label for="titre_evenement" class="col-sm-4 control-label">Titre de l'événement</label>
+						<label for="titre_evenement" class="col-sm-4 control-label">Titre de l'événement *</label>
 						<div class="col-sm-8">
 							 <input type="text" name="titre_evenement" class="form-control" id="titre_evenement" maxlength="75" placeholder="Titre événement" autofocus>
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label for="lieu_evenement" class="col-sm-4 control-label">Lieu</label>
+						<label for="lieu_evenement" class="col-sm-4 control-label">Lieu *</label>
 						<div class="col-sm-8">
 								<input type="text" name="lieu_evenement" class="form-control" id="lieu_evenement" maxlength="75" placeholder="Lieu événement">
                                 <input type="button" onclick="geolocalise()" value="géolocaliser" />
@@ -61,25 +61,25 @@
 					<div class="form-group">
 						<label for="avatar" class="col-sm-4 control-label">Logo</label>
 						<div class="col-sm-8">
-							<label for="avatar">Selectionner l'image à télecharger (JPG ou PNG | max. 2 Mo) :</label><br />
+							<label for="avatar">Selectionner l'image à télecharger (JPG ou PNG | max. 2 Mo)</label><br />
                                 <input type="file" name="avatar" id="avatar" /><br />
                                 <input type="hidden" name="MAX_FILE_SIZE" value="2097152"/><br />
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label for="date_debut" class="col-sm-4 control-label">Dates</label>
+						<label for="date_debut" class="col-sm-4 control-label">Date (Format aaaa-mm-jj) *</label>
 						<div class="col-sm-8">
 							du <input type="date" name="date_debut" id="date_debut">
-                            <br>au <input type="date" name="date_fin">
+                            <br/>au <input type="date" name="date_fin">
 						</div>
 					</div>
 					
 					<div class="form-group">
-						<label for="heure_debut" class="col-sm-4 control-label">Heure</label>
+						<label for="heure_debut" class="col-sm-4 control-label">Heure (Format : hh:mm) *</label>
 						<div class="col-sm-8">
 							de <input type="time" name="heure_debut" id="heure_debut">
-                            à <input type="time" name="heure_fin">
+                            <br/>à&nbsp&nbsp <input type="time" name="heure_fin">
 						</div>
 					</div>
 					
@@ -103,7 +103,7 @@
 							
                     <div id="champ_cache1">
                         <div class="form-group">
-							<label for="ck1" class="col-sm-4 control-label">Organisateur</label>
+							<label for="ck1" class="col-sm-4 control-label">Organisateur *</label>
 							<div class="col-sm-8">
 								<select id="select_ajouter" name="organisateurs" class="liste">>
                                     <option value="0" selected>Non renseigné</option>
@@ -114,6 +114,7 @@
                     </div>
 					
 					<div id="champ_cache2">
+						
 						<div class="form-group">
 								<label for="soc_orga" class="col-sm-4 control-label">Société organisatrice</label>
 								<div class="col-sm-8">
@@ -153,8 +154,8 @@
 					</div>
 					
                     <div class="text-center">
-						<a href="accueil.html" class="btn btn-primary"> Retour </a>
-						<input type="submit" value="Ajouter" name="ajout_evenement" class="btn btn-primary">
+						<a href="accueil.html" class="btn btn-primary btn-resp"> Retour </a>
+						<input type="submit" value="Ajouter" name="ajout_evenement" class="btn btn-primary btn-resp">
 					</div>
                 <br/>
             </form>

@@ -34,19 +34,16 @@ body {
 
 .align {	
 	padding: 5px;
-	max-height: 40px !important;	
+	max-height: 50px !important;	
 }
 
 .desc {	
 	padding: 5px;
 }
 
-@media all and (max-width: 355px) {
-
-.btn-resp
-	{
-		margin: 5px;
-	}
+.btn-resp {
+	margin: 5px 15px 5px 15px;
 }
+
 
 
