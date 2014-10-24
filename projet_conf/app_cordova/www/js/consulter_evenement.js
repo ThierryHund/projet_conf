@@ -21,7 +21,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 			
 		for ( var i = 0 ; i < count ; i++){
 			if ( data[i]['tmp_fin'] > date_auj ){		
-				$('.next_event').append('<h2 class="text-center">Événements en cours et à venir </h2><table class="table table-striped table-bordered "> <thead><tr class="warning"><th class="hidden">Id</th><th class="titre_evt">Titre événement</th><th class="adresse_evt hidden-sm hidden-xs">Adresse</th><th class="desc_evt hidden-xs">Description</th><th></th></tr></thead><tbody class="infoEvent"> </tbody></table>');
+				$('.next_event').append('<h2 class="text-center">Événements en cours et à venir </h2><table class="table table-striped table-bordered"> <thead><tr class="warning"><th class="hidden">Id</th><th class="titre_evt">Titre événement</th><th class="adresse_evt hidden-sm hidden-xs">Adresse</th><th class="desc_evt hidden-xs">Description</th><th></th></tr></thead><tbody class="infoEvent"> </tbody></table>');
 			break;
 			}
 		}
@@ -43,7 +43,7 @@ $.get( "http://localhost/webprojet/projet_conf/projet_conf/server/controler_admi
 		 
 		for ( var i = 0 ; i < count ; i++){
 			if ( data[i]['tmp_fin'] < date_auj ){		
-				$('.past_event').append('<h2 class="text-center">Événements passés </h2><table class="table table-bordered "> <thead><tr><th class="hidden">Id</th><th class="titre_evt">Titre événement</th><th class="adresse_evt hidden-sm hidden-xs">Adresse</th><th class="desc_evt">Description</th><th></th></tr></thead><tbody class="infoPastEvent"> </tbody></table>');
+				$('.past_event').append('<h2 class="text-center">Événements passés </h2><table class="table table-striped table-bordered"> <thead><tr><th class="hidden">Id</th><th class="titre_evt">Titre événement</th><th class="adresse_evt hidden-sm hidden-xs">Adresse</th><th class="desc_evt hidden-xs">Description</th><th></th></tr></thead><tbody class="infoPastEvent"> </tbody></table>');
 			break;
 			}
 		}

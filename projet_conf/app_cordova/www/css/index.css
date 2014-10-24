@@ -97,7 +97,6 @@ th, #nospace {
   width: 100px;
 
 }
-}
 
 @media all and (max-width: 355px) {
 
@@ -108,7 +107,7 @@ th, #nospace {
 }
 
 .titre_evt{
-min-width:255px;
+min-width:200px;
 }
 
 .adresse_evt{
