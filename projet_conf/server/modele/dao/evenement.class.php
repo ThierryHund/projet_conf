@@ -172,14 +172,12 @@ class evenement {
 	
 	// ///////////////////////////////
 	// Insert un événement
-	// JC, fonctionne
+	// JC, modifié par Max fonctionne
 	// //////////////////////////////////////////
-	public static function insertEvent($titre_evenement, $lieu_evenement, $imgName, $date_debut, $date_fin, $heure_debut, $heure_fin, $latitude,$longitude,$desc_evnt,$id_organisateur) {
+	public static function insertEvent($titre_evenement, $lieu_evenement, $imgName, $date_debut, $date_fin, $heure_debut, $heure_fin, $latitude, $longitude, $desc_evnt) {
 		$conn = Connection::get ();
 		
-		if ((empty ( $titre_evenement )) || (empty ( $lieu_evenement )) || (empty ( $desc_evnt )) || (empty ( $date_debut )) || (empty ( $date_fin )) || (empty ( $heure_debut )) || (empty ( $heure_fin ))) {
-			echo 'Erreur dans l\'un des champs';
-		} else {
+		
 			$req = $conn->prepare ( 'INSERT INTO evenement (titre_evnt, adresse, logo, date_debut, date_fin, heure_debut, heure_fin, latitude, longitude, desc_evnt) VALUES ("' . $titre_evenement . '","' . $lieu_evenement . '","' . $imgName . '","' . $date_debut . '","' . $date_fin . '","' . $heure_debut . '","' . $heure_fin . '","' . $latitude . '","' . $longitude . '","' . $desc_evnt . '")' );
 			$req->execute ( array (
 					'titre_evnt' => $titre_evenement,
@@ -193,21 +191,46 @@ class evenement {
 					'longitude' => $longitude,
 					'desc_evnt' => $desc_evnt 
 			) );
-			
-			$chercheID = $conn->query ( 'SELECT id_evnt as id FROM evenement WHERE titre_evnt LIKE "' . $titre_evenement . '"' );
-			$donnees = $chercheID->fetchAll ();
-			foreach ( $donnees as $ligne ) {
-				$id_evnt = $ligne ['id'];
-			}
-
-			$req = $conn->prepare ( 'INSERT INTO organise (id_evnt,id_organisateur) VALUES ("' . $id_evnt . '","' . $id_organisateur . '")' );
-			$req->execute ( array (
-					'id_evnt' => $id_evnt,
-					'id_organisateur' => $id_organisateur
-			) );
-		}
+	
 		
-		return $id_evnt;
+	}
+	
+	// ///////////////////////////////
+	// insert la table organise à partir de last insert id de evenement et organisateur
+	// Max, fonctionne
+	// //////////////////////////////////////////
+	public static function insertOrganiseNvOrganisateur() {
+		$conn = Connection::get ();
+
+        $evenement = $conn->query("SELECT max(last_insert_id(id_evnt)) as last_evnt_inserted FROM evenement");
+		$id_evenement = $evenement->fetch();
+		
+		$organisateur = $conn->query("SELECT max(last_insert_id(id_organisateur)) as last_organisateur_inserted FROM organisateur");
+		$id_organisateur = $organisateur->fetch();
+		
+		$req = $conn->prepare ( "INSERT INTO organise (id_evnt, id_organisateur) VALUES (:id_evenement, :id_organisateur)" );	
+		$req->execute ( array ('id_evenement' => $id_evenement['last_evnt_inserted'], 
+								'id_organisateur' => $id_organisateur['last_organisateur_inserted']
+								) );
+       
+	}
+	
+	// ///////////////////////////////
+	// insert la table organise à partir de last insert id de evenement et id organisateur passé en paramètre
+	// Max, fonctionne
+	// //////////////////////////////////////////
+	public static function insertOrganiseOrganisateurExist($select_organisateur) {
+		$conn = Connection::get ();
+
+        $evenement = $conn->query("SELECT max(last_insert_id(id_evenement)) as last_evnt_inserted FROM presentation");
+		$id_evenement = $evenement->fetch();
+		
+		
+		$req = $conn->prepare ( "INSERT INTO presente (id_evnt, id_organisateur) VALUES (:id_evenement, :select_organisateur)" );	
+		$req->execute ( array ('id_evenement' => $id_evenement['last_evnt_inserted'], 
+								'select_organisateur' => $select_organisateur
+								) );
+       
 	}
 
 

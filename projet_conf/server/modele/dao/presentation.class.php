@@ -319,6 +319,7 @@ class presentation {
 		}
 		
 		// on trie les données pour obtenir un tableau ou les auteurs sont regroupés dans une seule case
+		// -->>>>> les champs en commentaires ont été laissé au cas où l'on souhaite plus d'info sur page consulter presentation admin
 		$j = - 1;
 		for($i = 0; $i < count ( $liste_prez ); $i ++) {
 			if (($i != 0) && ($liste_prez [$i] ['titre'] == $liste_prez [$i - 1] ['titre'])) {

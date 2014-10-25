@@ -41,39 +41,22 @@ class Organisateur {
 
 	// //////////////////////////////
 	// insert un nouvel organisateur
-	// JC, fonctionne
+	// JC, modifié par Max fonctionne
 	// //////////////////////////////
 	public static function insertOrganisateur($soc_orga, $nom_orga, $prenom_orga, $courriel_orga, $tel_orga, $id_evnt) {
 		$conn = Connection::get ();
 
-        if ((empty($soc_orga)) || (empty($nom_orga)) || (empty($prenom_orga)) || (empty($courriel_orga)) || (empty($tel_orga))){
-            echo '<br><div class="alert alert-dismissable alert-danger">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>Erreur dans l\'un des champs</strong>
-                  </div>';
-        }
-        else {
+       
             $req = $conn->prepare('INSERT INTO organisateur (societe_organisateur, nom_organisateur, prenom_organisateur, courriel_organisateur, tel_organisateur) VALUES ("'.$soc_orga.'","'.$nom_orga.'","'.$prenom_orga.'","'.$courriel_orga.'","'.$tel_orga.'")');
             $req->execute(array(
             'societe_organisateur'=>$soc_orga,
             'nom_organisateur'=>$nom_orga,
             'prenom_organisateur'=>$prenom_orga,
             'courriel_organisateur'=>$courriel_orga,
-            'tel_organisateur'=>$tel_orga));
+            'tel_organisateur'=>$tel_orga
+			));
 
-            $chercheID2 = $conn->query('SELECT id_organisateur as id FROM organisateur WHERE societe_organisateur LIKE "'.$soc_orga.'"');
-            $donnees = $chercheID2->fetchAll();
-            foreach ($donnees as $ligne){
-                $id_organisateur=$ligne['id'];
-            }
-
-            $req = $conn->prepare('INSERT INTO organise (id_evnt, id_organisateur) VALUES ("'.$id_evnt.'","'.$id_organisateur.'")');
-	        $req->execute(array(
-	            'id_evnt'=>$id_evnt,
-	            'id_organisateur'=>$id_organisateur));
-        }
-
-		return $id_organisateur;
+        
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////

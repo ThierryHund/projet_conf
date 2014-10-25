@@ -13,7 +13,7 @@ document.write(
 "			<div class='collapse navbar-collapse'>" +
 "				<ul class='nav navbar-nav'>" +
 "					<li class=''><a href='index.html'>Accueil</a></li>" +
-"					<li><a href='about.html'>À propos</a></li>" +
+"					<li><a href='a_propos.html'>À propos</a></li>" +
 "					<li><a href='contact.html'>Contact</a></li>" +
 "					<li><a href='connexion.html'>Administration</a></li>" +
 "				</ul>" +
