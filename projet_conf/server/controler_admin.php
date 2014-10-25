@@ -149,29 +149,33 @@ if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset (
 			if(isset($_POST['checkbox'])){
 				$id_organisateur = Organisateur::insertOrganisateur($_POST['soc_orga'],$_POST['nom_orga'],$_POST['prenom_orga'],$_POST['courriel_orga'],$_POST['tel_orga'],$id_evnt);
 			}
-			//echo json_encode($_POST);
+			
 		}
 
 		if(isset($_POST['ajout_presentation'])){
 			$img = new UploadImages('avatar');
 			$imgName = $img->getName();
-			$dir = dirname("http://localhost/webprojet/projet_conf/projet_conf/server/images");
+			$dir = dirname("/images");
 			$checkbox='';
 			$checkbox2='';
-			$id_presentation = Presentation::insertPres($_POST['titre_presentation'],$_POST['desc_presentation'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['date'],$_POST['id_evt'],$_POST['select_type_presentation'],$_POST['select_orateur']);
-
-			if((isset($_POST['checkbox2'])) && (isset($_POST['checkbox']))){
-				if(true == $img->validUpload()){
-					$id_entreprise = Entreprise::insertEntreprise($_POST['nom_entreprise'],$_POST['adresse_entreprise'],$imgName,$_POST['url_entreprise']);
-
-					$id_orateur = Orateur::insertOrateur($_POST['nom_orateur2'],$_POST['prenom_orateur2'],$_POST['courriel_orateur2'],$_POST['tel_orateur2'], $id_entreprise,$id_presentation);
-					
-				}
-			}
-
-			if(!(isset($_POST['checkbox2'])) && (isset($_POST['checkbox']))){
-				$id_orateur = Orateur::insertOrateur($_POST['nom_orateur'],$_POST['prenom_orateur'],$_POST['courriel_orateur'],$_POST['tel_orateur'],$_POST['entreprise'],$id_presentation);
+			 
+			
+				$id_presentation = Presentation::insertPres($_POST['titre_presentation'],$_POST['desc_presentation'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['date'],$_POST['id_evt'],$_POST['select_type_presentation']);
+				Presentation::insertPresenteOratExist($_POST['select_orateur']);
+			
+			if((isset($_POST['checkbox_orateur'])) && ( !isset($_POST['checkbox_entp']))){
+				$id_orateur = Orateur::insertOrateurEntpExist($_POST['nom_orateur'],$_POST['prenom_orateur'],$_POST['courriel_orateur'],$_POST['tel_orateur'],$_POST['select_entreprise']);
+				Presentation::insertPresenteNvOrateur();
 			} 
+			
+			else if((isset($_POST['checkbox_orateur'])) && (isset($_POST['checkbox_entp']))){
+				if(true == $img->validUpload()){
+					$id_entreprise = Entreprise::insertEntreprise($_POST['nom_entreprise'], $_POST['adresse_entreprise'], $dir.'/images/'.$imgName, $_POST['url_entreprise']);
+					$id_orateur = Orateur::insertOrateurNvEntp($_POST['nom_orateur'], $_POST['prenom_orateur'], $_POST['courriel_orateur'], $_POST['tel_orateur']);
+					Presentation::insertPresenteNvOrateur();
+				}
+			} 
+			
 		}
 
 		//Envoi les nouvelles infos pour la presentation et la met à jours.

@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Bootstrap -->
-<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom styles for this template -->
-<link href="css/ajout-admin.css" rel="stylesheet">
+	<!-- Custom styles for this template -->
+	<link href="css/ajout-admin.css" rel="stylesheet">
 
-<!-- Appel Api Google Maps pour obtenir coordonnées Latitude et Longitude -->
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<!-- Appel Api Google Maps pour obtenir coordonnées Latitude et Longitude -->
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 
-<title>Conferensus</title>
+	<title>Conferensus</title>
 </head>
 
 <body class="body">
-  <!-- header -->
-    
-
    
         <div class="container-fluid">
             <h2 class="text-center">Ajout d'un événement</h2><hr>
@@ -76,7 +73,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="heure_debut" class="col-sm-4 control-label">Heure (Format : hh:mm) *</label>
+						<label for="heure_debut" class="col-sm-4 control-label">Heure (Format hh:mm) *</label>
 						<div class="col-sm-8">
 							de <input type="time" name="heure_debut" id="heure_debut">
                             <br/>à&nbsp&nbsp <input type="time" name="heure_fin">
@@ -84,7 +81,7 @@
 					</div>
 					
 					<div class="form-group">
-						<label for="desc_evnt" class="col-sm-4 control-label">Description</label>
+						<label for="desc_evnt" class="col-sm-4 control-label">Description (max. 1500c.)</label>
 						<div class="col-sm-8">							
 							<textarea class="form-control" rows="3" name="desc_evnt" id="desc_evnt" maxlength="1500" placeholder="Description"></textarea>
 						</div>

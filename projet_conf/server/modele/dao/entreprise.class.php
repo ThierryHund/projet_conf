@@ -107,7 +107,7 @@ class Entreprise {
 
 	// //////////////////////////////
 	// insert une nouvelle entreprise
-	// JC, fonctionne
+	// JC, modifié par Max fonctionne
 	// //////////////////////////////
 	public static function insertEntreprise($nom_entreprise, $adresse_entreprise, $imgName, $url_entreprise) {
 		$conn = Connection::get ();
@@ -122,15 +122,7 @@ class Entreprise {
             'adresse_entp'=>$adresse_entreprise,
             'url_entp'=>$url_entreprise,
             'logo_entp'=>$imgName));
-
-            $chercheID = $conn->query('SELECT id_entp as id FROM entreprise WHERE nom_entp LIKE "'.$nom_entreprise.'"');
-            $donnees = $chercheID->fetchAll();
-            foreach ($donnees as $ligne){
-                $id_entreprise=$ligne['id'];
-            }
-        }
-
-        return $id_entreprise;
+		}
 	}
 	
 	// //////////////////////////////

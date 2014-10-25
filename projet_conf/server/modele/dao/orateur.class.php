@@ -88,9 +88,9 @@ class Orateur {
 
 	// //////////////////////////////
 	// insert un nouvelle orateur
-	// JC, fonctionne
+	// JC, modifié par Max fonctionne
 	// //////////////////////////////
-	public static function insertOrateur($nom_orateur, $prenom_orateur, $courriel_orateur, $tel_orateur, $select_entreprise,$id_presentation) {
+	public static function insertOrateurEntpExist($nom_orateur, $prenom_orateur, $courriel_orateur, $tel_orateur, $select_entreprise) {
 		$conn = Connection::get ();
 
         if ((empty($nom_orateur)) || (empty($prenom_orateur)) || (empty($courriel_orateur)) || (empty($tel_orateur)) || (empty($select_entreprise))){
@@ -105,24 +105,30 @@ class Orateur {
             'tel_orateur'=>$tel_orateur,
             'id_entp'=>$select_entreprise));
 
-            $chercheID = $conn->query('SELECT id_orateur as id FROM orateur WHERE nom_orateur LIKE "'.$nom_orateur.'"');
-            $donnees = $chercheID->fetchAll();
-            foreach ($donnees as $ligne){
-                $id_orateur=$ligne['id'];
-            }
-            
-			$req = $conn->prepare ( 'INSERT INTO presente (id_presentation,id_orateur) VALUES ("' . $id_presentation . '","' . $id_orateur . '")' );
-			$req->execute ( array (
-					'id_presentation' => $id_presentation,
-					'id_orateur' => $id_orateur 
-			) );
         }
 
-        return $id_orateur;
 	}
 	
-	////////////////////////////////////////////////////////////////////////////////////////////////////
-	////Getters
-	
+	// ///////////////////////////////
+	// insert la table nouvel orateur à partir de last insert id entreprise 
+	// Max, fonctionne
+	// //////////////////////////////////////////
+	public static function insertOrateurNvEntp($nom_orateur, $prenom_orateur, $courriel_orateur, $tel_orateur) {
+		$conn = Connection::get ();
+
+        $entreprise = $conn->query("SELECT max(last_insert_id(id_entp)) as last_entp_inserted FROM entreprise");
+		$id_entreprise = $entreprise->fetch();
+		
+		
+		$req = $conn->prepare("INSERT INTO orateur (nom_orateur, prenom_orateur, courriel_orateur, tel_orateur, id_entp) VALUES (:nom_orateur, :prenom_orateur, :courriel_orateur, :tel_orateur, :id_entp)");
+            $req->execute(array(
+            'nom_orateur'=>$nom_orateur,
+            'prenom_orateur'=>$prenom_orateur,
+            'courriel_orateur'=>$courriel_orateur,
+            'tel_orateur'=>$tel_orateur,
+            'id_entp'=>$id_entreprise['last_entp_inserted']
+			));
+			      
+	}
 	
 }

@@ -15,7 +15,6 @@
 </head>
 
 <body class="body">  
-
    
         <div class="container-fluid">
             <h2 class="text-center">Ajout d'une présentation</h2><hr>
@@ -26,24 +25,24 @@
                         <input type="hidden" class="id_hidden" name="id_evt" id="id_evt">
 						
 						<div class="form-group">
-							<label for="titre_presentation" class="col-sm-4 control-label">Titre de la présentation</label>
+							<label for="titre_presentation" class="col-sm-4 control-label">Titre de la présentation *</label>
 							<div class="col-sm-8">
 								<input type="text" name="titre_presentation" class="form-control" id="titre_presentation" maxlength="75" placeholder="Titre présentation" autofocus>
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label for="date" class="col-sm-4 control-label">Date (Format aaaa-mm-jj)</label>
+							<label for="date" class="col-sm-4 control-label">Date (Format aaaa-mm-jj) *</label>
 							<div class="col-sm-8">
 								<input type="date" name="date" id="date">
 							</div>
                          </div>
 						 
 						 <div class="form-group">
-							<label for="heure_debut" class="col-sm-4 control-label">Heure(Format : hh:mm)</label>
+							<label for="heure_debut" class="col-sm-4 control-label">Heure(Format hh:mm) *</label>
 							<div class="col-sm-8">
 								de <input type="time" name="heure_debut" id="heure_debut">
-								à <input type="time" name="heure_fin">
+								<br/>à&nbsp&nbsp <input type="time" name="heure_fin">
 							</div>
                         </div>
 						
@@ -63,11 +62,12 @@
 								
 							</div>
                         </div>
-												
+													
 <!--//////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////-->					
-                            
-						<div class="form-group" id="champ_cache1">
+///////////////////////////////////////////////////////////////////////////-->
+                        
+					<!-- menu déroulant orateurs bdd-->
+						<div class="form-group" id="dropdown_orateur">
 								<label for="select_orateur" class="col-sm-4 control-label">Orateur</label>
 								<div class="col-sm-8">
 									<select id="select_orateur" name="select_orateur" class="liste_orateur">
@@ -76,132 +76,115 @@
 								</div>
                         </div>
 							
-<!--//////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////-->
 					<!-- checkbox pour faire apparaitre les champs pour nouveau orateur-->
 						<div class="form-group">
-							<label for="ck1" class="col-sm-4 control-label">Ajouter un orateur</label>
+							<label for="checkbox_orateur" class="col-sm-4 control-label">Ajouter un orateur</label>
 							<div class="col-sm-8">
-								<input type="checkbox" name="checkbox" value="oui" id="ck1" onClick="afficher();" />
+								<input type="checkbox" name="checkbox_orateur" value="oui" id="checkbox_orateur" onClick="afficher();" />
 							</div>
                         </div>
-						
-						
-				<div id="champ_cache3">	
 					
+<!--//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////-->
+					
+					<!-- formulaire nouvel orateur -->
+						<div id="form_nv_orateur">					
                         
-						<div class="form-group">
-							<label for="nom_orateur" class="col-sm-4 control-label">Nom orateur</label>
-							<div class="col-sm-8">
-								<input type="text" name="nom_orateur" class="form-control" id="nom_orateur" maxlength="75" placeholder="Nom orateur">
-							</div>
-                        </div>
+								<div class="form-group">
+									<label for="nom_orateur" class="col-sm-4 control-label">Nom orateur</label>
+									<div class="col-sm-8">
+										<input type="text" name="nom_orateur" class="form-control" id="nom_orateur" maxlength="75" placeholder="Nom orateur">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="prenom_orateur" class="col-sm-4 control-label">Prénom orateur</label>
+									<div class="col-sm-8">
+										 <input type="text" name="prenom_orateur" class="form-control" id="prenom_orateur" maxlength="75" placeholder="Prénom orateur">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="courriel_orateur" class="col-sm-4 control-label">Courriel orateur</label>
+									<div class="col-sm-8">
+										 <input type="text" name="courriel_orateur" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="tel_orateur" class="col-sm-4 control-label">Téléphone orateur</label>
+									<div class="col-sm-8">
+										<input type="text" name="tel_orateur" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
+									</div>
+								</div>
+								
+<!--//////////////////////////////////////////////////////////////////////////-->						
+							<!-- menu déroulant entreprises bdd-->
+								<div class="form-group" id="dropdown_entp">
+									<label for="select_entreprise" class="col-sm-4 control-label">Entreprise</label>
+									<div class="col-sm-8">
+										<select id="select_entreprise" name="select_entreprise" class="liste_entreprise">
+											<option value="0" selected>Non renseigné</option>
+										</select>
+									</div>
+								</div>
+								
+							<!-- checkbox pour faire apparaitre les champs pour nouvelle entreprise-->
+								<div class="form-group">
+									<label for="checkbox_entp" class="col-sm-4 control-label">Ajouter une entreprise</label>
+									<div class="col-sm-8">
+										<input type="checkbox" name="checkbox_entp" value="oui" id="checkbox_entp" onClick="afficher();" />
+									</div>
+								</div>
+
+
 						
-						<div class="form-group">
-							<label for="prenom_orateur" class="col-sm-4 control-label">Prénom orateur</label>
-							<div class="col-sm-8">
-								 <input type="text" name="prenom_orateur" class="form-control" id="prenom_orateur" maxlength="75" placeholder="Prénom orateur">
-							</div>
-                        </div>
+						</div>	
+							
 						
-						<div class="form-group">
-							<label for="courriel_orateur" class="col-sm-4 control-label">Courriel orateur</label>
-							<div class="col-sm-8">
-								 <input type="text" name="courriel_orateur" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
-							</div>
-                        </div>
-						
-						<div class="form-group">
-							<label for="tel_orateur" class="col-sm-4 control-label">Téléphone orateur</label>
-							<div class="col-sm-8">
-								<input type="text" name="tel_orateur" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
-							</div>
-                        </div>
-                        
-						<div class="form-group">
-							<label for="select_entreprise" class="col-sm-4 control-label">Entreprise</label>
-							<div class="col-sm-8">
-								<select id="select_entreprise" name="entreprise" class="liste_entreprise">
-                                    <option value="0" selected>Non renseigné</option>
-                                </select>
-							</div>
-                        </div>
-						
-						<!-- checkbox pour faire apparaitre les champs pour nouvelle entreprise-->
-						<div class="form-group" id="champ_cache2">
-							<label for="ck2" class="col-sm-4 control-label">Ajouter une entreprise</label>
-							<div class="col-sm-8">
-								<input type="checkbox" name="checkbox2" value="oui" id="ck2" onClick="afficher();" />
-							</div>
-                        </div>
-						
-						
-                                                       
-				</div>		
-						
-				<div id="champ_cache4">
-						
-						<div class="form-group">
-							<label for="nom_entreprise" class="col-sm-4 control-label">Nom entreprise</label>
-							<div class="col-sm-8">
-								<input type="text" name="nom_entreprise" class="form-control"  id="nom_entreprise" maxlength="75" placeholder="Nom entreprise">
-							</div>
-                        </div>
-						
-						<div class="form-group">
-							<label for="adresse_entreprise" class="col-sm-4 control-label">Adresse entreprise</label>
-							<div class="col-sm-8">
-								<input type="text" name="adresse_entreprise" class="form-control" id="adresse_entreprise" maxlength="75" placeholder="Adresse entreprise">
-							</div>
-                        </div>
-						
-						<div class="form-group">
-							<label for="url_entreprise" class="col-sm-4 control-label">Url entreprise</label>
-							<div class="col-sm-8">
-								 <input type="text" name="url_entreprise" class="form-control" id="url_entreprise" maxlength="75" placeholder="Url entreprise">
-							</div>
-                        </div>
-						
-						<div class="form-group">
-							<label for="avatar" class="col-sm-4 control-label">Logo de l'entreprise</label>
-							<div class="col-sm-8">
-								<label for="avatar">Selectionner l'image à télecharger (JPG ou PNG | max. 2 Mo) :</label><br />
-                                <input type="file" name="avatar" id="avatar" /><br />
-                                <input type="hidden" name="MAX_FILE_SIZE" value="2097152"/><br />
-							</div>
-                        </div>
-						
-						<div class="form-group">
-							<label for="nom_orateur2" class="col-sm-4 control-label">Nom orateur</label>
-							<div class="col-sm-8">
-								  <input type="text" name="nom_orateur2" class="form-control" id="nom_orateur" maxlength="75" placeholder="Nom orateur">
-							</div>
-                        </div>
-						
-						<div class="form-group">
-							<label for="prenom_orateur2" class="col-sm-4 control-label">Prénom orateur</label>
-							<div class="col-sm-8">
-								  <input type="text" name="prenom_orateur2" class="form-control" id="prenom_orateur" maxlength="75" placeholder="Prénom orateur">
-							</div>
-                        </div>
-						
-						<div class="form-group">
-							<label for="courriel_orateur2" class="col-sm-4 control-label">Courriel orateur</label>
-							<div class="col-sm-8">
-								  <input type="text" name="courriel_orateur2" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
-							</div>
-                        </div>
-						
-						<div class="form-group">
-							<label for="prenom_orateur2" class="col-sm-4 control-label">Téléphone orateur</label>
-							<div class="col-sm-8">
-								  <input type="text" name="tel_orateur2" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
-							</div>
-                        </div>
+<!--//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////-->
 					
-                             
+					<!-- formulaire nouvelle entreprise -->
+						<div id="form_nv_entp">
+						
+								<div class="form-group">
+									<label for="nom_entreprise" class="col-sm-4 control-label">Nom entreprise</label>
+									<div class="col-sm-8">
+										<input type="text" name="nom_entreprise" class="form-control"  id="nom_entreprise" maxlength="75" placeholder="Nom entreprise">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="adresse_entreprise" class="col-sm-4 control-label">Adresse entreprise</label>
+									<div class="col-sm-8">
+										<input type="text" name="adresse_entreprise" class="form-control" id="adresse_entreprise" maxlength="75" placeholder="Adresse entreprise">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="url_entreprise" class="col-sm-4 control-label">Url entreprise</label>
+									<div class="col-sm-8">
+										 <input type="text" name="url_entreprise" class="form-control" id="url_entreprise" maxlength="75" placeholder="Url entreprise">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="avatar" class="col-sm-4 control-label">Logo de l'entreprise</label>
+									<div class="col-sm-8">
+										<label for="avatar">Selectionner l'image à télecharger (JPG ou PNG | max. 2 Mo) :</label><br />
+										<input type="file" name="avatar" id="avatar" /><br />
+										<input type="hidden" name="MAX_FILE_SIZE" value="2097152"/><br />
+									</div>
+								</div>
+						</div>
+						
+				
+				
+<!--//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////-->
 					
-				</div>
+					<!-- Boutons d'envoi et de retour -->
 				
 						<div class="text-center">							
 								<a href=javascript:history.go(-1) class="btn btn-primary btn-resp"> Retour </a>							
@@ -222,33 +205,46 @@
 	<script type="text/javascript" src="js/haut_admin.js"></script>
 
     <script type="text/javascript">
-        document.getElementById('champ_cache1').style.display="block";
-        document.getElementById('champ_cache2').style.display="none";
-        document.getElementById('champ_cache3').style.display="none";
-        document.getElementById('champ_cache4').style.display="none";
+        
+		// obtient les différents champs par leur id
+			var dropdown_orateur = document.getElementById('dropdown_orateur');
+			var dropdown_entp = document.getElementById('dropdown_entp');
+			var form_nv_orateur = document.getElementById('form_nv_orateur');
+			var form_nv_entp = document.getElementById('form_nv_entp');
+			
+			var checkbox_orateur = document.getElementById('checkbox_orateur');
+			var checkbox_entp = document.getElementById('checkbox_entp');
+			
+			
+		
+		// affectation d'affichage de ces champs
+			dropdown_orateur.style.display = "block";
+			dropdown_entp.style.display = "block";
+			form_nv_orateur.style.display = "none";
+			form_nv_entp.style.display = "none";
 
-        function afficher()
-        {
-            if (document.getElementById('ck1').checked){
-                document.getElementById('champ_cache1').style.display="none";
-                document.getElementById('champ_cache2').style.display="block";
-                document.getElementById('champ_cache3').style.display="block";
-                document.getElementById('champ_cache4').style.display="none";
-            }
-            else {
-                document.getElementById('champ_cache1').style.display="block";
-                document.getElementById('champ_cache2').style.display="none";
-                document.getElementById('champ_cache3').style.display="none";
-                document.getElementById('champ_cache4').style.display="none";
-            }
+		// fonction qui modifie l'affichage des champs en fonction des checkbox		    
+		   function afficher()
+			{
+				if (checkbox_orateur.checked){
+					document.getElementById('dropdown_orateur').style.display="none";
+					document.getElementById('form_nv_orateur').style.display="block";
+				}
+				else {
+					document.getElementById('dropdown_orateur').style.display="block";
+					document.getElementById('form_nv_orateur').style.display="none";
+				}
 
-            if ((document.getElementById('ck1').checked) && (document.getElementById('ck2').checked)){
-                document.getElementById('champ_cache1').style.display="none";
-                document.getElementById('champ_cache2').style.display="block";
-                document.getElementById('champ_cache3').style.display="none";
-                document.getElementById('champ_cache4').style.display="block";
-            }
-        }
+				if (checkbox_entp.checked){
+					document.getElementById('dropdown_entp').style.display="none";
+					document.getElementById('form_nv_entp').style.display="block";					
+				}
+				else {
+					document.getElementById('dropdown_entp').style.display="block";
+					document.getElementById('form_nv_entp').style.display="none";
+				}
+			}
+
     </script>
 
   </body>
