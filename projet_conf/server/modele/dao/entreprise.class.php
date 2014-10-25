@@ -21,10 +21,6 @@ class Entreprise {
 	public static function creer($nom, $adresse_entp, $url, $logo) {
 		$conn = Connection::get ();
 		
-		/*
-		 * if (self::verifLogin ( $login )) { throw new Exception ( "login existant" ); } else { $login = str_replace ( " ", " ", trim ( $login ) ); } if (! preg_match ( "/^[A-Z][a-z]*[ [a-z]*]*$/", $nom )) { throw new Exception ( "nom incorrect" ); } else { $nom = str_replace ( " ", " ", trim ( $nom ) ); } ; if (! preg_match ( "/^[A-Z][a-z]*[ [a-z]*]*$/", $prenom )) { throw new Exception ( "prenom incorrect" ); } else { $prenom = str_replace ( " ", " ", trim ( $prenom ) ); } ; if (! ctype_alnum ( $login ) || (strlen ( $login ) < 4 || strlen ( $login ) > 16)) { throw new Exception ( "login non conforme" ); } else { $login = str_replace ( " ", " ", trim ( $login ) ); } ; if (! preg_match ( "/^.{8,25}$/", $password )) { throw new Exception ( "Password non conforme" ); } ;
-		 */
-		
 		// requete d'insertion
 		$request = $conn->prepare ( "INSERT INTO entreprise (nom, adresse_entp, url, logo) VALUES (:nom , :adresse_entp , :url ,:logo)" );
 		$request->execute ( array (
@@ -36,7 +32,7 @@ class Entreprise {
 	}
 	
 	// //////////////////////////////
-	// Permet de modifier un entreprise dans la base
+	// Permet de modifier une entreprise dans la base
 	// //////////////////////////////
 	public static function modifie($vieux_nom, $nom, $adresse_entp, $url, $logo) {
 		$conn = Connection::get ();
@@ -66,6 +62,8 @@ class Entreprise {
 		
 		return $result;
 	}
+	
+	
 	public static function get($id_entreprise) {
 		
 		// verification a faire
@@ -111,18 +109,14 @@ class Entreprise {
 	// //////////////////////////////
 	public static function insertEntreprise($nom_entreprise, $adresse_entreprise, $imgName, $url_entreprise) {
 		$conn = Connection::get ();
-
-        if ((empty($nom_entreprise)) || (empty($adresse_entreprise)) || (empty($url_entreprise))){
-            echo 'Erreur dans l\'un des champs';
-        }
-        else {
+      
             $req = $conn->prepare('INSERT INTO entreprise (nom_entp, adresse_entp, url_entp, logo_entp) VALUES ("'.$nom_entreprise.'","'.$adresse_entreprise.'","'.$url_entreprise.'","'.$imgName.'")');
             $req->execute(array(
             'nom_entp'=>$nom_entreprise,
             'adresse_entp'=>$adresse_entreprise,
             'url_entp'=>$url_entreprise,
             'logo_entp'=>$imgName));
-		}
+		
 	}
 	
 	// //////////////////////////////

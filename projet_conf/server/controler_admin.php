@@ -137,10 +137,10 @@ if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset (
 
 	// Ajoute un evenement et organisateur page ajout_evenement
 		if(isset($_POST['ajout_evenement'])){
+						
 			$img = new UploadImages('avatar');
 			$imgName = $img->getName();
 			$dir = dirname("http://localhost/webprojet/projet_conf/projet_conf/server/images");
-			$checkbox = '';
 
 			if( ! isset($_POST['checkbox_organisateur'])){
 				if( true == $img->validUpload() && isset($_POST['lat']) && isset($_POST['lng']) ){

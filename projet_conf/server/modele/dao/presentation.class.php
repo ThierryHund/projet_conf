@@ -17,6 +17,7 @@ class presentation {
 	private $adresse_entp;
 	private $url_entp;
 	private $logo_entp;
+	
 	public function __construct($id_presentation, $titre_presentation, $description, $heure_debut_presentation, $heure_fin_presentation, $date_presentation, $id_orateur, $nom_orateur, $prenom_orateur, $courriel_orateur, $tel_orateur, $id_entp, $nom_entp, $adresse_entp, $url_entp, $logo_entp) {
 		$this->id_presentation = $id_presentation;
 		$this->titre_presentation = $titre_presentation;
@@ -461,9 +462,6 @@ class presentation {
 	public static function insertPres($titre_presentation, $desc_presentation, $heure_debut, $heure_fin, $date, $select_evenement, $select_type_presentation) {
 		$conn = Connection::get ();
 		
-		if ((empty ( $select_evenement )) || (empty ( $titre_presentation )) || (empty ( $desc_presentation )) || (empty ( $select_type_presentation ))) {
-			echo 'Erreur dans l\'un des champs';
-		} else {
 			$req = $conn->prepare ( 'INSERT INTO presentation(titre_presentation, description, heure_debut_presentation, heure_fin_presentation, date_presentation, id_evnt, id_type) VALUES ("' . $titre_presentation . '","' . $desc_presentation . '", "' . $heure_debut . '", "' . $heure_fin . '", "' . $date . '","' . $select_evenement . '","' . $select_type_presentation . '")' );
 			$req->execute ( array (
 					'titre_presentation' => $titre_presentation,
@@ -473,9 +471,7 @@ class presentation {
 					'date_presentation' => $date,
 					'id_evnt' => $select_evenement,
 					'id_type' => $select_type_presentation 
-			) );		
-			
-		}
+			) );			
 		
 	}
 	

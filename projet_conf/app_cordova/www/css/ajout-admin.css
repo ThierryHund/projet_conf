@@ -26,3 +26,23 @@ max-width:850px;
 	margin: 5px 15px 5px 15px;
 }
 
+div#messages {
+	float:right;
+	background-color: #F0F0F0;
+	border:1px solid #C0C0C0;
+	width:300px;
+}
+
+#ajout_evenement label.error {
+  background:url("../img/unchecked.gif") no-repeat 0px 0px;
+  padding-left: 16px;
+  margin-left: 16px;
+  padding-bottom: 2px;
+  font-weight: bold;
+  color: #EA5200;
+}
+
+#ajout_evenement label.checked {
+  background:url("../img/checked.gif") no-repeat 0px 0px;
+}
+

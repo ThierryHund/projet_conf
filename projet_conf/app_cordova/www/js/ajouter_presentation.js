@@ -44,7 +44,7 @@ $('form').submit(function(e){
 		contentType: false,
 		success: function(){
 			
-			//alert('Your comment was successfully added');
+			alert("Présentation ajoutée avec succès, retour vers la page de consultation.");
 			document.location.href="http://localhost/webprojet/projet_conf/projet_conf/app_cordova/www/consulter_presentation.html?consulter_presentation=0?id_event="+id_evt;
 		},
 		error: function(){

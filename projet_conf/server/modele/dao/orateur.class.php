@@ -92,11 +92,7 @@ class Orateur {
 	// //////////////////////////////
 	public static function insertOrateurEntpExist($nom_orateur, $prenom_orateur, $courriel_orateur, $tel_orateur, $select_entreprise) {
 		$conn = Connection::get ();
-
-        if ((empty($nom_orateur)) || (empty($prenom_orateur)) || (empty($courriel_orateur)) || (empty($tel_orateur)) || (empty($select_entreprise))){
-            echo 'INSERT INTO orateur (nom_orateur, prenom_orateur, courriel_orateur, tel_orateur, id_entp) VALUES ("'.$nom_orateur.'","'.$prenom_orateur.'","'.$courriel_orateur.'","'.$tel_orateur.'","'.$select_entreprise.'")';
-        }
-        else {
+      
             $req = $conn->prepare('INSERT INTO orateur (nom_orateur, prenom_orateur, courriel_orateur, tel_orateur, id_entp) VALUES ("'.$nom_orateur.'","'.$prenom_orateur.'","'.$courriel_orateur.'","'.$tel_orateur.'","'.$select_entreprise.'")');
             $req->execute(array(
             'nom_orateur'=>$nom_orateur,
@@ -104,8 +100,6 @@ class Orateur {
             'courriel_orateur'=>$courriel_orateur,
             'tel_orateur'=>$tel_orateur,
             'id_entp'=>$select_entreprise));
-
-        }
 
 	}
 	
