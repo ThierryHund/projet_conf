@@ -16,11 +16,13 @@ $(document).ready(function() {
 				rules: {
 					titre_evenement: {
 						required: true,
-						minlength: 2
+						minlength: 2,
+						maxlength: 30
 					},
 					lieu_evenement: {
 						required: true,
-						minlength: 2
+						minlength: 2,
+						maxlength: 75
 					},
 					lat: {
 						required: true
@@ -78,11 +80,13 @@ $(document).ready(function() {
 				messages: {
 					titre_evenement: {
 						required: "Saisissez un titre",
-						minlength: jQuery.validator.format("Le titre doit contenir au moins 2 caractères")					
+						minlength: jQuery.validator.format("Le titre doit contenir au moins 2 caractères"),
+						maxlength: jQuery.validator.format("Le titre doit contenir au plus 30 caractères")				
 					},
 					lieu_evenement: {
 						required: "Saisissez un lieu",
-						minlength: jQuery.validator.format("Le lieu doit contenir au moins 2 caractères")
+						minlength: jQuery.validator.format("Le lieu doit contenir au moins 2 caractères"),
+						maxlength: jQuery.validator.format("Le titre doit contenir au plus 75 caractères")
 					},
 					lat: {
 						required: "Générez la latitude"

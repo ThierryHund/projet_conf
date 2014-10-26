@@ -38,7 +38,8 @@ $(document).ready(function() {
 				rules: {
 					titre_presentation: {
 						required: true,
-						minlength: 2
+						minlength: 2,
+						maxlength: 75
 					},
 					date: {
 						required: true,
@@ -51,6 +52,9 @@ $(document).ready(function() {
 					heure_fin: {
 						required: true,
 						time: true
+					},
+					select_type_presentation: {
+						required: true
 					},
 					select_orateur: {
 						require_from_group: [1, ".orateur_group"]
@@ -92,7 +96,8 @@ $(document).ready(function() {
 				messages: {
 					titre_presentation: {
 						required: "Saisissez un titre",
-						minlength: jQuery.validator.format("Le titre doit contenir au moins 2 caractères")					
+						minlength: jQuery.validator.format("Le titre doit contenir au moins 2 caractères"),
+						maxlength: jQuery.validator.format("Le titre doit contenir au plus 75 caractères"),
 					},
 					date: {
 						required: "Saisissez une date de début",
@@ -109,6 +114,9 @@ $(document).ready(function() {
 					heure_fin: {
 						required: "Saisissez l'heure de fin",
 						time: "Saisissez une heure valide"
+					},
+					select_type_presentation: {
+						required: "Sélectionnez le type de présentation"
 					},
 					select_orateur: {
 						require_from_group: "Saisissez un de ces champs"
