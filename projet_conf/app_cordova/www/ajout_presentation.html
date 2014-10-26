@@ -70,8 +70,8 @@
 						<div class="form-group" id="dropdown_orateur">
 								<label for="select_orateur" class="col-sm-4 control-label">Orateur</label>
 								<div class="col-sm-8">
-									<select id="select_orateur" name="select_orateur" class="liste_orateur">
-										<option value="0" selected>Non renseigné</option>
+									<select id="select_orateur" name="select_orateur" class="liste_orateur orateur_group">
+										<option value="">Non renseigné</option>
 									</select>
 								</div>
                         </div>
@@ -80,7 +80,7 @@
 						<div class="form-group">
 							<label for="checkbox_orateur" class="col-sm-4 control-label">Ajouter un orateur</label>
 							<div class="col-sm-8">
-								<input type="checkbox" name="checkbox_orateur" value="oui" id="checkbox_orateur" onClick="afficher();" />
+								<input type="checkbox" name="checkbox_orateur" class="orateur_group" id="checkbox_orateur" onClick="afficher();" />
 							</div>
                         </div>
 					
@@ -107,14 +107,14 @@
 								<div class="form-group">
 									<label for="courriel_orateur" class="col-sm-4 control-label">Courriel orateur</label>
 									<div class="col-sm-8">
-										 <input type="text" name="courriel_orateur" class="form-control" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
+										 <input type="text" name="courriel_orateur" class="form-control contact_nv_orateur" id="courriel_orateur" maxlength="75" placeholder="Courriel orateur">
 									</div>
 								</div>
 								
 								<div class="form-group">
 									<label for="tel_orateur" class="col-sm-4 control-label">Téléphone orateur</label>
 									<div class="col-sm-8">
-										<input type="text" name="tel_orateur" class="form-control" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
+										<input type="text" name="tel_orateur" class="form-control contact_nv_orateur" id="tel_orateur" maxlength="10" placeholder="Téléphone orateur">
 									</div>
 								</div>
 								
@@ -123,17 +123,17 @@
 								<div class="form-group" id="dropdown_entp">
 									<label for="select_entreprise" class="col-sm-4 control-label">Entreprise</label>
 									<div class="col-sm-8">
-										<select id="select_entreprise" name="select_entreprise" class="liste_entreprise">
-											<option value="0" selected>Non renseigné</option>
+										<select id="select_entreprise" name="select_entreprise" class="liste_entreprise entp_group">
+											<option value="">Non renseigné</option>
 										</select>
 									</div>
 								</div>
 								
 							<!-- checkbox pour faire apparaitre les champs pour nouvelle entreprise-->
 								<div class="form-group">
-									<label for="checkbox_entp" class="col-sm-4 control-label">Ajouter une entreprise</label>
+									<label for="checkbox_entreprise" class="col-sm-4 control-label">Ajouter une entreprise</label>
 									<div class="col-sm-8">
-										<input type="checkbox" name="checkbox_entp" value="oui" id="checkbox_entp" onClick="afficher();" />
+										<input type="checkbox" name="checkbox_entreprise" class="entp_group" id="checkbox_entreprise" onClick="afficher();" />
 									</div>
 								</div>
 
@@ -199,7 +199,8 @@
 
     <!-- librairie js -->
     <script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.js"></script>
+	<script type="text/javascript" src="js/additional-methods.js"></script>
     <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/ajouter_presentation.js"></script>
 	<!-- header -->
@@ -214,7 +215,7 @@
 			var form_nv_entp = document.getElementById('form_nv_entp');
 			
 			var checkbox_orateur = document.getElementById('checkbox_orateur');
-			var checkbox_entp = document.getElementById('checkbox_entp');
+			var checkbox_entreprise = document.getElementById('checkbox_entreprise');
 			
 			
 		
@@ -236,7 +237,7 @@
 					document.getElementById('form_nv_orateur').style.display="none";
 				}
 
-				if (checkbox_entp.checked){
+				if (checkbox_entreprise.checked){
 					document.getElementById('dropdown_entp').style.display="none";
 					document.getElementById('form_nv_entp').style.display="block";					
 				}

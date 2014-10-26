@@ -41,12 +41,50 @@ $(document).ready(function() {
 						minlength: 2
 					},
 					date: {
-						required: true
+						required: true,
+						date: true
 					},
 					heure_debut: {
-						required: true
+						required: true,
+						time: true
 					},
 					heure_fin: {
+						required: true,
+						time: true
+					},
+					select_orateur: {
+						require_from_group: [1, ".orateur_group"]
+					},
+					checkbox_orateur: {
+						require_from_group: [1, ".orateur_group"]
+					},
+					nom_orateur: {
+						required: true
+					},
+					prenom_orateur: {
+						required: true
+					},
+					courriel_orateur: {
+						require_from_group: [1, ".contact_nv_orateur"],
+						email: true
+					},
+					tel_orateur: {
+						require_from_group: [1, ".contact_nv_orateur"],
+						number:true,
+						minlength:10,
+						maxlength:10
+					},
+					select_entreprise: {
+						require_from_group: [1, ".entp_group"]
+					},
+					checkbox_entreprise: {
+						require_from_group: [1, ".entp_group"]
+					},
+					nom_entreprise: {
+						required: true,
+						minlength: 2
+					},
+					avatar: {
 						required: true
 					}
 				
@@ -54,30 +92,73 @@ $(document).ready(function() {
 				messages: {
 					titre_presentation: {
 						required: "Saisissez un titre",
-						minlength: jQuery.format("Le titre doit contenir au moins 2 caractères")					
+						minlength: jQuery.validator.format("Le titre doit contenir au moins 2 caractères")					
 					},
 					date: {
-						required: "Saisissez une date"				
+						required: "Saisissez une date de début",
+						date: "Saisissez une date valide"
+					},
+					date_fin: {
+						required: "Saisissez une date de fin",
+						date: "Saisissez une date valide"
 					},
 					heure_debut: {
-						required: "Saisissez une heure de début"				
+						required: "Saisissez l'heure de début",
+						time: "Saisissez une heure valide"
 					},
 					heure_fin: {
-						required: "Saisissez une heure de fin"				
+						required: "Saisissez l'heure de fin",
+						time: "Saisissez une heure valide"
+					},
+					select_orateur: {
+						require_from_group: "Saisissez un de ces champs"
+					},
+					checkbox_orateur: {
+						require_from_group: "Saisissez un de ces champs"
+					},
+					nom_orateur: {
+						required: "Saisissez le nom de l'orateur"
+					},
+					prenom_orateur: {
+						required: "Saisissez le prénom de l'orateur"
+					},
+					courriel_orateur: {
+						require_from_group: "Saisissez un de ces champs",
+						email: "Saisissez un format de courriel valide"
+					},
+					tel_orateur: {
+						require_from_group: "Saisissez un de ces champs",
+						minlength: jQuery.validator.format("Saisissez au moins 10 chiffres"),
+						maxlength: jQuery.validator.format("Ne saisissez pas plus de 10 chiffres"),
+						number: jQuery.validator.format("Chiffres uniquement")
+					},
+					select_entreprise: {
+						require_from_group: "Saisissez un de ces champs"
+					},
+					checkbox_entreprise: {
+						require_from_group: "Saisissez un de ces champs"
+					},
+					nom_entreprise: {
+						required: "Saisissez un titre",
+						minlength: jQuery.validator.format("Le nom doit contenir au moins 2 caractères")					
+					},
+					avatar: {
+						required: "Le logo de l'événement est obligatoire"			
 					}
+					
 				},
 				success: function(label) {
-				// set &nbsp; as text for IE
-				label.html("&nbsp;").addClass("checked");
+					// set &nbsp; as text for IE
+					label.html("&nbsp;").addClass("checked");
 				},
-				highlight: function(element, errorClass) {
-					$(element).parent().next().find("." + errorClass).removeClass("checked");
+				highlight: function (element, errorClass) {
+					$(element).siblings('label').removeClass('checked');
 				},
 				submitHandler: function(form) {
 					 //$('#submit').attr('disabled','disabled');
 	
 					//envoi du formulaire
-					$('form').submit(function(e){
+					$(form).submit(function(e){
 						e.preventDefault();
 						var formData= new FormData(this);
 						formData.append('ajout_presentation','ajout');

@@ -163,20 +163,20 @@ if ((! empty ( $_POST ['login'] ) && ! empty ( $_POST ['password'] )) or isset (
 		if(isset($_POST['ajout_presentation'])){
 			$img = new UploadImages('avatar');
 			$imgName = $img->getName();
-			$dir = dirname("/images");
+			$dir = dirname("http://localhost/webprojet/projet_conf/projet_conf/server/images");
 			$checkbox='';
 			$checkbox2='';
 			 
-			if(( ! isset($_POST['checkbox_orateur'])) && ( ! isset($_POST['checkbox_entp']))){
+			if(( ! isset($_POST['checkbox_orateur'])) && ( ! isset($_POST['checkbox_entreprise']))){
 				$id_presentation = Presentation::insertPres($_POST['titre_presentation'],$_POST['desc_presentation'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['date'],$_POST['id_evt'],$_POST['select_type_presentation']);
 				$presente = Presentation::insertPresenteOratExist($_POST['select_orateur']);
 			}
-			else if((isset($_POST['checkbox_orateur'])) && ( ! isset($_POST['checkbox_entp']))){
+			else if((isset($_POST['checkbox_orateur'])) && ( ! isset($_POST['checkbox_entreprise']))){
 				$id_presentation = Presentation::insertPres($_POST['titre_presentation'],$_POST['desc_presentation'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['date'],$_POST['id_evt'],$_POST['select_type_presentation']);
 				$id_orateur = Orateur::insertOrateurEntpExist($_POST['nom_orateur'],$_POST['prenom_orateur'],$_POST['courriel_orateur'],$_POST['tel_orateur'],$_POST['select_entreprise']);
 				$presente = Presentation::insertPresenteNvOrateur();
 			} 			
-			else if((isset($_POST['checkbox_orateur'])) && (isset($_POST['checkbox_entp']))){
+			else if((isset($_POST['checkbox_orateur'])) && (isset($_POST['checkbox_entreprise']))){
 				if(true == $img->validUpload()){
 					$id_presentation = Presentation::insertPres($_POST['titre_presentation'],$_POST['desc_presentation'],$_POST['heure_debut'],$_POST['heure_fin'],$_POST['date'],$_POST['id_evt'],$_POST['select_type_presentation']);
 					$id_entreprise = Entreprise::insertEntreprise($_POST['nom_entreprise'], $_POST['adresse_entreprise'], $dir.'/images/'.$imgName, $_POST['url_entreprise']);

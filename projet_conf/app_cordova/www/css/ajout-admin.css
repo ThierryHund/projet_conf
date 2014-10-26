@@ -11,7 +11,11 @@ max-width: 850px;
   padding-top: 0px;
 }
 
-input {
+label {
+	display: inline !important;
+}
+
+input, select {
 	margin-bottom: 5px;
 }
 
@@ -35,7 +39,7 @@ div#messages {
 	color: #EA5200;
 }
 
-#ajout_evenement label.checked, #ajout_presentation label.valid {
+#ajout_evenement label.checked, #ajout_presentation label.checked {
 	background:url("../img/checked.gif") no-repeat 0px 0px;
 	padding-left: 16px;
 	margin-left: 16px;
