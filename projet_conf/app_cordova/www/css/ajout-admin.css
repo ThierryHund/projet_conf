@@ -1,25 +1,18 @@
 
-
-
 body {
     background-color: rgba(149, 160, 141, 0.3);
 }
 
-
 .container-fluid{
-max-width:850px;
-}
-
-.row_custom{
-  margin-right: -15px;
-  margin-left: -15px;
-  background: #eeeeee;
-  border-radius: 5px;
-  padding: 10px;
+max-width: 850px;
 }
 
 .body {
   padding-top: 0px;
+}
+
+input {
+	margin-bottom: 5px;
 }
 
 .btn-resp {
@@ -33,16 +26,21 @@ div#messages {
 	width:300px;
 }
 
-#ajout_evenement label.error {
-  background:url("../img/unchecked.gif") no-repeat 0px 0px;
-  padding-left: 16px;
-  margin-left: 16px;
-  padding-bottom: 2px;
-  font-weight: bold;
-  color: #EA5200;
+#ajout_evenement label.error, #ajout_presentation label.error {
+	background:url("../img/unchecked.gif") no-repeat 0px 0px;
+	padding-left: 16px;	
+	margin-left: 16px;
+	padding-bottom: 2px;
+	font-weight: bold;
+	color: #EA5200;
 }
 
-#ajout_evenement label.checked {
-  background:url("../img/checked.gif") no-repeat 0px 0px;
+#ajout_evenement label.checked, #ajout_presentation label.valid {
+	background:url("../img/checked.gif") no-repeat 0px 0px;
+	padding-left: 16px;
+	margin-left: 16px;
+	padding-bottom: 2px;
+	font-weight: bold;
+	
 }
 

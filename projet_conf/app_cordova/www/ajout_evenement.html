@@ -95,8 +95,8 @@
 					<div class="form-group" id="dropdown_organisateur">
 						<label for="select_organisateur" class="col-sm-4 control-label">Organisateur *</label>
 						<div class="col-sm-8">
-							<select id="select_organisateur" name="select_organisateur" class="liste">>
-								<option value="0" selected>Non renseigné</option>
+							<select id="select_organisateur" name="select_organisateur" class="liste orga_group">
+								<option value="">Non renseigné</option>
 							</select>
 						</div>
 					</div>
@@ -105,7 +105,7 @@
 					<div class="form-group">
 						<label for="checkbox_organisateur" class="col-sm-4 control-label">Ajouter un organisateur</label>
 						<div class="col-sm-8">
-							<input type="checkbox" name="checkbox_organisateur" value="oui" id="checkbox_organisateur" onClick="afficher();" />
+							<input type="checkbox" name="checkbox_organisateur" class="orga_group" id="checkbox_organisateur" onClick="afficher();" />
 						</div>
 					</div>
 
@@ -118,35 +118,35 @@
 						<div class="form-group">
 								<label for="soc_orga" class="col-sm-4 control-label">Société organisatrice</label>
 								<div class="col-sm-8">
-									<input type="text" name="soc_orga" class="form-control"  id="soc_orga" maxlength="75" placeholder="Société organisatrice">
+									<input type="text" name="soc_orga" class="form-control orga_nv_nom"  id="soc_orga" maxlength="75" placeholder="Société organisatrice">
 								</div>
 						</div>
 						
 						<div class="form-group">
 								<label for="nom_orga" class="col-sm-4 control-label">Nom personnel organisateur</label>
 								<div class="col-sm-8">
-									<input type="text" name="nom_orga" class="form-control"  id="nom_orga" maxlength="75" placeholder="Nom organisateur">
+									<input type="text" name="nom_orga" class="form-control orga_nv_nom"  id="nom_orga" maxlength="75" placeholder="Nom organisateur">
 								</div>
 						</div>
 						
 						<div class="form-group">
 								<label for="prenom_orga" class="col-sm-4 control-label">Prénom personnel organisateur</label>
 								<div class="col-sm-8">
-									 <input type="text" name="prenom_orga" class="form-control"  id="prenom_orga" maxlength="75" placeholder="Prénom organisateur">
+									 <input type="text" name="prenom_orga" class="form-control orga_nv_nom"  id="prenom_orga" maxlength="75" placeholder="Prénom organisateur">
 								</div>
 						</div>
 						
 						<div class="form-group">
 								<label for="courriel_orga" class="col-sm-4 control-label">Courriel organisateur</label>
 								<div class="col-sm-8">
-									 <input type="text" name="courriel_orga" class="form-control"  id="courriel_orga" maxlength="75" placeholder="Courriel organisateur">
+									 <input type="text" name="courriel_orga" class="form-control orga_nv_contact"  id="courriel_orga" maxlength="75" placeholder="Courriel organisateur">
 								</div>
 						</div>
 						
 						<div class="form-group">
 								<label for="tel_orga" class="col-sm-4 control-label">Téléphone organisateur</label>
 								<div class="col-sm-8">
-									 <input type="text" name="tel_orga" class="form-control"  id="tel_orga" maxlength="10" placeholder="Téléphone organisateur">
+									 <input type="text" name="tel_orga" class="form-control orga_nv_contact"  id="tel_orga" maxlength="10" placeholder="Téléphone organisateur">
 								</div>
 						</div>
 					
@@ -164,7 +164,8 @@
 
     <!-- librairie js -->
     <script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.js"></script>
+	<script type="text/javascript" src="js/additional-methods.js"></script>
     <script type="text/javascript" src="bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/ajouter_evenement.js"></script>
     <script type="text/javascript" src="js/geolocalise.js"></script>

@@ -9,7 +9,7 @@ $(document).ready(function() {
 		});
 	},"json");
 
-
+				
 		// validation de saisie des champs avec messages
 		$("#ajout_evenement").validate({
 			
@@ -32,30 +32,57 @@ $(document).ready(function() {
 						required: true
 					},
 					date_debut: {
-						required: true
+						required: true,
+						date: true
 					},
 					date_fin: {
-						required: true
+						required: true,
+						date: true
 					},
 					heure_debut: {
-						required: true
+						required: true,
+						time: true
 					},
 					heure_fin: {
-						required: true
+						required: true,
+						time: true
 					},
 					select_organisateur: {
-						required: true
+						require_from_group: [1, ".orga_group"]
+					},
+					checkbox_organisateur: {
+						require_from_group: [1, ".orga_group"]
+					},
+					soc_orga: {
+						require_from_group: [1, ".orga_nv_nom"]
+					},
+					nom_orga: {
+						require_from_group: [1, ".orga_nv_nom"]
+					},
+					prenom_orga: {
+						require_from_group: [1, ".orga_nv_nom"]
+					},
+					courriel_orga: {
+						require_from_group: [1, ".orga_nv_contact"],
+						email: true
+					},
+					tel_orga: {
+						require_from_group: [1, ".orga_nv_contact"],
+						number:true,
+						minlength:10,
+						maxlength:10
 					}
+					
 				
 				  },
 				messages: {
 					titre_evenement: {
 						required: "Saisissez un titre",
-						minlength: jQuery.format("Le titre doit contenir au moins 2 caractères")					
+						minlength: jQuery.validator.format("Le titre doit contenir au moins 2 caractères")					
 					},
 					lieu_evenement: {
 						required: "Saisissez un lieu",
-						minlength: jQuery.format("Le lieu doit contenir au moins 2 caractères")
+						minlength: jQuery.validator.format("Le lieu doit contenir au moins 2 caractères")
 					},
 					lat: {
 						required: "Générez la latitude"
@@ -64,25 +91,59 @@ $(document).ready(function() {
 						required: "Générez la longitude"
 					},
 					avatar: {
-						required: "La photo de l'événement est obligatoire"
+						required: "Le logo de l'événement est obligatoire"
 					},
 					date_debut: {
-						required: "Saisissez une date de début"
+						required: "Saisissez une date de début",
+						date: "Saisissez une date valide"
 					},
 					date_fin: {
-						required: "Saisissez une date de fin"
+						required: "Saisissez une date de fin",
+						date: "Saisissez une date valide"
 					},
 					heure_debut: {
-						required: "Saisissez l'heure de début"
+						required: "Saisissez l'heure de début",
+						time: "Saisissez une heure valide"
 					},
 					heure_fin: {
-						required: "Saisissez l'heure de fin"
+						required: "Saisissez l'heure de fin",
+						time: "Saisissez une heure valide"
 					},
 					select_organisateur: {
-						required: "Saisissez un organisateur"
+						require_from_group: "Saisissez un de ces champs"
+					},
+					checkbox_organisateur: {
+						require_from_group: "Saisissez un de ces champs"
+					},
+					soc_orga: {
+						require_from_group: "Saisissez un de ces champs"
+					},
+					nom_orga: {
+						require_from_group: "Saisissez un de ces champs"
+					},
+					prenom_orga: {
+						require_from_group: "Saisissez un de ces champs"
+					},
+					courriel_orga: {
+						require_from_group: "Saisissez un de ces champs",
+						email: "Saisissez un format de courriel valide"
+					},
+					tel_orga: {
+						require_from_group: "Saisissez un de ces champs",
+						minlength: jQuery.validator.format("Saisissez au moins 10 chiffres"),
+						maxlength: jQuery.validator.format("Ne saisissez pas plus de 10 chiffres"),
+						number: jQuery.validator.format("Chiffres uniquement")
 					}
 					
 				},
+				success: function(label) {
+					// set &nbsp; as text for IE
+					label.html("&nbsp;").addClass("checked");
+				},
+				highlight: function (element, errorClass) {
+					$(element).siblings('label').removeClass('checked');
+				},
+				
 				submitHandler: function(form) {
 					 //$('#submit').attr('disabled','disabled');
 					//envoi du formulaire
